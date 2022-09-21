@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:05:53 by idaegyu           #+#    #+#             */
-/*   Updated: 2022/09/20 21:58:14 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/09/21 00:00:59 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # define WORD_SIZE_MAX 255
 // cat <a | grep 123 | ls -al $h 
 
-
-
+//   WO
+//
 //S -> Data_list
 // 
 // simple_command -> command_elem
@@ -39,9 +39,9 @@
 // command_elem -> 'word'
 
 // redir -> 'redir_left(<)' redir_word
-// redir -> redir_right(>) redir_word
-// redir -> redir_d_left(<<) redir_word
-// redir -> redir_d_right(>>) redir_word
+// redir -> 'redir_right(>)' redir_word
+// redir -> 'redir_d_left(<<)' redir_word
+// redir -> 'redir_d_right(>>)' redir_word
 // redir_word -> 'word'
 // pipe -> 'PIPE' simple_command
 // pipe -> pipe 'PIPE' simple_command 
@@ -51,7 +51,7 @@
 // Data_list -> simple_command
 // Data_list -> Data_list pipe		
 
-
+// 
 												//Data_list
 																	//Data_list
 										//simple_command 					pipe								pipe
@@ -61,7 +61,7 @@
 //											redir					simple_command	command_elem		PIPE				simple_command	
 																		
 
-
+// 			
 																									//DATA_list
 																		//DATA_list
 															//Data_list
@@ -70,12 +70,11 @@
 //		command_elem	command_elem		command_elem						simple_command								simple_command
 //state	 (NO comd)		(cmd)				redir						command_elem	command_elem 				Command_elem	command_elem									command_elem 	command_elem	command_elem	
 //       word 			word			redir_left word			   PIPE	word			word	       		PIPE   	word   			word 			
-//       cat      filename      			  <a                   |    grep   			 123                |         ls  		 -al 				 
-
-//		
+//       cat      filename      			  <a                   |    grep   			 123                |         ls  		 -al 				 		
 
 																		//AST
-								//cmd													
+								//cmd							
+															// 			PIPE 						
 								//			redir_data						cmd									cmd
 //			cat		filename    									grep		123							ls		-al
 
@@ -88,7 +87,7 @@
 //Token data// cat  0			a	     0	grep  123   0	ls  -al  $h
 // tokendata char[WORD_SIZE_MAX];  
 //  word val * $ ->expand
-// 																		token val $ ->expanmd
+// 	token val $ ->expand
 typedef struct s_token
 {
 	int		token_num;
