@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:05:53 by idaegyu           #+#    #+#             */
-/*   Updated: 2022/09/21 00:00:59 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/09/21 13:18:15 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,18 @@
 // pipe -> 'PIPE' simple_command
 // pipe -> pipe 'PIPE' simple_command 
 
+// or -> 'OR' simple_command
+// or -> or 'OR' simple_command
+
+// and -> 'and' simple_command 
+// and -> and 'and' simple_command
+
 // cmd 1 
 // cmd1 | cmd2 
 // Data_list -> simple_command
 // Data_list -> Data_list pipe		
-
+// Data_list -> Data_list and
+// Data_list -. Data_list or
 // 
 												//Data_list
 																	//Data_list
