@@ -5,46 +5,32 @@
 #                                                     +:+ +:+         +:+      #
 #    By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/09/21 15:07:35 by hyunkyle          #+#    #+#              #
-#    Updated: 2022/09/22 19:36:49 by hyunkyle         ###   ########.fr        #
+#    Created: 2022/07/06 10:50:54 by hyunkyle          #+#    #+#              #
+#    Updated: 2022/09/22 19:36:26 by hyunkyle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+SRCS =					ft_strcmp.c \
 
-SRCS				= main.c \
-					./signal/signal.c
-					 
-					  
 OBJS = $(SRCS:.c=.o)
 
-FLAGS = -Wall -Wextra -Werror -lncurses
-LINKING_FLAGS = -lreadline -L${HOME}/.brew/opt/readline/lib
-COMFILE_FLAGS = -I${HOME}/.brew/opt/readline/include
+FLAGS = -Wall -Wextra -Werror
 
-CC = cc
-
-NAME = mini
+NAME = libft.a
 
 $(NAME)	: $(OBJS)
-	make -C ./libft
-	$(CC) $(CFLAGS) $(LINKING_FLAGS) $(FLAGS) -o $(NAME) $(OBJS) ./libft/libft.a
-
+	ar -rc $(NAME) $(OBJS)
 .c.o :
-	$(CC) $(CFLAGS) $(COMFILE_FLAGS) -c $< -o $@
+	$(CC) -o $@ -c $<
 
 all	: $(NAME)
 
 clean	:
-		make -C ./libft clean
-		rm -f $(OBJS)
+		rm -f $(OBJS) $(BNS_OBJS)
 
 fclean	:	clean
-		make -C ./libft fclean
 		rm -f $(NAME)
 
-re	:
-	make -C ./libft re
-	make fclean 
-	make all
+re	:	fclean all
 
 .PHONY	:	all clean fclean re
