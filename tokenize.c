@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 15:01:36 by daegulee          #+#    #+#             */
-/*   Updated: 2022/09/22 15:58:33 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/09/22 20:02:57 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,13 @@ static const t_fp	g_action[2] = {
 
 int	is_alpha_digit(char c)
 {
-	static int i = 1;
-	
-	printf("digit _count %d\n", i);
-	i++;
 	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') \
 	|| (c >= '0' && c <= '9'));
+}
+
+int	is_space(char c)
+{
+	return (c >= 9 && c <= 13);
 }
 
 void	lex_automata(char *str)
@@ -37,7 +38,7 @@ void	lex_automata(char *str)
 	i = -1;
 	memset(&data, 0, sizeof(t_auto_data));
 	data.str = str;
-	while (data.state != L_S12 || data.state != L_S9)
+	while (data.state != L_S12 || data.state != L_S9 && *(data.str))
 	{
 		g_action[data.state](&data);
 	}
