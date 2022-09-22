@@ -6,13 +6,14 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:05:53 by idaegyu           #+#    #+#             */
-/*   Updated: 2022/09/21 13:18:15 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/09/22 14:31:10 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
 // (echo 1  && echo 2) | cat 
+// Token Type
 # define WORD 1  //max
 # define PIPE 2  // | 
 # define AND 3	// &&
@@ -23,9 +24,41 @@
 # define REDIR_RIGHT 9 
 # define REDIR_D_LEFT 10
 # define REDIR_D_RIGHT 11
-# define WILD_CARD 12
 # define ERROR 13 
 # define WORD_SIZE_MAX 255
+
+// libft -
+# include "./libft/libft.h"
+// Automata For Lex(state)
+# define L_S0 0 //init
+# define L_S1 1 //Crate_word
+# define L_S2 2//Double Quoting 
+# define L_S3 3 //Single Quoting
+# define L_S4 4 //I state
+# define L_S5 5 //Pipe state
+# define L_S6 6 //OR state
+# define L_S7 7 //& state
+# define L_S8 8 //PIPE state
+# define L_S9 9 //Error 
+# define L_S10 10 //left_brace
+# define L_S11 11 //right_brace
+# define L_S12 12 // finish
+
+typedef struct s_auto_data
+{
+	int		state;
+	char	*str;
+	char	buffer[WORD_SIZE_MAX];
+	int		buffer_idx;
+	int		type;
+}	t_auto_data;
+
+int		is_alpha_digit(char c);
+void	do_s0(t_auto_data *data);
+void	do_s1(t_auto_data *data);
+
+typedef void	(*t_fp)(t_auto_data *data);
+
 // cat <a | grep 123 | ls -al $h 
 
 //   WO
@@ -97,7 +130,7 @@
 // 	token val $ ->expand
 typedef struct s_token
 {
-	int		token_num;
+	int		token_type;
 	char	token_data[WORD_SIZE_MAX];
 }	t_token;
 

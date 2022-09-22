@@ -4,6 +4,14 @@
 #include <stdlib.h>
 #define MAXLINE 256
 
+
+
+static const t_fp	g_action[2] = {
+	do_s0, do_s1
+	// , do_s2, do_s3, do_s4, do_s5, do_s6, do_s7, do_s8, \
+	// do_s9, do_s10, do_s11, do_s12
+};
+
 int main()
 {
     FILE *fp;
