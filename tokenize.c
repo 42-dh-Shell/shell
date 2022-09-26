@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 15:01:36 by daegulee          #+#    #+#             */
-/*   Updated: 2022/09/26 15:45:32 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/09/26 16:00:23 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	lex_automata(char *str)
 	i = -1;
 	memset(&data, 0, sizeof(t_auto_data));
 	data.str = str;
-	while (data.state != L_S12 || data.state != L_S9 && *(data.str))
+	while (data.next_state != L_S17 || data.next_state != L_S13 && *(data.str))
 	{
-		g_action[data.state](&data);
+		g_action[data.next_state](&data);
 	}
 }
 
