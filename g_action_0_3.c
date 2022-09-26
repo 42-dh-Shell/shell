@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 13:04:10 by daegulee          #+#    #+#             */
-/*   Updated: 2022/09/22 20:09:00 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/09/26 15:45:32 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	do_s0(t_auto_data *data)
 		data->state = L_S1;
 	else if (*(data->str) == '\"')
 		data->state = L_S2;
-	else if (*(data->str) == '\'')
+	else if (*(data->str) == '\'')q
 		data->state = L_S3;
 	else if (*(data->str) == '|')
 		data->state = L_S4;

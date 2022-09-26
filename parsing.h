@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:05:53 by idaegyu           #+#    #+#             */
-/*   Updated: 2022/09/22 19:13:40 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/09/26 15:45:32 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define REDIR_D_LEFT 10
 # define REDIR_D_RIGHT 11
 # define ERROR 13 
-# define WORD_SIZE_MAX 255
+# define WORD_SIZE_MAX 4096
 
 // libft -
 # include "./libft/libft.h"
