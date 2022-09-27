@@ -6,18 +6,25 @@
 #    By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 15:07:35 by hyunkyle          #+#    #+#              #
-#    Updated: 2022/09/22 19:36:49 by hyunkyle         ###   ########.fr        #
+#    Updated: 2022/09/27 16:46:24 by hyunkyle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 SRCS				= main.c \
-					./signal/signal.c
+					./signal/signal.c \
+					./parser/parser_list_utils.c \
+					./parser/parser_token_utils.c \
+					./parser/parser_token_utils1.c \
+					./parser/parser_token_utils2.c \
+					./parser/parser_utils.c \
+					./parser/parser_while_utils.c \
+					./parser/parser.c \
 					 
 					  
 OBJS = $(SRCS:.c=.o)
 
-FLAGS = -Wall -Wextra -Werror -lncurses
+FLAGS = -Wall -Wextra -Werror -lncurses -g
 LINKING_FLAGS = -lreadline -L${HOME}/.brew/opt/readline/lib
 COMFILE_FLAGS = -I${HOME}/.brew/opt/readline/include
 

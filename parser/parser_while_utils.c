@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   parser_while_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/06 10:52:13 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/09/26 20:04:13 by hyunkyle         ###   ########.fr       */
+/*   Created: 2022/09/26 14:25:59 by hyunkyle          #+#    #+#             */
+/*   Updated: 2022/09/27 15:52:46 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
-# include <sys/types.h>
-# include <stdlib.h>
+int	is_space(char c)
+{
+	return ((9 <= c && c <= 13) || c == 32);
+}
 
-int		ft_strcmp(char *s1, char *s2);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strdup(const char *s1);
-size_t	ft_strlen(const char *s);
-int		ft_isalpha(int c);
-int		ft_isdigit(int c);
+int	is_meta(char c)
+{
+	return (c == '|' || c == '&' || c == '<' || c == '>');
+}
 
-#endif
+// int	is_word(char c)
+// {
+// 	return ();
+// }
