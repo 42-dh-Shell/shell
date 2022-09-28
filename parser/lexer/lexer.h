@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:36:54 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/09/28 14:07:09 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/09/28 19:03:37 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#ifndef LEXER_H
+# define LEXER_H
 # include <stdlib.h>
-# include "../libft/libft.h"
+# include "../../libft/libft.h"
+# include <stdio.h>
 # define ASCII_QUOTE 39
 # define ASCII_DQUOTE 34
 # define ASCII_EXPAND_SIG 36

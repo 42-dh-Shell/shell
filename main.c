@@ -6,14 +6,14 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 15:46:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/09/27 16:49:31 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/09/28 19:22:56 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./signal/signal.h"
 #include "./libft/libft.h"
 #include "minishell.h"
-#include "./parser/parser.h"
+#include "./parser/lexer/lexer.h"
 
 void	start_read(void)
 {

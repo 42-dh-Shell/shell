@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_token_utils.c                               :+:      :+:    :+:   */
+/*   lexer_token_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 15:07:43 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/09/28 14:29:05 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/09/28 19:03:29 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
-#include "../libft/libft.h"
-#include <stdio.h>
+#include "lexer.h"
+#include "../../libft/libft.h"
 
 void	dquote_expand_handler(char **line, int *i, t_token *token, int *str_idx)
 {

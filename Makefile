@@ -6,21 +6,21 @@
 #    By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 15:07:35 by hyunkyle          #+#    #+#              #
-#    Updated: 2022/09/28 13:12:40 by hyunkyle         ###   ########.fr        #
+#    Updated: 2022/09/28 20:12:53 by hyunkyle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 SRCS				= main.c \
 					./signal/signal.c \
-					./parser/parser_list_utils.c \
-					./parser/parser_list_utils1.c \
-					./parser/parser_token_utils.c \
-					./parser/parser_token_utils1.c \
-					./parser/parser_token_utils2.c \
-					./parser/parser_utils.c \
-					./parser/parser_while_utils.c \
-					./parser/parser.c \
+					./parser/lexer/lexer_list_utils.c \
+					./parser/lexer/lexer_list_utils1.c \
+					./parser/lexer/lexer_token_utils.c \
+					./parser/lexer/lexer_token_utils1.c \
+					./parser/lexer/lexer_utils.c \
+					./parser/lexer/lexer_while_utils.c \
+					./parser/lexer/lexer.c \
+					./stack/stack.c \
 					 
 					  
 OBJS = $(SRCS:.c=.o)

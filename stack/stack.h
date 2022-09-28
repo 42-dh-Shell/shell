@@ -1,13 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_token_utils2.c                              :+:      :+:    :+:   */
+/*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 19:52:53 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/09/27 12:54:43 by hyunkyle         ###   ########.fr       */
+/*   Created: 2022/09/28 16:33:58 by hyunkyle          #+#    #+#             */
+/*   Updated: 2022/09/28 16:41:09 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#ifndef STACK_H
+# define STACK_H
+
+typedef struct s_node
+{
+	void			*data;
+	struct s_node	*next;
+}	t_node;
+
+typedef struct s_stack
+{
+	int		count;
+	t_node	*head;
+}	t_stack;
+
+void	ft_push(t_stack *st, t_node *target);
+t_node	*ft_pop(t_stack *st);
+#endif
