@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:45:06 by daegulee          #+#    #+#             */
-/*   Updated: 2022/09/28 13:10:11 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/09/28 14:38:35 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,16 @@ void	t_list_addback(t_token_list *t_list, t_token *new)
 
 	if (t_list->head == NULL)
 	{
+		printf("hi hello\n");
 		t_list->head = new;
 		return ;
 	}
 	cur = t_list->head;
 	while (cur->next)
+	{
+		printf("hi 1hello\n");
 		cur = cur->next;
+	}
 	cur->next = new;
 }
 
@@ -52,7 +56,7 @@ t_token	*init_token(t_auto_data *data)
 	token = malloc(sizeof(t_token));
 	if (token == NULL)
 		ft_exit("malloc error.\n", 1);
-	ft_memset(token, 0, sizeof(t_token_list));
+	ft_memset(token, 0, sizeof(t_token));
 	token->token_type = data->type;
 	token->token_data = ft_strdup(data->buffer);
 	token->flag_wild = data->flag_wild;
