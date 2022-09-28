@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 20:28:38 by daegulee          #+#    #+#             */
-/*   Updated: 2022/09/27 20:29:59 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/09/28 20:46:51 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,6 @@ void	do_s13(t_auto_data *data)
 	{
 		ft_exit("Unclosed Quote!.\n", 2);
 	}
+	else
+		ft_exit("Syntax error.\n", 2);
 }

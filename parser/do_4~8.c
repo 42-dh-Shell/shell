@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:08:53 by daegulee          #+#    #+#             */
-/*   Updated: 2022/09/27 20:28:17 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/09/28 21:44:58 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,21 @@
 void	do_s4(t_auto_data *data)
 {
 	t_exps	*new;
+	int		first;
 
 	new = NULL;
-	(data->str)++;
-	while (is_expansion(*(data->str)))
+	first = 1;
+	while (first || is_expansion(*(data->str)))
 	{
-		fill_buffer_exps(data, new);
+		fill_buffer_exps(data, &new);
 		(data->str)++;
+		first = 0;
 	}
 	(new->str)[new->end - new->start] = 0;
 	(new->end)--;
 	data->next_state = data->prev_state;
-	exps_lst_addback(data->exps_list, new);
+	data->prev_state = L_S4;
+	exps_lst_addback(&(data->exps_list), new);
 }
 
 void	do_s5(t_auto_data *data)

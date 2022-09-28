@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:32:02 by daegulee          #+#    #+#             */
-/*   Updated: 2022/09/28 13:17:07 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/09/28 19:12:58 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ typedef struct s_auto_data
 void			fill_buffer(t_auto_data *data);
 int				change_next_state(t_auto_data *data, int state);
 int				is_expansion(int c);
-void			fill_buffer_exps(t_auto_data *data, t_exps *exps);
+void			fill_buffer_exps(t_auto_data *data, t_exps **exps);
 
 // ft_utils.c
 void			ft_exit(const char *str, int exit_flag);
@@ -102,7 +102,7 @@ typedef void	(*t_fp)(t_auto_data *data);
 char			get_char_status(int c);
 // list_util.c
 void			t_list_addback(t_token_list *t_list, t_token *new);
-void			exps_lst_addback(t_exps_list *exps_lst, t_exps *new);
+void			exps_lst_addback(t_exps_list **exps_lst, t_exps *new);
 t_token			*init_token(t_auto_data *data);
 //do_
 void			do_s0(t_auto_data *data);

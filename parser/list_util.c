@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:45:06 by daegulee          #+#    #+#             */
-/*   Updated: 2022/09/28 14:38:35 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/09/28 19:14:34 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,32 +18,28 @@ void	t_list_addback(t_token_list *t_list, t_token *new)
 
 	if (t_list->head == NULL)
 	{
-		printf("hi hello\n");
 		t_list->head = new;
 		return ;
 	}
 	cur = t_list->head;
 	while (cur->next)
-	{
-		printf("hi 1hello\n");
 		cur = cur->next;
-	}
 	cur->next = new;
 }
 
-void	exps_lst_addback(t_exps_list *exps_lst, t_exps *new)
+void	exps_lst_addback(t_exps_list **exps_lst, t_exps *new)
 {
 	t_exps	*cur;
 
-	if (exps_lst == NULL)
+	if (*exps_lst == NULL)
 	{
-		exps_lst = malloc(sizeof(t_exps_list));
-		if (exps_lst == NULL)
+		*exps_lst = malloc(sizeof(t_exps_list));
+		if (*exps_lst == NULL)
 			ft_exit("malloc error.\n", 1);
-		exps_lst->head = new;
+		(*exps_lst)->head = new;
 		return ;
 	}
-	cur = exps_lst->head;
+	cur = (*exps_lst)->head;
 	while (cur->next)
 		cur = cur->next;
 	cur->next = new;

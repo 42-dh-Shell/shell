@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 15:32:34 by daegulee          #+#    #+#             */
-/*   Updated: 2022/09/28 13:05:41 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/09/28 22:14:10 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	do_s0(t_auto_data *data)
 	else if (get_char_status(*(data->str)) == SINGLE_QUOTE)
 		change_next_state(data, L_S3);
 	else if (get_char_status(*(data->str)) == EXPANSION)
-		change_next_state(data, L_S4);
+		change_next_state(data, L_S1);
 	else if (get_char_status(*(data->str)) == RIGHT_ARROW)
 		change_next_state(data, L_S5);
 	else if (get_char_status(*(data->str)) == LEFT_ARROW)
@@ -49,7 +49,7 @@ void	do_s0_v2(t_auto_data *data)
 
 void	do_s1(t_auto_data *data)
 {	
-	data->prev_state = data->next_state;
+	data->prev_state = L_S1;
 	if (get_char_status(*(data->str)) == WORD)
 	{
 		if (*(data->str) == '*')
@@ -72,8 +72,8 @@ void	do_s2(t_auto_data *data)
 {
 	data->prev_state = data->next_state;
 	(data->str)++;
-	if (ft_strnstr(data->str, "\"", ft_strlen(data->str)) == NULL && \
-	change_next_state(data, L_S13))
+	if (ft_strnstr(data->str, "\"", ft_strlen(data->str)) == NULL \
+	&& change_next_state(data, L_S13))
 		return ;
 	while (get_char_status(*(data->str)) != DOUBLE_QUOTE)
 	{
