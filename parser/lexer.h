@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:32:02 by daegulee          #+#    #+#             */
-/*   Updated: 2022/09/27 22:37:38 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/09/28 13:17:07 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdio.h>
 # include "char_table.h"
 # include <unistd.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 typedef struct s_exps
 {
@@ -125,5 +127,12 @@ void			do_s17(t_auto_data *data);
 t_token_list	*lexer(char *str);
 void			init_auto(t_auto_data **data, char *str);
 t_token			*automata(char **str);
+
+//
+int				ft_strcmp(char *s1, char *s2);
+// debug
+void			print_type(t_token *token, int i);
+void			print_data(t_token *token, int i);
+void			print_token(t_token_list *t_list);
 
 #endif

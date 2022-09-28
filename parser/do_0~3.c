@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 15:32:34 by daegulee          #+#    #+#             */
-/*   Updated: 2022/09/28 00:01:31 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/09/28 13:05:41 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	do_s1(t_auto_data *data)
 	data->prev_state = data->next_state;
 	if (get_char_status(*(data->str)) == WORD)
 	{
-		if (get_char_status(*(data->str)) == WILD_CARD)
+		if (*(data->str) == '*')
 			data->flag_wild = 1;
 		fill_buffer(data);
 	}

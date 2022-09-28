@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 14:32:45 by daegulee          #+#    #+#             */
-/*   Updated: 2022/09/27 14:14:23 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/09/28 13:04:43 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 # define RIGHT_BRAKIT 9
 # define LEFT_ARROW 10
 # define RIGHT_ARROW 11
-# define WILD_CARD 12
 
 static const char	g_char_table[256] = {
 	NOT_WORD, // 0 
@@ -70,7 +69,7 @@ static const char	g_char_table[256] = {
 	SINGLE_QUOTE, //39
 	LEFT_BRAKIT, //40
 	RIGHT_BRAKIT, //41
-	WILD_CARD, //42
+	WORD, //42
 	WORD, //43
 	WORD, //44
 	WORD, //45

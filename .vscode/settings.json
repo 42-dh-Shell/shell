@@ -4,6 +4,11 @@
 		"lexer.h": "c",
 		"sstream": "c",
 		"parsing.h": "c",
-		"stdio.h": "c"
+		"stdio.h": "c",
+		"readline.h": "c",
+		"_stdio.h": "c",
+		"history.h": "c",
+		"signal.h": "c",
+		"stdlib.h": "c"
 	}
 }

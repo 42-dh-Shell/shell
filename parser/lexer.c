@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:31:51 by daegulee          #+#    #+#             */
-/*   Updated: 2022/09/27 23:58:32 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/09/28 12:51:59 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_token_list	*lexer(char *str)
 		new = automata(&str);
 		t_list_addback(t_list, new);
 	}
+	print_token(t_list);
 	return (t_list);
 }
 
@@ -67,7 +68,5 @@ t_token	*automata(char **str)
 	data->buffer[data->buffer_idx + 1] = 0;
 	token = init_token(data);
 	*str = (data->str);
-	printf("buffer %s\n", data->buffer);
-	printf("next _str %s\n", *str);
 	return (token);
 }

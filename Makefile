@@ -6,11 +6,13 @@
 #    By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/27 21:29:03 by daegulee          #+#    #+#              #
-#    Updated: 2022/09/27 21:58:13 by daegulee         ###   ########.fr        #
+#    Updated: 2022/09/28 12:50:13 by daegulee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS				= ./parser/auto_exps_util.c \
+SRCS				= main.c \
+					./signal/signal.c \
+					./parser/auto_exps_util.c \
 					./parser/do_0~3.c \
 					./parser/do_4~8.c \
 					./parser/do_9~13.c \
@@ -19,24 +21,26 @@ SRCS				= ./parser/auto_exps_util.c \
 					./parser/ft_util2.c \
 					./parser/get_char_status.c \
 					./parser/lexer.c \
-					./parser/list_util.c 	
+					./parser/list_util.c \
+					./parser/debug_print.c 	
+
 					  
 OBJS = $(SRCS:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror
-
+FLAGS = -Wall -Wextra -Werror -lncurses -g
+LINKING_FLAGS = -lreadline -L${HOME}/.brew/opt/readline/lib
+COMFILE_FLAGS = -I${HOME}/.brew/opt/readline/include
 CC = cc
-AR = ar rcs
 
-NAME = lexer.a
+NAME = mini
 
 all	: $(NAME)
 
 ${NAME}: ${OBJS}
-		${AR} $@ ${OBJS}
+	$(CC) $(LINKING_FLAGS) $(FLAGS) -o $(NAME) $(OBJS) 
 
-.c.o:
-		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+.c.o :
+	$(CC) $(COMFILE_FLAGS) -c $< -o $@
 
 all	: $(NAME)
 

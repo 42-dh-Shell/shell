@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:45:06 by daegulee          #+#    #+#             */
-/*   Updated: 2022/09/27 21:16:47 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/09/28 13:10:11 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ t_token	*init_token(t_auto_data *data)
 	ft_memset(token, 0, sizeof(t_token_list));
 	token->token_type = data->type;
 	token->token_data = ft_strdup(data->buffer);
+	token->flag_wild = data->flag_wild;
 	if (data->exps_list != NULL)
 	{
 		token->exps_list = malloc(sizeof(t_exps_list));

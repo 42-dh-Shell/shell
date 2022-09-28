@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 14:08:32 by daegulee          #+#    #+#             */
-/*   Updated: 2022/09/27 22:03:08 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/09/28 13:42:24 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,9 @@ char	*ft_strdup(const char *s1)
 	size_t	i;
 
 	i = 0;
-	if (SIZE_MAX - 8192 > (unsigned long)ft_strlen(s1))
-		str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
-	else
-		return (NULL);
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (str == NULL)
+		ft_exit("malloc error\n", 1);
 	if (str == NULL)
 		return (NULL);
 	while (s1[i])
