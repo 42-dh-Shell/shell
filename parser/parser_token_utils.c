@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 15:07:43 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/09/28 13:13:22 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/09/28 14:29:05 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	dquote_handler(int *i, t_token *token, char **line, int *str_idx)
 			*str_idx += 1;
 		}
 	}
+	*i += 1;
 }
 
 void	quote_handler(int *i, t_token	*token, char **line, int *str_idx)
@@ -69,6 +70,7 @@ void	quote_handler(int *i, t_token	*token, char **line, int *str_idx)
 		*i += 1;
 		*str_idx += 1;
 	}
+	*i += 1;
 }
 
 void	expand_handler(int *i, t_token	*token, char **line, int *str_idx)
@@ -77,13 +79,16 @@ void	expand_handler(int *i, t_token	*token, char **line, int *str_idx)
 	t_expand_info	*new_ex_info;
 	int				start_idx;
 
-	cnt = 0;
+	cnt = 1;
 	new_ex_info = allocate_expand_info();
 	new_ex_info->start = *str_idx;
 	new_ex_info->split_arg = 1;
 	start_idx = *i;
-	while ((*line)[*i] != 0 && !is_space((*line)[*i]) \
-		&& (*line)[*i] != ASCII_DQUOTE && (*line)[*i] != ASCII_QUOTE)
+	(token->str)[*str_idx] = '$';
+	(*i)++;
+	(*str_idx)++;
+	while (ft_isdigit((*line)[*i]) || ft_isalpha((*line)[*i]) || \
+				(*line)[*i] == '_')
 	{
 		token->str[*str_idx] = (*line)[*i];
 		*i += 1;

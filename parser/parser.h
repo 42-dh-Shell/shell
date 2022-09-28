@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:36:54 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/09/28 13:31:20 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/09/28 14:07:09 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # define ASCII_GREAT 62
 # define ASCII_LESS 60
 # define ASCII_AND 38
+# define ASCII_LBRAK 40
+# define ASCII_RBRAK 41
 
 enum e_types
 {
@@ -59,7 +61,6 @@ int				is_space(char c);
 int				is_meta(char c);
 int				need_stop(char c);
 int				is_meta(char c);
-t_token			*word_token_control(char **line);
 int				get_word_len(char **line);
 t_expand_info	*allocate_expand_info(void);
 t_token			*allocate_token(int word_len);
@@ -67,9 +68,13 @@ void			expand_lst_add(t_token *head, t_expand_info *target);
 void			token_lst_add(t_token **head, t_token *target);
 void			asign_handler(t_token *token, int i);
 int				closed_quote_dquote(int i, char **line, char quote_code);
-t_token			*meta_token_control(char **line);
 void			division_word(char **line, t_token *token, \
 							int *i, int *str_idx);
 void			release_token_lst(t_token *head);
+t_token			*get_pipe_or_token(char **line);
+t_token			*get_great_dgreat_token(char **line);
+t_token			*get_less_dless_token(char **line);
+t_token			*get_and_token(char **line);
+t_token			*get_bracket_toekn(char **line);
 
 #endif

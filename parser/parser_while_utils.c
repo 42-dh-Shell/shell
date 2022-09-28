@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 14:25:59 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/09/27 15:52:46 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/09/28 14:01:43 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,6 @@ int	is_space(char c)
 
 int	is_meta(char c)
 {
-	return (c == '|' || c == '&' || c == '<' || c == '>');
+	return (c == '|' || c == '&' || c == '<' || c == '>' \
+		|| c == '(' || c == ')');
 }
-
-// int	is_word(char c)
-// {
-// 	return ();
-// }

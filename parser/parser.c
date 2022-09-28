@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 12:14:06 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/09/28 13:24:55 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/09/28 14:28:42 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ void	print_token_data(t_token *head)
 			printf("token_type = %s\n", "DLESS");
 		else if (head->token_type == DGREAT)
 			printf("token_type = %s\n", "DGREAT");
+		else if (head->token_type == LBRAC)
+			printf("token_type = %s\n", "LBRAC");
+		else if (head->token_type == RBRAC)
+			printf("token_type = %s\n", "RBRAC");
 		printf("wildcard_flag = %d\n", head->wildcard_flag);
 		j = 1;
 		info = head->expand_info;
@@ -77,12 +81,38 @@ t_token	*word_token_control(char **line)
 			if (result->str[str_idx] == '*')
 				result->wildcard_flag = 1;
 			str_idx++;
+			i++;
 		}
-		i++;
 	}
 	result->str[str_idx] = 0;
 	(*line) += i;
 	return (result);
+}
+
+t_token	*meta_token_control(char **line)
+{
+	if (**line == ASCII_PIPE)
+	{
+		(*line)++;
+		return (get_pipe_or_token(line));
+	}
+	else if (**line == ASCII_GREAT)
+	{
+		(*line)++;
+		return (get_great_dgreat_token(line));
+	}
+	else if (**line == ASCII_LESS)
+	{
+		(*line)++;
+		return (get_less_dless_token(line));
+	}
+	else if (**line == ASCII_LBRAK || **line == ASCII_RBRAK)
+		return (get_bracket_toekn(line));
+	else
+	{
+		(*line)++;
+		return (get_and_token(line));
+	}
 }
 
 t_token	*get_one_token(char **line)
