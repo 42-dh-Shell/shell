@@ -6,13 +6,13 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 12:39:23 by daegulee          #+#    #+#             */
-/*   Updated: 2022/09/28 19:36:25 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/09/29 00:11:36 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-static const char *g_type_table[18] = {
+static const char	*g_type_table[18] = {
 	"init", "Word", "Double", "Single", "Expansion", \
 	">", ">>", "<", "<<", ")", "(", \
 	"&", "&&", "ERROR", "|", "||", "is_space", "FINISH"
@@ -29,6 +29,7 @@ void	print_type(t_token *token, int i)
 void	print_data(t_token *token, int i)
 {
 	printf("Token [%d] data == %s\n", i, token->token_data);
+	printf("###############\n");
 }
 
 void	print_exps(t_exps *exp, int j)
@@ -49,18 +50,15 @@ void	print_token(t_token_list *t_list)
 	i = 0;
 	j = 0;
 	cur = t_list->head;
-	while (cur)
+	while (cur && i++)
 	{
-		i++;
 		print_type(cur, i);
 		print_data(cur, i);
-		printf("###############\n");
 		if (cur->exps_list != NULL)
 		{
 			cur_exp = cur->exps_list->head;
-			while (cur_exp)
+			while (cur_exp && j++)
 			{
-				j++;
 				print_exps(cur_exp, j);
 				if (cur_exp->is_quote)
 					printf("This exps is is_quote!\n");
