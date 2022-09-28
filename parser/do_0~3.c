@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 15:32:34 by daegulee          #+#    #+#             */
-/*   Updated: 2022/09/28 22:14:10 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/09/28 22:30:37 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,10 @@ void	do_s1(t_auto_data *data)
 
 void	do_s2(t_auto_data *data)
 {
+	if (get_char_status(*(data->str)) == DOUBLE_QUOTE \
+	&& data->prev_state != L_S4)
+		(data->str)++;
 	data->prev_state = data->next_state;
-	(data->str)++;
 	if (ft_strnstr(data->str, "\"", ft_strlen(data->str)) == NULL \
 	&& change_next_state(data, L_S13))
 		return ;
