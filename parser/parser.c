@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 12:14:06 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/09/27 20:32:05 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/09/28 13:24:55 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	print_token_data(t_token *head)
 	int i = 1;
 	int j;
 	t_expand_info	*info;
-	
+
 	while (head)
 	{
 		printf("====== token %d =====\n", i++);
@@ -46,7 +46,7 @@ void	print_token_data(t_token *head)
 		{
 			printf("\t====== expand_info %d =====\n", j++);
 			printf("\tinfo_str = %s\n", info->str);
-			printf("\texpand_size = %d\n", info->num);
+			printf("\texpand_size = %d\n", info->size);
 			printf("\tsplit_arg_flag = %d\n", info->split_arg);
 			printf("\tstart_index = %d\n", info->start);
 			info = info->next;

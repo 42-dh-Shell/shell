@@ -6,7 +6,7 @@
 #    By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 15:07:35 by hyunkyle          #+#    #+#              #
-#    Updated: 2022/09/27 16:46:24 by hyunkyle         ###   ########.fr        #
+#    Updated: 2022/09/28 13:12:40 by hyunkyle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@
 SRCS				= main.c \
 					./signal/signal.c \
 					./parser/parser_list_utils.c \
+					./parser/parser_list_utils1.c \
 					./parser/parser_token_utils.c \
 					./parser/parser_token_utils1.c \
 					./parser/parser_token_utils2.c \

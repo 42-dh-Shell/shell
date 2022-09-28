@@ -6,22 +6,22 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 18:36:59 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/09/27 20:20:52 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/09/28 12:32:46 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-void	expand_lst_add(t_expand_info **head, t_expand_info *target)
+void	expand_lst_add(t_token *head, t_expand_info *target)
 {
 	t_expand_info	*lst;
 
-	if (*head == 0)
+	if (head->expand_info == 0)
 	{
-		*head = target;
+		head->expand_info = target;
 		return ;
 	}
-	lst = *head;
+	lst = head->expand_info;
 	while (lst->next)
 		lst = lst->next;
 	lst->next = target;

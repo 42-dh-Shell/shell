@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 15:07:43 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/09/27 20:43:17 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/09/28 13:13:22 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,9 @@ void	dquote_expand_handler(char **line, int *i, t_token *token, int *str_idx)
 		cnt++;
 		*str_idx += 1;
 	}
-	printf ("start_idx = %d\n", start_idx);
-	printf ("cnt = %d\n", cnt);
-	printf ("line = %s\n", *line);
 	new_ex_info->str = ft_substr((char const *) *line, start_idx, cnt);
-	printf ("new_ex_info->str = %s\n", new_ex_info->str);
-	new_ex_info->num = cnt;
-	expand_lst_add(&(token->expand_info), new_ex_info);
+	new_ex_info->size = cnt;
+	expand_lst_add(token, new_ex_info);
 }
 
 void	dquote_handler(int *i, t_token *token, char **line, int *str_idx)
@@ -95,8 +91,8 @@ void	expand_handler(int *i, t_token	*token, char **line, int *str_idx)
 		*str_idx += 1;
 	}
 	new_ex_info->str = ft_substr((char const *) *line, start_idx, cnt);
-	new_ex_info->num = cnt;
-	expand_lst_add(&(token->expand_info), new_ex_info);
+	new_ex_info->size = cnt;
+	expand_lst_add(token, new_ex_info);
 }
 
 void	division_word(char **line, t_token *token, int *i, int *str_idx)

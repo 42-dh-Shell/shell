@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:36:54 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/09/27 20:14:37 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/09/28 13:31:20 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,16 @@ enum e_types
 	LESS,
 	GREAT,
 	DLESS,
-	DGREAT
+	DGREAT,
+	LBRAC,
+	RBRAC
 };
 
 typedef struct s_expand_info
 {
 	char					*str;
 	int						start;
-	int						num;
+	int						size;
 	int						split_arg;
 	struct s_expand_info	*next;
 }	t_expand_info;
@@ -61,7 +63,7 @@ t_token			*word_token_control(char **line);
 int				get_word_len(char **line);
 t_expand_info	*allocate_expand_info(void);
 t_token			*allocate_token(int word_len);
-void			expand_lst_add(t_expand_info **head, t_expand_info *target);
+void			expand_lst_add(t_token *head, t_expand_info *target);
 void			token_lst_add(t_token **head, t_token *target);
 void			asign_handler(t_token *token, int i);
 int				closed_quote_dquote(int i, char **line, char quote_code);

@@ -1,7 +1,0 @@
-{
-	"files.associations": {
-		"libft.h": "c",
-		"ratio": "c",
-		"sstream": "c"
-	}
-}

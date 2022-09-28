@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 15:09:02 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/09/27 20:18:28 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/09/28 13:16:27 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,30 @@ int	closed_quote_dquote(int i, char **line, char quote_code)
 	return (0);
 }
 
+void	cnt_word_indquote(char *line, int *i, int *cnt)
+{
+	(*i)++;
+	while (line[*i] != 0 && line[*i] != ASCII_DQUOTE)
+	{
+		(*i)++;
+		(*cnt)++;
+	}
+	if (line[*i] == ASCII_DQUOTE)
+		(*i)++;
+}
+
+void	cnt_word_inquote(char *line, int *i, int *cnt)
+{
+	(*i)++;
+	while (line[*i] != 0 && line[*i] != ASCII_QUOTE)
+	{
+		(*i)++;
+		(*cnt)++;
+	}
+	if (line[*i] == ASCII_QUOTE)
+		(*i)++;
+}
+
 int	get_word_len(char **line)
 {
 	int	i;
@@ -32,37 +56,15 @@ int	get_word_len(char **line)
 	cnt = 0;
 	while ((*line)[i] != 0 && !is_space((*line)[i]) && !is_meta((*line)[i]))
 	{
-		if ((*line)[i] != ASCII_DQUOTE && (*line)[i] != ASCII_QUOTE)
+		if ((*line)[i] == ASCII_DQUOTE)
+			cnt_word_indquote(*line, &i, &cnt);
+		else if ((*line)[i] == ASCII_QUOTE)
+			cnt_word_inquote(*line, &i, &cnt);
+		else
+		{
 			cnt++;
-		i++;
+			i++;
+		}
 	}
 	return (cnt);
-}
-
-t_token	*allocate_token(int word_len)
-{
-	t_token	*result;
-
-	result = malloc(sizeof(t_token));
-	if (!result)
-		exit(1);
-	result->str = malloc(sizeof(char) * (word_len + 1));
-	if (!result->str)
-		exit(1);
-	result->expand_info = 0;
-	result->next = 0;
-	result->wildcard_flag = 0;
-	return (result);
-}
-
-t_expand_info	*allocate_expand_info(void)
-{
-	t_expand_info	*result;
-
-	result = malloc(sizeof(t_expand_info));
-	if (!result)
-		exit(1);
-	result->next = 0;
-	result->split_arg = 0;
-	return (result);
 }
