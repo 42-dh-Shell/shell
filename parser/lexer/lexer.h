@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:36:54 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/09/28 19:03:37 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/04 14:44:22 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ enum e_types
 	DLESS,
 	DGREAT,
 	LBRAC,
-	RBRAC
+	RBRAC,
+	LAST
 };
 
 typedef struct s_expand_info

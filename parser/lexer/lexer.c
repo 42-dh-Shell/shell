@@ -6,11 +6,12 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 12:14:06 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/09/28 19:03:42 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/04 17:57:32 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
+#include "../parser/parser.h"
 
 void	print_token_data(t_token *head)
 {
@@ -42,6 +43,8 @@ void	print_token_data(t_token *head)
 			printf("token_type = %s\n", "LBRAC");
 		else if (head->token_type == RBRAC)
 			printf("token_type = %s\n", "RBRAC");
+		else if (head->token_type == LAST)
+			printf("token_type = %s\n", "LAST");
 		printf("wildcard_flag = %d\n", head->wildcard_flag);
 		j = 1;
 		info = head->expand_info;
@@ -122,6 +125,23 @@ t_token	*get_one_token(char **line)
 		return (word_token_control(line));
 }
 
+void	add_last_token(t_token *head)
+{
+	t_token	*last_token;
+
+	last_token = malloc (sizeof(t_token));
+	if (!last_token)
+		exit(0);
+	while (head->next)
+		head = head->next;
+	last_token->token_type = LAST;
+	last_token->expand_info = NULL;
+	last_token->next = NULL;
+	last_token->wildcard_flag = 0;
+	last_token->str = NULL;
+	head->next = last_token;
+}
+
 void	lexer_parse(char *line)
 {
 	t_token	*token;
@@ -137,6 +157,7 @@ void	lexer_parse(char *line)
 		while (is_space(*line))
 			line++;
 	}
-	print_token_data(head);
-	//release_token_lst(head);
+	add_last_token(head);
+	//print_token_data(head);
+	start_parse(head);
 }

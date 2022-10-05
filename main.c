@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 15:46:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/09/28 19:22:56 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/04 09:53:11 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "minishell.h"
 #include "./parser/lexer/lexer.h"
 
-void	start_read(void)
+void	start_shell(void)
 {
 	int				ret;
 	char			*line;
@@ -44,5 +44,5 @@ void	start_read(void)
 
 int	main(void)
 {
-	start_read();
+	start_shell();
 }

@@ -6,11 +6,18 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:32:58 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/09/28 16:39:54 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/03 11:51:33 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
+
+t_node	*ft_peek(t_stack *st)
+{
+	if (st->count == 0)
+		return (0);
+	return (st->head);
+}
 
 void	ft_push(t_stack *st, t_node *target)
 {

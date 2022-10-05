@@ -6,36 +6,32 @@
 #    By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/06 10:50:54 by hyunkyle          #+#    #+#              #
-#    Updated: 2022/10/03 14:12:34 by hyunkyle         ###   ########.fr        #
+#    Updated: 2022/08/02 21:07:05 by hyunkyle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =					ft_strcmp.c \
-						ft_isalpha.c \
-						ft_isdigit.c \
-						ft_strdup.c	\
-						ft_strlcpy.c \
-						ft_strlen.c \
-						ft_substr.c \
-						ft_split.c \
-						ft_calloc.c \
-						ft_atoi.c \
+
+SRCS = 			get_next_line_bonus.c \
+				get_next_line_utils_bonus.c  \
 
 OBJS = $(SRCS:.c=.o)
 
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror
 
-NAME = libft.a
+CC = cc
+
+NAME = libgnl.a
 
 $(NAME)	: $(OBJS)
 	ar -rc $(NAME) $(OBJS)
+	
 .c.o :
-	$(CC) -o $@ -c $<
+	$(CC) -o $@ -c $< -I .
 
 all	: $(NAME)
 
 clean	:
-		rm -f $(OBJS) $(BNS_OBJS)
+		rm -f $(OBJS)
 
 fclean	:	clean
 		rm -f $(NAME)
