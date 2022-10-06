@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:31:51 by daegulee          #+#    #+#             */
-/*   Updated: 2022/09/28 22:33:31 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:20:08 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,18 @@ static const t_fp	g_action[18] = {
 	do_s9, do_s10, do_s11, do_s12, do_s13, do_s14, do_s15, do_s16, \
 	do_s17
 };
+
+t_token	*last_token(void)
+{
+	t_token	*token;
+
+	token = malloc(sizeof(t_token));
+	if (token == NULL)
+		ft_exit("malloc error.\n", 1);
+	ft_memset(token, 0, sizeof(t_token));
+	token->token_type = T_BOT;
+	return (token);
+}
 
 t_token_list	*lexer(char *str)
 {
@@ -35,6 +47,7 @@ t_token_list	*lexer(char *str)
 		new = automata(&str);
 		t_list_addback(t_list, new);
 	}
+	t_list_addback(t_list, last_token());
 	print_token(t_list);
 	return (t_list);
 }

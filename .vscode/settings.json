@@ -9,6 +9,9 @@
 		"_stdio.h": "c",
 		"history.h": "c",
 		"signal.h": "c",
-		"stdlib.h": "c"
+		"stdlib.h": "c",
+		"libft.h": "c",
+		"stack.h": "c",
+		"parser.h": "c"
 	}
 }

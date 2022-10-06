@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:32:02 by daegulee          #+#    #+#             */
-/*   Updated: 2022/09/28 19:12:58 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:18:20 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include "../../libft/libft.h"
 
 typedef struct s_exps
 {
@@ -73,7 +74,7 @@ typedef struct s_auto_data
 # define L_S7 7 // < state
 # define L_S8 8 // << state
 # define L_S9 9 // ) sate 
-# define L_S10 10 // ( state)
+# define L_S10 10 // ( state
 # define L_S11 11 // & state
 # define L_S12 12 // && state
 # define L_S13 13 // Error state
@@ -82,20 +83,23 @@ typedef struct s_auto_data
 # define L_S16 16 // is_space state
 # define L_S17 17 // finish_state
 
+// Token type 
+# define T_WORD 1
+# define T_GREATE 5 // >
+# define T_DGREATE 6 // >>
+# define T_LESS 7 // < 
+# define T_DLESS 8 // <<
+# define T_R_BRAKIT 9 // )
+# define T_L_BRAKIT 10 // (
+# define T_AND 12 //&& 
+# define T_PIPE 14 // |
+# define T_OR 15 // || 
+# define T_BOT 18 // $
 // auto_exps_utils.c
 void			fill_buffer(t_auto_data *data);
 int				change_next_state(t_auto_data *data, int state);
 int				is_expansion(int c);
 void			fill_buffer_exps(t_auto_data *data, t_exps **exps);
-
-// ft_utils.c
-void			ft_exit(const char *str, int exit_flag);
-void			ft_putstr_fd(const char *s, int fd);
-int				ft_strlen(const char *s);
-void			*ft_memset(void *b, int c, int len);
-char			*ft_strdup(const char *s1);
-// ft_util2.c
-char			*ft_strnstr(const char *haystack, const char *needle, int len);
 
 /// lexer.c
 typedef void	(*t_fp)(t_auto_data *data);

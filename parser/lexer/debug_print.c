@@ -6,16 +6,16 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 12:39:23 by daegulee          #+#    #+#             */
-/*   Updated: 2022/09/29 00:11:36 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/03 16:09:46 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-static const char	*g_type_table[18] = {
+static const char	*g_type_table[19] = {
 	"init", "Word", "Double", "Single", "Expansion", \
 	">", ">>", "<", "<<", ")", "(", \
-	"&", "&&", "ERROR", "|", "||", "is_space", "FINISH"
+	"&", "&&", "ERROR", "|", "||", "is_space", "FINISH", "T_BOTTOM"
 };
 
 void	print_type(t_token *token, int i)
@@ -50,14 +50,14 @@ void	print_token(t_token_list *t_list)
 	i = 0;
 	j = 0;
 	cur = t_list->head;
-	while (cur && i++)
+	while (cur && ++i)
 	{
 		print_type(cur, i);
 		print_data(cur, i);
 		if (cur->exps_list != NULL)
 		{
 			cur_exp = cur->exps_list->head;
-			while (cur_exp && j++)
+			while (cur_exp && ++j)
 			{
 				print_exps(cur_exp, j);
 				if (cur_exp->is_quote)

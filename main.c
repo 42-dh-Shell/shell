@@ -6,12 +6,12 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 15:46:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/09/28 12:36:02 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:07:38 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./signal/signal.h"
-#include "./parser/lexer.h"
+#include "./parser/lexer/lexer.h"
 
 int	ft_strcmp(char *s1, char *s2)
 {

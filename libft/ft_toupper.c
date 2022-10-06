@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.h                                            :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daegulee <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/28 23:37:42 by daegulee          #+#    #+#             */
-/*   Updated: 2022/09/29 00:08:14 by daegulee         ###   ########.fr       */
+/*   Created: 2022/07/06 20:57:57 by daegulee          #+#    #+#             */
+/*   Updated: 2022/07/06 21:39:23 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STACK_H
-# define STACK_H
-
-# include <stdlib.h>
-# include "../parser/lexer.h"
-
-typedef struct s_node
+int	ft_toupper(int c)
 {
-	struct s_node	*bottom;
-	t_token			*token;
-}	t_node;
-
-typedef struct s_stack
-{
-	t_node	*top;
-}	t_stack;
-
-#endif
+	if (c >= 'a' && c <= 'z')
+		return (c + 'A' - 'a');
+	else
+		return (c);
+}

@@ -6,29 +6,27 @@
 #    By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/27 21:29:03 by daegulee          #+#    #+#              #
-#    Updated: 2022/09/28 12:50:13 by daegulee         ###   ########.fr        #
+#    Updated: 2022/10/05 17:59:29 by daegulee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS				= main.c \
 					./signal/signal.c \
-					./parser/auto_exps_util.c \
-					./parser/do_0~3.c \
-					./parser/do_4~8.c \
-					./parser/do_9~13.c \
-					./parser/do_14~17.c \
-					./parser/ft_util.c \
-					./parser/ft_util2.c \
-					./parser/get_char_status.c \
-					./parser/lexer.c \
-					./parser/list_util.c \
-					./parser/debug_print.c 	
+					./parser/lexer/auto_exps_util.c \
+					./parser/lexer/do_0~3.c \
+					./parser/lexer/do_4~8.c \
+					./parser/lexer/do_9~13.c \
+					./parser/lexer/do_14~17.c \
+					./parser/lexer/get_char_status.c \
+					./parser/lexer/lexer.c \
+					./parser/lexer/list_util.c \
+					./parser/lexer/debug_print.c 	
 
 					  
 OBJS = $(SRCS:.c=.o)
 
-FLAGS = -Wall -Wextra -Werror -lncurses -g
-LINKING_FLAGS = -lreadline -L${HOME}/.brew/opt/readline/lib
+FLAGS = -Wall -Wextra -Werror -g
+LINKING_FLAGS = -lncurses -lreadline -L${HOME}/.brew/opt/readline/lib
 COMFILE_FLAGS = -I${HOME}/.brew/opt/readline/include
 CC = cc
 
@@ -37,17 +35,23 @@ NAME = mini
 all	: $(NAME)
 
 ${NAME}: ${OBJS}
-	$(CC) $(LINKING_FLAGS) $(FLAGS) -o $(NAME) $(OBJS) 
+	make -C ./libft
+	make -C ./gnl
+	$(CC) $(LINKING_FLAGS) $(FLAGS) -o $(NAME) $(OBJS) ./libft/libft.a ./gnl/gnl.a
 
 .c.o :
-	$(CC) $(COMFILE_FLAGS) -c $< -o $@
+	$(CC) $(FLAGS) $(COMFILE_FLAGS) -c $< -o $@
 
 all	: $(NAME)
 
 clean	:
+		make -C ./libft clean
+		make -C ./gnl clean
 		rm -f $(OBJS)
 
 fclean	:	clean
+		make -C ./libft fclean
+		make -C ./gnl fclean
 		rm -f $(NAME)
 
 re	:
