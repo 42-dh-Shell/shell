@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.h                                           :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hyunkyle <hyunkyle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/22 18:41:38 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/05 20:47:44 by hyunkyle         ###   ########.fr       */
+/*   Created: 2022/07/06 13:33:32 by hyunkyle          #+#    #+#             */
+/*   Updated: 2022/07/06 15:29:43 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#ifndef SIGNAL_H
-# define SIGNAL_H
-# include "../libft/libft.h"
+void	*ft_memset(void *b, int c, size_t len)
+{
+	char	*ch;
+	size_t	idx;
 
-void	singnal_handler(int signum);
-void	print_exit(void);
-void	set_signal_term(void);
-
-#endif
+	ch = (char *) b;
+	idx = 0;
+	while (idx < len)
+		ch[idx++] = (unsigned char) c;
+	return (b);
+}

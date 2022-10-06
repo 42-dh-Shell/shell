@@ -1,29 +1,44 @@
-s7 N s6 s8 s9 s10 s11 N N N N 1 2 4 3 5 N N N N
-N N N N N N N s15 s17 s16 A N N N N N N 12 14 13
-N r1 s6 s8 s9 s10 s11 r1 r1 r1 r1 N N N 18 5 N N N N
-N r5 r5 r5 r5 r5 r5 r5 r5 r5 r5 N N N N N N N N N
-N r7 r7 r7 r7 r7 r7 r7 r7 r7 r7 N N N N N N N N N
-N r9 r9 r9 r9 r9 r9 r9 r9 r9 r9 N N N N N N N N N
-N r10 r10 r10 r10 r10 r10 r10 r10 r10 r10 N N N N N N N N N
-s7 N s6 s8 s9 s10 s11 N N N N 19 2 4 3 5 N N N N
-N N s21 N N N N N N N N N N N N N 20 N N N
-N N s21 N N N N N N N N N N N N N 22 N N N
-N N s21 N N N N N N N N N N N N N 23 N N N
-N N s21 N N N N N N N N N N N N N 24 N N N
-N r2 N N N N N r2 r2 r2 r2 N N N N N N N N N
-N r3 N N N N N r3 r3 r3 r3 N N N N N N N N N
-N r4 N N N N N r4 r4 r4 r4 N N N N N N N N N
-s7 N s6 s8 s9 s10 s11 N N N N N 25 4 3 5 N N N N
-s7 N s6 s8 s9 s10 s11 N N N N N 26 4 3 5 N N N N
-s7 N s6 s8 s9 s10 s11 N N N N N 27 4 3 5 N N N N
-N r6 r6 r6 r6 r6 r6 r6 r6 r6 r6 N N N N N N N N N
-N s28 N N N N N s15 s17 s16 N N N N N N N 12 14 13
-N r11 r11 r11 r11 r11 r11 r11 r11 r11 r11 N N N N N N N N N
-N r15 r15 r15 r15 r15 r15 r15 r15 r15 r15 N N N N N N N N N
-N r12 r12 r12 r12 r12 r12 r12 r12 r12 r12 N N N N N N N N N
-N r13 r13 r13 r13 r13 r13 r13 r13 r13 r13 N N N N N N N N N
-N r14 r14 r14 r14 r14 r14 r14 r14 r14 r14 N N N N N N N N N
-N r16 s6 s8 s9 s10 s11 r16 r16 r16 r16 N N N 18 5 N N N N
-N r18 s6 s8 s9 s10 s11 r18 r18 r18 r18 N N N 18 5 N N N N
-N r17 s6 s8 s9 s10 s11 r17 r17 r17 r17 N N N 18 5 N N N N
-N r8 r8 r8 r8 r8 r8 r8 r8 r8 r8 N N N N N N N N N
+N	N	N	s7	N	s9	s12	s13	s14	s15	N	1	N	N	N	2	4	3	6	N	5	N	8	10	11	N	N
+s19	s21	s20	N	N	N	N	N	N	N	A	N	16	18	17	N	N	N	N	N	N	N	N	N	N	N	N
+r1	r1	r1	N	r1	N	N	N	N	N	r1	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N
+r8	r8	r8	N	r8	N	N	N	N	N	r8	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N
+r9	r9	r9	N	r9	N	s12	s13	s14	s15	r9	N	N	N	N	N	N	N	N	N	N	22	23	10	11	N	N
+r14	r14	r14	N	r14	s9	s12	s13	s14	s15	r14	N	N	N	N	N	N	N	24	N	N	N	25	10	11	N	N
+r15	r15	r15	N	r15	s28	s12	s13	s14	s15	r15	N	N	N	N	N	N	N	N	26	N	N	27	10	11	N	N
+N	N	N	s7	N	s9	s12	s13	s14	s15	N	29	N	N	N	2	4	3	6	N	5	N	8	10	11	N	N
+r22	r22	r22	N	r22	r22	r22	r22	r22	r22	r22	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N
+r17	r17	r17	N	r17	r17	r17	r17	r17	r17	r17	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N
+r26	r26	r26	N	r26	r26	r26	r26	r26	r26	r26	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N
+r27	r27	r27	N	r27	r27	r27	r27	r27	r27	r27	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N
+N	N	N	N	N	s31	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	30	N
+N	N	N	N	N	s31	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	32	N
+N	N	N	N	N	s31	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	33	N
+N	N	N	N	N	s35	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	34
+r2	r2	r2	N	r2	N	N	N	N	N	r2	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N
+r3	r3	r3	N	r3	N	N	N	N	N	r3	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N
+r4	r4	r4	N	r4	N	N	N	N	N	r4	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N
+N	N	N	s7	N	s9	s12	s13	s14	s15	N	N	N	N	N	36	4	3	6	N	5	N	8	10	11	N	N
+N	N	N	s7	N	s9	s12	s13	s14	s15	N	N	N	N	N	37	4	3	6	N	5	N	8	10	11	N	N
+N	N	N	s7	N	s9	s12	s13	s14	s15	N	N	N	N	N	38	4	3	6	N	5	N	8	10	11	N	N
+r10	r10	r10	N	r10	N	s12	s13	s14	s15	r10	N	N	N	N	N	N	N	N	N	N	N	39	10	11	N	N
+r24	r24	r24	N	r24	N	r24	r24	r24	r24	r24	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N
+r13	r13	r13	N	r13	s28	s12	s13	s14	s15	r13	N	N	N	N	N	N	N	N	40	N	N	27	10	11	N	N
+r23	r23	r23	N	r23	r23	r23	r23	r23	r23	r23	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N
+r16	r16	r16	N	r16	s42	s12	s13	s14	s15	r16	N	N	N	N	N	N	N	N	N	N	N	41	10	11	N	N
+r18	r18	r18	N	r18	r18	r18	r18	r18	r18	r18	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N
+r20	r20	r20	N	r20	r20	r20	r20	r20	r20	r20	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N
+s19	s21	s20	N	s43	N	N	N	N	N	N	N	16	18	17	N	N	N	N	N	N	N	N	N	N	N	N
+r28	r28	r28	N	r28	r28	r28	r28	r28	r28	r28	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N
+r32	r32	r32	N	r32	r32	r32	r32	r32	r32	r32	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N
+r29	r29	r29	N	r29	r29	r29	r29	r29	r29	r29	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N
+r30	r30	r30	N	r30	r30	r30	r30	r30	r30	r30	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N
+r31	r31	r31	N	r31	r31	r31	r31	r31	r31	r31	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N
+r33	r33	r33	N	r33	r33	r33	r33	r33	r33	r33	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N
+r5	r5	r5	N	r5	N	N	N	N	N	r5	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N
+r7	r7	r7	N	r7	N	N	N	N	N	r7	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N
+r6	r6	r6	N	r6	N	N	N	N	N	r6	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N
+r25	r25	r25	N	r25	N	r25	r25	r25	r25	r25	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N
+r12	r12	r12	N	r12	s42	s12	s13	s14	s15	r12	N	N	N	N	N	N	N	N	N	N	N	41	10	11	N	N
+r19	r19	r19	N	r19	r19	r19	r19	r19	r19	r19	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N
+r21	r21	r21	N	r21	r21	r21	r21	r21	r21	r21	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N
+r11	r11	r11	N	r11	N	r11	r11	r11	r11	r11	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N	N

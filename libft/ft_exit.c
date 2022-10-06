@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/28 19:04:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/06 16:04:01 by hyunkyle         ###   ########.fr       */
+/*   Created: 2022/10/05 20:36:51 by hyunkyle          #+#    #+#             */
+/*   Updated: 2022/10/05 20:41:11 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
-#include "../lexer/lexer.h"
-#include "../../stack/stack.h"
-#include "../../libft/libft.h"
+#include "libft.h"
+#include <stdlib.h>
+#include <stdio.h>
 
-void	start_parse(t_token	*tokens)
+void	ft_exit(const char *str, int exit_flag)
 {
-	t_stack	*stack;
-	//t_ast	*ast;
-
-	stack = get_stack();
-	if (pushdown_automata(stack, tokens))
-		printf("accept\n");
+	if (str)
+	{
+		ft_putstr_fd("\033[31mError : ", 2);
+		ft_putstr_fd(str, 2);
+		ft_putstr_fd("\033[0m", 2);
+	}
+	else
+		perror("bash");
+	exit(exit_flag);
 }

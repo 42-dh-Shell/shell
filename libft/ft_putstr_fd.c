@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/28 19:04:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/06 16:04:01 by hyunkyle         ###   ########.fr       */
+/*   Created: 2022/07/08 10:16:46 by hyunkyle          #+#    #+#             */
+/*   Updated: 2022/10/06 13:26:58 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
-#include "../lexer/lexer.h"
-#include "../../stack/stack.h"
-#include "../../libft/libft.h"
+#include "libft.h"
 
-void	start_parse(t_token	*tokens)
+void	ft_putstr_fd(const char *s, int fd)
 {
-	t_stack	*stack;
-	//t_ast	*ast;
-
-	stack = get_stack();
-	if (pushdown_automata(stack, tokens))
-		printf("accept\n");
+	while (*s != 0)
+	{
+		write(fd, s, 1);
+		s++;
+	}
 }

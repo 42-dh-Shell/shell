@@ -1,21 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.h                                           :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hyunkyle <hyunkyle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/22 18:41:38 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/05 20:47:44 by hyunkyle         ###   ########.fr       */
+/*   Created: 2022/07/08 10:13:49 by hyunkyle          #+#    #+#             */
+/*   Updated: 2022/07/08 10:33:11 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#ifndef SIGNAL_H
-# define SIGNAL_H
-# include "../libft/libft.h"
-
-void	singnal_handler(int signum);
-void	print_exit(void);
-void	set_signal_term(void);
-
-#endif
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}

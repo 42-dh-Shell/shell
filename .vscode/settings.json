@@ -1,8 +1,7 @@
 {
 	"files.associations": {
-		"parser.h": "c",
 		"libft.h": "c",
-		"lexer.h": "c",
-		"__locale": "c"
+		"parser.h": "c",
+		"signal.h": "c"
 	}
 }

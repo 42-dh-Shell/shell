@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 15:46:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/04 09:53:11 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:06:18 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	start_shell(void)
 			if (!ret)
 			{
 				printf("exit\n");
-				exit(0);
+				break ;
 			}
 		}
 		else

@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 16:03:40 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/04 15:03:12 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/06 17:49:47 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,10 @@
 char	***allocate_table(void)
 {
 	char	***result;
-	int		i;
 
-	result = malloc (sizeof (char **) * 29);
+	result = malloc (sizeof (char **) * 44);
 	if (!result)
-		exit(0);
+		ft_exit("malloc error", 0);
 	return (result);
 }
 
@@ -36,23 +35,15 @@ char	***make_table(void)
 	result = allocate_table();
 	i = 0;
 	if (fd < 0)
-		exit(0);
+		ft_exit("file open failed", 0);
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		result[i] = ft_split(line, ' ');
+		result[i] = ft_split(line, '\t');
 		i++;
 	}
 	close(fd);
 	return (result);
-}
-
-char	***get_table(void)
-{
-	static const char	***lalr_table;
-
-	lalr_table = (const char ***) make_table();
-	return ((char ***)lalr_table);
 }

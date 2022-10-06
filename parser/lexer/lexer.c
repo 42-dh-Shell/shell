@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 12:14:06 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/04 17:57:32 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/05 20:45:54 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ void	add_last_token(t_token *head)
 
 	last_token = malloc (sizeof(t_token));
 	if (!last_token)
-		exit(0);
+		ft_exit("malloc error", 0);
 	while (head->next)
 		head = head->next;
 	last_token->token_type = LAST;

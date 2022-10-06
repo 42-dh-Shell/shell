@@ -6,7 +6,7 @@
 #    By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/06 10:50:54 by hyunkyle          #+#    #+#              #
-#    Updated: 2022/08/02 21:07:05 by hyunkyle         ###   ########.fr        #
+#    Updated: 2022/10/05 17:46:57 by hyunkyle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,9 @@ NAME = libgnl.a
 
 $(NAME)	: $(OBJS)
 	ar -rc $(NAME) $(OBJS)
-	
+
 .c.o :
-	$(CC) -o $@ -c $< -I .
+	$(CC) $(FLAGS) -o $@ -c $< -I .
 
 all	: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:28:53 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/04 16:37:36 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/05 20:45:54 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_stack_data	*get_stack_data(t_token *token, t_type_data type, int status, \
 
 	result = malloc (sizeof(t_stack_data));
 	if (!result)
-		exit(0);
+		ft_exit("malloc error", 0);
 	result->token = token;
 	result->state = status;
 	result->type = type;
@@ -35,7 +35,7 @@ t_node	*get_stack_node(t_stack_data *data)
 
 	node = malloc(sizeof(t_node));
 	if (!node)
-		exit(0);
+		ft_exit("malloc error", 0);
 	node->data = data;
 	node->next = 0;
 	return (node);
@@ -48,7 +48,7 @@ t_stack	*get_stack(void)
 
 	result = malloc (sizeof(t_stack));
 	if (!result)
-		exit(0);
+		ft_exit("malloc error", 0);
 	result->count = 0;
 	result->head = 0;
 	data = get_stack_data(0, STATUS, 0, -1);
@@ -62,7 +62,7 @@ t_ast	*allocate_ast(void)
 
 	result = malloc(sizeof(t_ast));
 	if (!result)
-		exit(0);
+		ft_exit("malloc error", 0);
 	result->head = 0;
 	result->last_added = 0;
 	result->subshell_head = 0;
