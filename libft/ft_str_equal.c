@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main3.c                                            :+:      :+:    :+:   */
+/*   str_equal.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/05 21:33:49 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/07 10:27:33 by daegulee         ###   ########.fr       */
+/*   Created: 2022/10/07 18:54:05 by daegulee          #+#    #+#             */
+/*   Updated: 2022/10/07 18:56:06 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./parser/stack/stack.h"
-#include "./parser/parser/parser.h"
-#include "./parser/stack/stack.h"
+#include "libft.h"
 
-int	main()
+int	str_equal(char *s1, char *s2)
 {
-	t_token_list	*t_list;
-	char			*str;
-	t_stack			*stack;
+	int	i;
 
-	t_list = lexer("cat hello | hi");
-	stack = init_stack();
-	str = look_lalr_action(stack, str, t_list);
-	printf("first lalr %s\n ", str);
+	i = 0;
+	if (ft_strlen(s1) != ft_strlen(s2))
+		return (0);
+	while (s1[i])
+	{
+		if (s1[i] != s2[i])
+			return (0);
+		i++;
+	}
+	return (1);
 }

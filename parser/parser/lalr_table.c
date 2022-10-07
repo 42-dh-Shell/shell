@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:11:50 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/06 23:44:38 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/07 20:37:53 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,16 @@ int	get_action_idx(t_token_list *t_list)
 		return (ACTION_DLESS);
 	else if (t_list->head->token_type == T_BOT)
 		return (ACTION_BOTTOM);
+	else
+		return (-1);
 }
 
-// // int	get_goto_idx(t_stack *stack)
-// // {
-
-// // }
-
-// // char	*look_lalr_goto(t_stack *stack, char *str, e)
-// // {
-// // 	make_lalr_table();
-// // 	str = g_lalr_table[stack->top->state][get_action_idx(t_list)];
-// // 	return (str);
-// }
+char	*look_lalr_goto(t_stack *stack, char *str, int go_to)
+{
+	make_lalr_table();
+	str = g_lalr_table[stack->top->state][go_to];
+	return (str);
+}
 
 char	*look_lalr_action(t_stack *stack, char *str, t_token_list *t_list)
 {

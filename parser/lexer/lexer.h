@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:32:02 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/06 16:18:20 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/07 10:36:56 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,11 @@ void			fill_buffer_exps(t_auto_data *data, t_exps **exps);
 /// lexer.c
 typedef void	(*t_fp)(t_auto_data *data);
 char			get_char_status(int c);
+t_token			*last_token(void);
+t_token_list	*lexer(char *str);
+void			init_auto(t_auto_data **data, char *str);
+t_token			*automata(char **str);
+
 // list_util.c
 void			t_list_addback(t_token_list *t_list, t_token *new);
 void			exps_lst_addback(t_exps_list **exps_lst, t_exps *new);

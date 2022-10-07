@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:54:31 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/06 23:31:20 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/07 21:07:00 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,19 @@ typedef char*	t_string;
 # define GOTO_IO_HERE 24
 # define GOTO_F_NAME 25
 # define GOTO_END 26
+// change goto idx
+# define P_RULE_TO_GOTO 10
+
+void	make_lalr_table(void);
+int		get_action_idx(t_token_list *t_list);
+char	*look_lalr_goto(t_stack *stack, char *str, int go_to);
+char	*look_lalr_action(t_stack *stack, char *str, t_token_list *t_list);
+//
+void	push_down(t_stack *stack, t_token_list t_list);
+void	parser(char *str);
+// stack_util.c
+void	stack_shift(char **str, t_stack *stack, t_token_list *t_list);
+int		get_reduce_pop_nb(int reduce_idx);
+void	stack_reduce(char **str, t_stack *stack, t_token_list *t_list);
 
 #endif

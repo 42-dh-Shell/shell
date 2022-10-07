@@ -6,7 +6,7 @@
 #    By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/27 21:29:03 by daegulee          #+#    #+#              #
-#    Updated: 2022/10/05 17:59:29 by daegulee         ###   ########.fr        #
+#    Updated: 2022/10/07 19:22:53 by daegulee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,11 @@ SRCS				= main.c \
 					./parser/lexer/get_char_status.c \
 					./parser/lexer/lexer.c \
 					./parser/lexer/list_util.c \
-					./parser/lexer/debug_print.c 	
-
-					  
+					./parser/lexer/debug_print.c \
+					./parser/stack/stack.c \
+					./parser/parser/parser.c \
+					./parser/parser/lalr_table.c \
+					./parser/parser/stack_util.c
 OBJS = $(SRCS:.c=.o)
 
 FLAGS = -Wall -Wextra -Werror -g

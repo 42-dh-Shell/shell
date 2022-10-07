@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 23:37:42 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/06 20:33:23 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/07 19:13:21 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # include "../lexer/lexer.h"
 
 typedef enum e_production{
-	DATA_lIST = 0,
+	PROGRAM = 0,
+	DATA_lIST = 1,
 	PIPE,
 	OR,
 	AND,
@@ -41,23 +42,23 @@ typedef enum e_type{
 	PRODUCTION
 }	t_node_type;
 
-typedef struct s_node
+typedef struct s_snode
 {
-	struct s_node	*bottom;
+	struct s_snode	*bottom;
 	t_token			*token;
 	t_node_type		node_type;
 	t_product		p_rule;
 	int				state;
-}	t_node;
+}	t_snode;
 
 typedef struct s_stack
 {
-	t_node	*top;
+	t_snode	*top;
 }	t_stack;
 
-t_stack	*init_stack(void);
-t_node	*stack_pop(t_stack *stack);
-void	stack_push(t_stack *stack, t_node *new);
-t_node	*new_node(t_node_type type, void *data);
+t_stack		*init_stack(void);
+t_snode		*stack_pop(t_stack *stack);
+void		stack_push(t_stack *stack, t_snode *new);
+t_snode		*new_snode(t_node_type type, void *data);
 
 #endif

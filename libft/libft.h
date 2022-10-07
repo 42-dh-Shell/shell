@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 11:45:51 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/05 19:59:20 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/07 18:56:59 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ void	ft_exit(const char *str, int exit_flag);
 void	ft_free_split(char **split);
 int		ft_strcmp(char *s1, char *s2);
 void	split_free(char **str);
+int		str_equal(char *s1, char *s2);
 
 #endif
