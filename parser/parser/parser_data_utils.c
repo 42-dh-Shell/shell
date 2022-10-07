@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:28:53 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/05 20:45:54 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/07 20:53:30 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,8 @@ t_ast	*allocate_ast(void)
 {
 	t_ast	*result;
 
-	result = malloc(sizeof(t_ast));
+	result = ft_calloc(sizeof(t_ast), 1);
 	if (!result)
 		ft_exit("malloc error", 0);
-	result->head = 0;
-	result->last_added = 0;
-	result->subshell_head = 0;
 	return (result);
 }

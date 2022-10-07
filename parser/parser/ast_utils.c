@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:16:30 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/06 20:18:43 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/07 20:09:49 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	add_head_redir(t_token *token, t_ast *ast)
 	ast->last_added = new_node;
 }
 
-void	add_head_subshell(t_token *token, t_ast *ast)
+void	add_head_subshell(t_ast *ast)
 {
 	t_ast_node	*new_node;
 
@@ -43,6 +43,7 @@ void	add_head_subshell(t_token *token, t_ast *ast)
 	new_node->node_type = NODE_SUBSHELL;
 	ast->head = new_node;
 	ast->subshell_head = new_node;
+	ast->last_added = new_node;
 }
 
 void	add_head_command(t_token *token, t_ast *ast)
@@ -57,6 +58,7 @@ void	add_head_command(t_token *token, t_ast *ast)
 	new_node->node_type = NODE_COMMAND;
 	ast->head = new_node;
 	ast->last_added = new_node;
+	ast->command_node = new_node;
 }
 
 void	add_redir_token(t_token *token, t_ast *ast)
@@ -81,12 +83,17 @@ void	add_command_node_right(t_token *token, t_ast *ast)
 	new_node->str = token->str;
 	new_node->expand_info = token->expand_info;
 	new_node->node_type = NODE_COMMAND;
-	new_node->parent = ast->head;
 	new_node->wildcard_flag = token->wildcard_flag;
-	if (ast->subshell_head != 0)
+	if (ast->subshell_head == 0)
+	{
 		ast->head->right = new_node;
+		new_node->parent = ast->head;
+	}
 	else
+	{
 		ast->subshell_head->left->right = new_node;
+		new_node->parent = ast->subshell_head->left;
+	}
 	ast->last_added = new_node;
 	ast->command_node = new_node;
 }

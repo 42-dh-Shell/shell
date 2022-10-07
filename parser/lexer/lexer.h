@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:36:54 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/04 14:44:22 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/07 10:59:59 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,4 @@ t_token			*get_great_dgreat_token(char **line);
 t_token			*get_less_dless_token(char **line);
 t_token			*get_and_token(char **line);
 t_token			*get_bracket_toekn(char **line);
-
 #endif

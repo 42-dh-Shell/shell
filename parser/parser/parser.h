@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:19 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/06 20:08:58 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/07 20:09:56 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ typedef struct s_ast
 	t_ast_node	*last_added;
 	t_ast_node	*subshell_head;
 	t_ast_node	*command_node;
+	int			subshell_flag;
 }	t_ast;
 
 void			start_parse(t_token	*tokens);
@@ -110,5 +111,19 @@ int				get_y_idx(t_token *tokens);
 void			make_ast(t_token *token, t_ast *ast);
 void			do_shift(t_stack *stack, t_token *tokens, \
 						int status, t_ast *ast);
-int				pushdown_automata(t_stack *stack, t_token *tokens);
+t_ast			*pushdown_automata(t_stack *stack, t_token *tokens);
+void			add_head_redir(t_token *token, t_ast *ast);
+void			add_head_subshell(t_ast *ast);
+void			add_head_command(t_token *token, t_ast *ast);
+void			add_redir_token(t_token *token, t_ast *ast);
+void			add_command_node_right(t_token *token, t_ast *ast);
+void			add_subshell_command(t_token *token, t_ast *ast);
+void			add_command_node(t_token *token, t_ast *ast);
+void			add_suffix_node(t_token *token, t_ast *ast);
+void			pipe_and_or_handler(t_token *token, t_ast *ast);
+void			redir_handler(t_token *token, t_ast *ast);
+void			subshell_handler(t_token *token, t_ast *ast);
+int				is_node_pipe_and_or(t_ast_node	*node);
+void			print_ast(t_ast_node *ast);
+void			print_ast_status(t_ast *ast);
 #endif

@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:13:23 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/06 19:55:20 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/07 20:09:46 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	head_node_handler(t_token *token, t_ast *ast)
 		token->token_type == GREAT || token->token_type == DGREAT)
 		add_head_redir(token, ast);
 	else if (token->token_type == LBRAC)
-		add_head_subshell(token, ast);
+		add_head_subshell(ast);
 	else
 		add_head_command(token, ast);
 }
@@ -34,10 +34,10 @@ void	word_handler(t_token *token, t_ast *ast)
 		add_redir_token(token, ast);
 	else if (ast->last_added != 0 && \
 		(ast->last_added->node_type == NODE_AND || \
-		ast->last_added->node_type == NODE_PIPE) || \
-		ast->last_added->node_type == NODE_OR)
+		ast->last_added->node_type == NODE_PIPE || \
+		ast->last_added->node_type == NODE_OR))
 		add_command_node_right(token, ast);
-	else if (ast->subshell_head != 0)
+	else if (ast->subshell_head != 0 && ast->command_node == 0)
 		add_subshell_command(token, ast);
 	else if (ast->command_node == 0)
 		add_command_node(token, ast);
@@ -48,17 +48,15 @@ void	word_handler(t_token *token, t_ast *ast)
 void	make_ast(t_token *token, t_ast *ast)
 {
 	if (ast->head == 0)
-		head_node_handler(ast, token);
+		head_node_handler(token, ast);
 	else if (token->token_type == WORD)
-		word_handler(ast, token);
+		word_handler(token, ast);
 	else if (token->token_type == PIPE || token->token_type == AND || \
 		token->token_type == OR)
-		pipe_and_or_handler(ast, token);
+		pipe_and_or_handler(token, ast);
 	else if (token->token_type == DLESS || token->token_type == LESS || \
 		token->token_type == GREAT || token->token_type == DGREAT)
-		redir_handler(ast, token);
+		redir_handler(token, ast);
 	else if (token->token_type == LBRAC || token->token_type == RBRAC)
-		subshell_handler(ast, token);
-	else
-		return ;
+		subshell_handler(token, ast);
 }

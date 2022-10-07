@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 15:46:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/06 16:06:18 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/07 19:01:33 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	start_shell(void)
 				lexer_parse(line);
 			add_history(line);
 			free(line);
-			if (!ret)
+			if (!ret && ft_strcmp(line, "") != 0)
 			{
 				printf("exit\n");
 				break ;

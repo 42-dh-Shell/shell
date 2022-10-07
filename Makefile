@@ -6,7 +6,7 @@
 #    By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 15:07:35 by hyunkyle          #+#    #+#              #
-#    Updated: 2022/10/06 13:16:57 by hyunkyle         ###   ########.fr        #
+#    Updated: 2022/10/07 20:08:31 by hyunkyle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,11 @@ SRCS				= main.c \
 					./parser/parser/automata.c \
 					./parser/parser/automata1.c \
 					./parser/parser/parser_data_utils.c \
+					./parser/parser/ast.c \
+					./parser/parser/ast_utils.c \
+					./parser/parser/ast_utils1.c \
+					./parser/parser/ast_utils2.c \
+					./parser/parser/ast_utils3.c \
 
 					  
 OBJS = $(SRCS:.c=.o)
@@ -33,7 +38,7 @@ OBJS = $(SRCS:.c=.o)
 FLAGS = -lncurses 
 CFLAGS = -Wall -Wextra -Werror -g
 LINKING_FLAGS = -lreadline -L${HOME}/.brew/opt/readline/lib
-COMFILE_FLAGS = -I${HOME}/.brew/opt/readline/include
+COMFILE_FLAGS = -Wall -Wextra -Werror -g -I${HOME}/.brew/opt/readline/include
 
 CC = cc
 
@@ -45,7 +50,7 @@ $(NAME)	: $(OBJS)
 	$(CC) $(LINKING_FLAGS) $(FLAGS) -o $(NAME) $(OBJS) ./libft/libft.a ./get_next_line/libgnl.a
 
 .c.o :
-	$(CC)  $(COMFILE_FLAGS) -c $< -o $@
+	$(CC) -c $< -o $@ $(COMFILE_FLAGS)
 
 all	: $(NAME)
 

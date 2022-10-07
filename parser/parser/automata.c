@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:42:37 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/06 19:37:03 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/07 21:00:01 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	do_shift(t_stack *stack, t_token *tokens, int status, t_ast *ast)
 	ft_push(stack, get_stack_node(data));
 	data = get_stack_data(0, STATUS, status, -1);
 	ft_push(stack, get_stack_node(data));
-	//make_ast(tokens, ast);
+	make_ast(tokens, ast);
 }
 
 int	action_handler(const char *action, t_stack *stack, \
@@ -131,7 +131,7 @@ void	print_stack(t_stack *stack)
 	}
 }
 
-int	pushdown_automata(t_stack *stack, t_token *tokens)
+t_ast	*pushdown_automata(t_stack *stack, t_token *tokens)
 {
 	int			state;
 	int			y;
@@ -147,7 +147,7 @@ int	pushdown_automata(t_stack *stack, t_token *tokens)
 		y = get_y_idx(tokens);
 		action = g_lalr_table[state][y];
 		if (action[0] == 'A')
-			return (1);
+			return (ast);
 		else
 		{
 			if (action_handler(action, stack, &tokens, ast) == 0)
