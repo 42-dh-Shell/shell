@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lalr_table.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idaegyu <idaegyu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:11:50 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/07 20:37:53 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/09 19:29:55 by idaegyu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	get_action_idx(t_token_list *t_list)
 	else if (t_list->head->token_type == T_WORD)
 		return (ACTION_WORD);
 	else if (t_list->head->token_type == T_LESS)
-		return (ACTION_WORD);
+		return (ACTION_LESS);
 	else if (t_list->head->token_type == T_GREATE)
 		return (ACTION_GREATE);
 	else if (t_list->head->token_type == T_DGREATE)

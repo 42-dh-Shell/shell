@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+         #
+#    By: idaegyu <idaegyu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/27 21:29:03 by daegulee          #+#    #+#              #
-#    Updated: 2022/10/07 19:22:53 by daegulee         ###   ########.fr        #
+#    Updated: 2022/10/09 18:16:22 by idaegyu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,12 @@ SRCS				= main.c \
 OBJS = $(SRCS:.c=.o)
 
 FLAGS = -Wall -Wextra -Werror -g
-LINKING_FLAGS = -lncurses -lreadline -L${HOME}/.brew/opt/readline/lib
-COMFILE_FLAGS = -I${HOME}/.brew/opt/readline/include
+LINKING_FLAGS = -lreadline $(LD_M1)
+LD_CLUSTER=-L${HOME}/.brew/opt/readline/lib
+LD_M1="-L/opt/homebrew/opt/readline/lib"
+COMFILE_FLAGS = $(CD_M1)
+CD_CLUSTER=${HOME}/.brew/opt/readline/include
+CD_M1="-I/opt/homebrew/opt/readline/include"
 CC = cc
 
 NAME = mini

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idaegyu <idaegyu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 23:37:42 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/07 19:13:21 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/09 18:39:18 by idaegyu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 typedef enum e_production{
 	PROGRAM = 0,
-	DATA_lIST = 1,
+	DATA_lIST = 11,
 	PIPE,
 	OR,
 	AND,

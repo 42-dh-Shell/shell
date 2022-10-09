@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idaegyu <idaegyu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:53:58 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/07 21:06:37 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/09 19:44:06 by idaegyu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	parser(char *str)
 	t_stack			*stack;
 
 	t_list = lexer(str);
+	if (t_list == NULL)
+		return ;
 	stack = init_stack();
 	push_down(stack, *t_list);
 }

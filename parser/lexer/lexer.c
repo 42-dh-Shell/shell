@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idaegyu <idaegyu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:31:51 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/07 19:51:47 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/09 19:43:48 by idaegyu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,16 @@ t_token_list	*lexer(char *str)
 	{
 		i++;
 		new = automata(&str);
-		t_list_addback(t_list, new);
+		if (new != NULL)
+			t_list_addback(t_list, new);
 	}
-	t_list_addback(t_list, last_token());
+	if (t_list->head != NULL)
+		t_list_addback(t_list, last_token());
+	if (t_list->head == NULL)
+	{
+		free(t_list);
+		return (NULL);
+	}
 	print_token(t_list);
 	return (t_list);
 }
@@ -74,12 +81,14 @@ t_token	*automata(char **str)
 	t_auto_data	*data;
 	t_token		*token;
 
+	token = NULL;
 	init_auto(&data, *str);
 	while ((data->next_state != L_S17 && data->next_state != L_S13))
 		g_action[data->next_state](data);
 	g_action[data->next_state](data);
 	data->buffer[data->buffer_idx + 1] = 0;
-	token = init_token(data);
+	if (data->type != L_S0)
+		token = init_token(data);
 	*str = (data->str);
 	return (token);
 }

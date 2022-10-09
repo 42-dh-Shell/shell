@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_0~3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idaegyu <idaegyu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 15:32:34 by daegulee          #+#    #+#             */
-/*   Updated: 2022/09/28 22:30:37 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/09 19:39:13 by idaegyu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	do_s0_v2(t_auto_data *data)
 	else if (get_char_status(*(data->str)) == IS_SPACE)
 		change_next_state(data, L_S16);
 	else
-		change_next_state(data, L_S13);
+		change_next_state(data, L_S17);
 }
 
 void	do_s1(t_auto_data *data)

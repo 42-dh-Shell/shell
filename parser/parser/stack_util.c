@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idaegyu <idaegyu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:30:22 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/07 21:24:46 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/09 19:29:19 by idaegyu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,12 +121,15 @@ void	stack_reduce(char **str, t_stack *stack, t_token_list *t_list)
 		stack_pop(stack);
 		pop_nb--;
 	}
-	p_rule = g_reduce_to_goto[reduce_idx] - P_RULE_TO_GOTO;
-	*str = look_lalr_goto(stack, *str, g_reduce_to_goto[reduce_idx]);
+	p_rule = g_reduce_to_goto[reduce_idx];
+	*str = look_lalr_goto(stack, *str, p_rule);
 	new = new_snode(PRODUCTION, &p_rule);
+	printf("p_rule %d\n", p_rule);
 	stack_push(stack, new);
 	state = ft_atoi(*str);
+	printf("state = %d\n", state);
 	new = new_snode(STATE, &state);
 	stack_push(stack, new);
 	*str = look_lalr_action(stack, *str, t_list);
+	printf("next action table %s\n", *str);
 }

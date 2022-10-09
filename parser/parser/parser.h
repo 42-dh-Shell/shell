@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idaegyu <idaegyu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:54:31 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/07 21:07:00 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/09 18:46:09 by idaegyu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,13 @@ typedef char*	t_string;
 # define GOTO_END 26
 // change goto idx
 # define P_RULE_TO_GOTO 10
+
+typedef struct s_grammer
+{
+	char *grammer;
+	int	pop_nb;
+	int	p_rule_idx;
+}	t_grammer;
 
 void	make_lalr_table(void);
 int		get_action_idx(t_token_list *t_list);
