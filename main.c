@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 15:46:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/11 10:27:07 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/11 19:55:55 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,31 +44,6 @@ void	start_shell(void)
 }
 
 int	main(void)
-{
-	t_hash	*hash_table;
-
-	hash_table = get_hash(1, 0.75);
-	hash_add(hash_table, "1", "hyunkyu1");
-	hash_add(hash_table, "2", "hyunkyu2");
-	hash_add(hash_table, "3", "hyunkyu3");
-	hash_add(hash_table, "4", "hyunkyu4");
-	hash_add(hash_table, "5", "hyunkyu5");
-	hash_add(hash_table, "6", "hyunkyu6");
-	hash_add(hash_table, "7", "hyunkyu7");
-	hash_add(hash_table, "8", "hyunkyu8");
-	hash_add(hash_table, "9", "hyunkyu9");
-	hash_add(hash_table, "10", "hyunkyu10");
-	
-	printf("value = %s\n", hash_get(hash_table, "1")->value);
-	printf("value = %s\n", hash_get(hash_table, "2")->value);
-	printf("value = %s\n", hash_get(hash_table, "3")->value);
-	printf("value = %s\n", hash_get(hash_table, "4")->value);
-	printf("value = %s\n", hash_get(hash_table, "5")->value);
-	printf("value = %s\n", hash_get(hash_table, "6")->value);
-	printf("value = %s\n", hash_get(hash_table, "7")->value);
-	printf("value = %s\n", hash_get(hash_table, "8")->value);
-	printf("value = %s\n", hash_get(hash_table, "9")->value);
-	printf("value = %s\n", hash_get(hash_table, "10")->value);
-
-	//start_shell();
+{	
+	start_shell();
 }

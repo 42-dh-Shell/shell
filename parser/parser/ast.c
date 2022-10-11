@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:13:23 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/07 20:09:46 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/11 18:47:19 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ void	word_handler(t_token *token, t_ast *ast)
 		ast->last_added->node_type == NODE_PIPE || \
 		ast->last_added->node_type == NODE_OR))
 		add_command_node_right(token, ast);
-	else if (ast->subshell_head != 0 && ast->command_node == 0)
-		add_subshell_command(token, ast);
 	else if (ast->command_node == 0)
 		add_command_node(token, ast);
 	else if (ast->command_node != 0)

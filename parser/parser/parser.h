@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:19 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/11 10:43:35 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/11 19:44:25 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,8 @@ typedef struct s_ast_node
 
 typedef struct s_subshell_list
 {
-	t_ast_node	*subshell_node;
-	t_ast_node	*next;
-	int			size;
+	t_ast_node				*subshell_ast_node;
+	struct s_subshell_list	*next;
 }	t_subshell_node;
 
 typedef struct s_ast
@@ -102,6 +101,8 @@ typedef struct s_ast
 	t_subshell_node	*subshell_head;
 	t_ast_node		*command_node;
 	int				subshell_flag;
+	int				subshell_idx;
+	int				subshell_cnt;
 }	t_ast;
 
 void			start_parse(t_token	*tokens);
@@ -133,4 +134,7 @@ void			subshell_handler(t_token *token, t_ast *ast);
 int				is_node_pipe_and_or(t_ast_node	*node);
 void			print_ast(t_ast_node *ast);
 void			print_ast_status(t_ast *ast);
+void			add_pipe_node_in_subshell(t_ast *ast, t_ast_node *new_node);
+void			add_last_subshell_node(t_ast *ast, t_ast_node *new_node);
+void			reset_sub_idx(t_ast *ast);
 #endif

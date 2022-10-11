@@ -6,33 +6,12 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 10:23:12 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/10 16:56:33 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/11 19:45:31 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "../lexer/lexer.h"
-
-void	add_subshell_command(t_token *token, t_ast *ast)
-{
-	t_ast_node	*new_node;
-
-	new_node = ft_calloc(sizeof(t_ast_node), 1);
-	if (!new_node)
-		ft_exit("malloc error", 0);
-	if (ast->command_node != 0)
-		add_suffix_node(token, ast);
-	else
-	{
-		new_node->str = token->str;
-		new_node->wildcard_flag = token->wildcard_flag;
-		new_node->node_type = NODE_COMMAND;
-		new_node->parent = ast->last_added;
-		ast->last_added->left = new_node;
-		ast->command_node = new_node;
-		ast->last_added = new_node;
-	}
-}
 
 void	add_command_node(t_token *token, t_ast *ast)
 {
@@ -44,10 +23,11 @@ void	add_command_node(t_token *token, t_ast *ast)
 	new_node->str = token->str;
 	new_node->wildcard_flag = token->wildcard_flag;
 	new_node->node_type = NODE_COMMAND;
+	new_node->parent = ast->last_added;
 	new_node->expand_info = token->expand_info;
 	ast->last_added->left = new_node;
 	ast->command_node = new_node;
-	new_node->parent = ast->last_added;
+	ast->last_added = new_node;
 }
 
 void	add_suffix_node(t_token *token, t_ast *ast)
@@ -95,25 +75,20 @@ void	pipe_and_or_handler(t_token *token, t_ast *ast)
 	t_ast_node	*head;
 
 	new_node = get_pipe_or_and_ast_token(token);
-	if (ast->subshell_flag == 1)
+	head = ast->head;
+	if (ast->subshell_cnt == 0)
 	{
-		ast->subshell_flag = 0;
-		ast->subshell_head = 0;
-	}
-	if (ast->subshell_head == 0)
-	{
-		head = ast->head;
 		new_node->left = head;
 		ast->head = new_node;
+		head->parent = new_node;
+		if (ast->subshell_flag == 1)
+		{
+			ast->subshell_flag = 0;
+			reset_sub_idx(ast);
+		}
 	}
 	else
-	{
-		head = ast->subshell_head->left;
-		ast->subshell_head->left = new_node;
-		new_node->left = head;
-		new_node->parent = ast->subshell_head;
-	}
-	head->parent = new_node;
+		add_pipe_node_in_subshell(ast, new_node);
 	ast->last_added = new_node;
 	ast->command_node = 0;
 }

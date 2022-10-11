@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:16:30 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/11 10:45:09 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/11 19:45:12 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,12 @@ void	add_head_subshell(t_ast *ast)
 	if (!subshell_node)
 		ft_exit("malloc error", 0);
 	new_node->node_type = NODE_SUBSHELL;
+	subshell_node->subshell_ast_node = new_node;
 	ast->head = new_node;
+	ast->subshell_idx = 0;
 	ast->subshell_head = subshell_node;
-	ast->subshell_head->subshell_node = new_node;
 	ast->last_added = new_node;
+	ast->subshell_cnt += 1;
 }
 
 void	add_head_command(t_token *token, t_ast *ast)
@@ -89,16 +91,8 @@ void	add_command_node_right(t_token *token, t_ast *ast)
 	new_node->expand_info = token->expand_info;
 	new_node->node_type = NODE_COMMAND;
 	new_node->wildcard_flag = token->wildcard_flag;
-	if (ast->subshell_head == 0)
-	{
-		ast->head->right = new_node;
-		new_node->parent = ast->head;
-	}
-	else
-	{
-		ast->subshell_head->left->right = new_node;
-		new_node->parent = ast->subshell_head->left;
-	}
+	ast->last_added->right = new_node;
+	new_node->parent = ast->last_added;
 	ast->last_added = new_node;
 	ast->command_node = new_node;
 }
