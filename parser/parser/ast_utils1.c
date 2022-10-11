@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 10:23:12 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/07 19:07:17 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/10 16:56:33 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	add_subshell_command(t_token *token, t_ast *ast)
 		new_node->str = token->str;
 		new_node->wildcard_flag = token->wildcard_flag;
 		new_node->node_type = NODE_COMMAND;
-		new_node->parent = ast->subshell_head;
-		ast->subshell_head->left = new_node;
+		new_node->parent = ast->last_added;
+		ast->last_added->left = new_node;
 		ast->command_node = new_node;
 		ast->last_added = new_node;
 	}

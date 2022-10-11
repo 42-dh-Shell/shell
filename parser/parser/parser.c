@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/07 19:51:14 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/10 12:37:09 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,5 @@ void	start_parse(t_token	*tokens)
 	if (!ast)
 		return ;
 	print_ast(ast->head);
-	//print_ast_status(ast);
 	//execute_command(ast->head);
 }

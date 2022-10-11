@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 12:14:06 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/05 20:45:54 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/10 12:27:16 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,8 @@ void	lexer_parse(char *line)
 	head = 0;
 	while (is_space(*line))
 		line++;
+	if (*line == 0)
+		return ;
 	while (*line != 0)
 	{
 		token = get_one_token(&line);

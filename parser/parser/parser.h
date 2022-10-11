@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:19 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/07 20:09:56 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/11 10:43:35 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,20 @@ typedef struct s_ast_node
 	struct s_ast_node	*right;
 }	t_ast_node;
 
+typedef struct s_subshell_list
+{
+	t_ast_node	*subshell_node;
+	t_ast_node	*next;
+	int			size;
+}	t_subshell_node;
+
 typedef struct s_ast
 {
-	t_ast_node	*head;
-	t_ast_node	*last_added;
-	t_ast_node	*subshell_head;
-	t_ast_node	*command_node;
-	int			subshell_flag;
+	t_ast_node		*head;
+	t_ast_node		*last_added;
+	t_subshell_node	*subshell_head;
+	t_ast_node		*command_node;
+	int				subshell_flag;
 }	t_ast;
 
 void			start_parse(t_token	*tokens);

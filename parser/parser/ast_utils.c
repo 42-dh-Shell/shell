@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:16:30 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/07 20:09:49 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/11 10:45:09 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,19 @@ void	add_head_redir(t_token *token, t_ast *ast)
 
 void	add_head_subshell(t_ast *ast)
 {
-	t_ast_node	*new_node;
+	t_ast_node		*new_node;
+	t_subshell_node	*subshell_node;
 
 	new_node = ft_calloc(sizeof(t_ast_node), 1);
 	if (!new_node)
 		ft_exit("malloc error", 0);
+	subshell_node = ft_calloc(sizeof(t_subshell_node), 1);
+	if (!subshell_node)
+		ft_exit("malloc error", 0);
 	new_node->node_type = NODE_SUBSHELL;
 	ast->head = new_node;
-	ast->subshell_head = new_node;
+	ast->subshell_head = subshell_node;
+	ast->subshell_head->subshell_node = new_node;
 	ast->last_added = new_node;
 }
 

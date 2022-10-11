@@ -6,15 +6,15 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 17:04:37 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/05 20:48:38 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/10 12:52:07 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <signal.h>
 #include <termios.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 void	singnal_handler(int signum)
