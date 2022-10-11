@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_malloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 10:22:50 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/11 02:03:08 by daegulee         ###   ########.fr       */
+/*   Created: 2022/10/11 02:03:18 by daegulee          #+#    #+#             */
+/*   Updated: 2022/10/11 02:04:34 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	*ft_malloc(size_t size_of)
 {
 	void	*p;
 
-	if (size && count > (SIZE_MAX - 8192) / size)
-		return (NULL);
-	p = malloc(count * size);
+	p = malloc(size_of);
 	if (p == NULL)
-		return (NULL);
-	ft_bzero(p, count * size);
+		ft_exit("malloc error.\n", 1);
+	ft_memset(p, 0, size_of);
 	return (p);
 }

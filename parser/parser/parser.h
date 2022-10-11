@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idaegyu <idaegyu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:54:31 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/09 18:46:09 by idaegyu          ###   ########.fr       */
+/*   Updated: 2022/10/11 10:35:49 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <fcntl.h>
 # include "../../gnl/get_next_line.h"
 # include "../stack/stack.h"
+# include "../tree/tree.h"
 
 typedef char*	t_string;
 
@@ -53,23 +54,18 @@ typedef char*	t_string;
 // change goto idx
 # define P_RULE_TO_GOTO 10
 
-typedef struct s_grammer
-{
-	char *grammer;
-	int	pop_nb;
-	int	p_rule_idx;
-}	t_grammer;
-
+//reduce fp 
+typedef void	(*t_rp)(t_support *sup);
 void	make_lalr_table(void);
 int		get_action_idx(t_token_list *t_list);
 char	*look_lalr_goto(t_stack *stack, char *str, int go_to);
 char	*look_lalr_action(t_stack *stack, char *str, t_token_list *t_list);
 //
-void	push_down(t_stack *stack, t_token_list t_list);
-void	parser(char *str);
+t_ast	*push_down(t_stack *stack, t_token_list t_list);
+t_ast	*parser(char *str);
 // stack_util.c
-void	stack_shift(char **str, t_stack *stack, t_token_list *t_list);
+void	st_shift(char **str, t_support *sup);
 int		get_reduce_pop_nb(int reduce_idx);
-void	stack_reduce(char **str, t_stack *stack, t_token_list *t_list);
+void	st_reduce(char **str, t_support *sup);
 
 #endif

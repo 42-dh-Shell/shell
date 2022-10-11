@@ -27,3 +27,9 @@ OR -> OR '||' SIMPLE_COMMAND
 
 AND -> '&&' SIMPLE_COMMAND
 AND -> AND '&&' SIMPLE_COMMAND
+
+
+//tokenizing - > parser  - > expand -> execute
+
+// redir 병렬 
+// heredoc 직렬 

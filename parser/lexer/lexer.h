@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:32:02 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/07 10:36:56 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:36:51 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ t_token			*automata(char **str);
 void			t_list_addback(t_token_list *t_list, t_token *new);
 void			exps_lst_addback(t_exps_list **exps_lst, t_exps *new);
 t_token			*init_token(t_auto_data *data);
+t_token			*token_dup(t_token *origin);
+
 //do_
 void			do_s0(t_auto_data *data);
 void			do_s0_v2(t_auto_data *data);
