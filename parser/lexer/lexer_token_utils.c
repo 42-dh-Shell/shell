@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 15:07:43 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/09/28 19:03:29 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:00:20 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,14 @@ void	dquote_expand_handler(char **line, int *i, t_token *token, int *str_idx)
 	expand_lst_add(token, new_ex_info);
 }
 
-void	dquote_handler(int *i, t_token *token, char **line, int *str_idx)
+int	dquote_handler(int *i, t_token *token, char **line, int *str_idx)
 {
 	*i += 1;
 	if (!closed_quote_dquote(*i, line, 34))
-		exit(1);
+	{
+		printf("unclosed dquote\n");
+		return (0);
+	}
 	while ((*line)[*i] != ASCII_DQUOTE)
 	{
 		if ((*line)[*i] == ASCII_EXPAND_SIG)
@@ -56,13 +59,17 @@ void	dquote_handler(int *i, t_token *token, char **line, int *str_idx)
 		}
 	}
 	*i += 1;
+	return (1);
 }
 
-void	quote_handler(int *i, t_token	*token, char **line, int *str_idx)
+int	quote_handler(int *i, t_token	*token, char **line, int *str_idx)
 {
 	*i += 1;
 	if (!closed_quote_dquote(*i, line, ASCII_QUOTE))
-		exit(1);
+	{
+		printf("unclosed quote\n");
+		return (0);
+	}
 	while ((*line)[*i] != ASCII_QUOTE)
 	{
 		token->str[*str_idx] = (*line)[*i];
@@ -70,9 +77,10 @@ void	quote_handler(int *i, t_token	*token, char **line, int *str_idx)
 		*str_idx += 1;
 	}
 	*i += 1;
+	return (1);
 }
 
-void	expand_handler(int *i, t_token	*token, char **line, int *str_idx)
+int	expand_handler(int *i, t_token	*token, char **line, int *str_idx)
 {
 	int				cnt;
 	t_expand_info	*new_ex_info;
@@ -97,14 +105,15 @@ void	expand_handler(int *i, t_token	*token, char **line, int *str_idx)
 	new_ex_info->str = ft_substr((char const *) *line, start_idx, cnt);
 	new_ex_info->size = cnt;
 	expand_lst_add(token, new_ex_info);
+	return (1);
 }
 
-void	division_word(char **line, t_token *token, int *i, int *str_idx)
+int	division_word(char **line, t_token *token, int *i, int *str_idx)
 {
 	if ((*line)[*i] == ASCII_DQUOTE)
-		dquote_handler(i, token, line, str_idx);
+		return (dquote_handler(i, token, line, str_idx));
 	else if ((*line)[*i] == ASCII_QUOTE)
-		quote_handler(i, token, line, str_idx);
-	else if ((*line)[*i] == ASCII_EXPAND_SIG)
-		expand_handler(i, token, line, str_idx);
+		return (quote_handler(i, token, line, str_idx));
+	else
+		return (expand_handler(i, token, line, str_idx));
 }

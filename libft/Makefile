@@ -6,7 +6,7 @@
 #    By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/06 10:50:54 by hyunkyle          #+#    #+#              #
-#    Updated: 2022/10/06 13:26:21 by hyunkyle         ###   ########.fr        #
+#    Updated: 2022/10/13 18:25:26 by hyunkyle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRCS =					ft_strcmp.c \
 						ft_exit.c \
 						ft_putchar_fd.c \
 						ft_putstr_fd.c \
-
+						ft_color_printf.c 
 OBJS = $(SRCS:.c=.o)
 
 FLAGS = -Wall -Wextra -Werror

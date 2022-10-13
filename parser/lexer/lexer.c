@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 12:14:06 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/10 12:27:16 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/13 18:31:42 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,21 +62,18 @@ void	print_token_data(t_token *head)
 	}
 }
 
-t_token	*word_token_control(char **line)
+t_token	*word_token_control(char **line, int i, int str_idx)
 {
 	t_token	*result;
-	int		i;
-	int		str_idx;
 
 	result = allocate_token(get_word_len(line));
-	result->token_type = WORD;
-	str_idx = 0;
-	i = 0;
 	while ((*line)[i] != 0 && !is_space((*line)[i]) && !is_meta((*line)[i]))
 	{
-		if ((*line)[i] == ASCII_DQUOTE || (*line)[i] == ASCII_QUOTE || \
-					(*line)[i] == ASCII_EXPAND_SIG)
-			division_word(line, result, &i, &str_idx);
+		if (is_div_wd((*line)[i]))
+		{
+			if (!division_word(line, result, &i, &str_idx))
+				return (0);
+		}
 		else
 		{
 			result->str[str_idx] = (*line)[i];
@@ -122,7 +119,7 @@ t_token	*get_one_token(char **line)
 	if (is_meta(**line))
 		return (meta_token_control(line));
 	else
-		return (word_token_control(line));
+		return (word_token_control(line, 0, 0));
 }
 
 void	add_last_token(t_token *head)
@@ -155,6 +152,11 @@ void	lexer_parse(char *line)
 	while (*line != 0)
 	{
 		token = get_one_token(&line);
+		if (token == 0)
+		{
+			fail_make_token_release(head);
+			return ;
+		}
 		token_lst_add(&head, token);
 		while (is_space(*line))
 			line++;

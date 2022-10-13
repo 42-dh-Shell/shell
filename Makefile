@@ -6,7 +6,7 @@
 #    By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 15:07:35 by hyunkyle          #+#    #+#              #
-#    Updated: 2022/10/11 10:38:44 by hyunkyle         ###   ########.fr        #
+#    Updated: 2022/10/13 20:22:08 by hyunkyle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS				= main.c \
 					./parser/parser/automata.c \
 					./parser/parser/automata1.c \
 					./parser/parser/parser_data_utils.c \
+					./parser/parser/parser_data_utils1.c \
 					./parser/parser/ast.c \
 					./parser/parser/ast_utils.c \
 					./parser/parser/ast_utils1.c \
@@ -41,7 +42,6 @@ OBJS = $(SRCS:.c=.o)
 DEPS = ${OBJS:.o=.d}
 
 FLAGS = -lncurses 
-CFLAGS = -Wall -Wextra -Werror -g
 LINKING_FLAGS = -lreadline -L${HOME}/.brew/opt/readline/lib
 COMFILE_FLAGS = -Wall -Wextra -Werror -g -I${HOME}/.brew/opt/readline/include -MD
 CC = cc
@@ -51,7 +51,7 @@ NAME = mini
 $(NAME)	: $(OBJS)
 	make -C ./libft
 	make -C ./get_next_line
-	$(CC) $(LINKING_FLAGS) $(FLAGS) -o $(NAME) $(OBJS) ./libft/libft.a ./get_next_line/libgnl.a
+	$(CC) $(LINKING_FLAGS)  $(FLAGS) -o $(NAME) $(OBJS) ./libft/libft.a ./get_next_line/libgnl.a
 
 .c.o :
 	$(CC) -c $< -o $@ $(COMFILE_FLAGS)

@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 19:20:05 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/09/28 19:03:16 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/13 18:31:05 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,9 @@ t_token	*get_and_token(char **line)
 		result->str[2] = 0;
 	}
 	else
-		exit(1);
+	{
+		ft_color_printf("minishell : unsupported token '&'\n");
+		return (0);
+	}
 	return (result);
 }
-

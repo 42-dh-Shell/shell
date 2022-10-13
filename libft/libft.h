@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:52:13 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/06 13:26:43 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/13 19:56:35 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ void	*ft_memset(void *b, int c, size_t len);
 void	ft_exit(const char *str, int exit_flag);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(const char *s, int fd);
-
+void	ft_color_printf(const char *str);
+void	ft_color_printft2(const char *str);
 #endif

@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:42:37 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/10 16:54:49 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/13 20:35:41 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,12 +131,33 @@ void	print_stack(t_stack *stack)
 	}
 }
 
-t_ast	*pushdown_automata(t_stack *stack, t_token *tokens)
+void	read_heredoc_ast(t_ast_node *ast)
 {
-	int			state;
-	int			y;
+	char	*line;
+
+	if (ast == 0)
+		return ;
+	if (ast->node_type == NODE_DLESS && ast->redir_token != 0)
+	{
+		while (1)
+		{
+			line = readline(">");
+			if (ft_strcmp(line, ast->redir_token->str) == 0)
+				break ;
+		}
+	}
+	if (ast->left != 0)
+		read_heredoc_ast(ast->left);
+	if (ast->right != 0)
+		read_heredoc_ast(ast->right);
+}
+
+t_ast	*pushdown_automata(t_stack *stack, t_token *tokens, \
+			int state, int y)
+{
 	const char	*action;
 	t_ast		*ast;
+	t_token		*prev;
 
 	if (g_lalr_table == 0)
 		g_lalr_table = (const char ***) make_table();
@@ -146,15 +167,16 @@ t_ast	*pushdown_automata(t_stack *stack, t_token *tokens)
 		state = ft_peek(stack)->data->state;
 		y = get_y_idx(tokens);
 		action = g_lalr_table[state][y];
+		if (tokens->token_type != LAST)
+			prev = tokens;
 		if (action[0] == 'A')
 			return (ast);
-		else
+		if (action_handler(action, stack, &tokens, ast) == 0)
 		{
-			if (action_handler(action, stack, &tokens, ast) == 0)
-			{
-				printf("Syntex Error\n");
-				return (0);
-			}
+			ft_color_printft2(prev->str);
+			read_heredoc_ast(ast->head);
+			release_ast(ast);
+			return (0);
 		}
 	}
 }

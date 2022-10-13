@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 15:46:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/11 19:55:55 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:18:31 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	start_shell(void)
 	set_signal_term();
 	while (1)
 	{
-		line = readline("$> ");
+		line = readline("minishell$ ");
 		if (line)
 		{
 			ret = ft_strcmp(line, "exit");

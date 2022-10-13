@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 13:04:27 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/09/28 19:03:22 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/13 15:24:45 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_token	*allocate_token(int word_len)
 	result->expand_info = 0;
 	result->next = 0;
 	result->wildcard_flag = 0;
+	result->token_type = WORD;
 	return (result);
 }
 

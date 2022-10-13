@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 15:09:02 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/09/28 19:03:09 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/13 17:28:58 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,12 @@ void	cnt_word_inquote(char *line, int *i, int *cnt)
 	}
 	if (line[*i] == ASCII_QUOTE)
 		(*i)++;
+}
+
+int	is_div_wd(char ch)
+{
+	return (ch == ASCII_DQUOTE || ch == ASCII_QUOTE || \
+					ch == ASCII_EXPAND_SIG);
 }
 
 int	get_word_len(char **line)

@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:36:54 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/07 10:59:59 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/13 20:03:49 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,16 @@ void			expand_lst_add(t_token *head, t_expand_info *target);
 void			token_lst_add(t_token **head, t_token *target);
 void			asign_handler(t_token *token, int i);
 int				closed_quote_dquote(int i, char **line, char quote_code);
-void			division_word(char **line, t_token *token, \
-							int *i, int *str_idx);
+int				division_word(char **line, t_token *token, \
+						int *i, int *str_idx);
 void			release_token_lst(t_token *head);
 t_token			*get_pipe_or_token(char **line);
 t_token			*get_great_dgreat_token(char **line);
 t_token			*get_less_dless_token(char **line);
 t_token			*get_and_token(char **line);
 t_token			*get_bracket_toekn(char **line);
+int				is_div_wd(char ch);
+void			fail_make_token_release(t_token *head);
+void			read_heredoc_token(t_token *head);
+void			release_ex_info(t_expand_info *head);
 #endif

@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/10 12:37:09 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/13 20:34:57 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,9 @@ void	start_parse(t_token	*tokens)
 	t_ast	*ast;
 
 	stack = get_stack();
-	ast = pushdown_automata(stack, tokens);
+	ast = 0;
+	ast = pushdown_automata(stack, tokens, 0, 0);
+	system("leaks mini");
 	release_token_lst(tokens);
 	if (!ast)
 		return ;

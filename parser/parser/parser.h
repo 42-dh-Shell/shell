@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:19 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/11 19:44:25 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/13 17:58:10 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 # define IDX_PIPE 0
 # define IDX_OR 1 
@@ -119,7 +121,8 @@ int				get_y_idx(t_token *tokens);
 void			make_ast(t_token *token, t_ast *ast);
 void			do_shift(t_stack *stack, t_token *tokens, \
 						int status, t_ast *ast);
-t_ast			*pushdown_automata(t_stack *stack, t_token *tokens);
+t_ast			*pushdown_automata(t_stack *stack, t_token *tokens, \
+						int state, int y);
 void			add_head_redir(t_token *token, t_ast *ast);
 void			add_head_subshell(t_ast *ast);
 void			add_head_command(t_token *token, t_ast *ast);
@@ -137,4 +140,5 @@ void			print_ast_status(t_ast *ast);
 void			add_pipe_node_in_subshell(t_ast *ast, t_ast_node *new_node);
 void			add_last_subshell_node(t_ast *ast, t_ast_node *new_node);
 void			reset_sub_idx(t_ast *ast);
+void			release_ast(t_ast *ast);
 #endif
