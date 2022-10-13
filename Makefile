@@ -6,7 +6,7 @@
 #    By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/27 21:29:03 by daegulee          #+#    #+#              #
-#    Updated: 2022/10/11 13:00:43 by daegulee         ###   ########.fr        #
+#    Updated: 2022/10/13 20:18:56 by daegulee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,11 +35,11 @@ SRCS				= main.c \
 					./parser/tree/debug_tree.c 
 OBJS = $(SRCS:.c=.o)
 
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 LINKING_FLAGS = -lreadline $(LD_CLUSTER)
 LD_CLUSTER=-L${HOME}/.brew/opt/readline/lib
 LD_M1=-L/opt/homebrew/opt/readline/lib
-COMFILE_FLAGS = $(CD_CLUSTER) -MD
+COMFILE_FLAGS = $(CD_CLUSTER) -MD 
 CD_CLUSTER=-I${HOME}/.brew/opt/readline/include
 CD_M1=-I/opt/homebrew/opt/readline/include
 CC = cc
