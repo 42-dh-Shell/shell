@@ -131,7 +131,6 @@ parser/parser/ast.o: parser/parser/ast.c parser/parser/parser.h \
   parser/parser/../../libft/libft.h \
   parser/parser/../../execute/execute.h \
   parser/parser/../../execute/../libft/libft.h \
-  parser/parser/../../execute/../parser/parser/parser.h \
   /Users/hyunkyle/.brew/opt/readline/include/readline/readline.h \
   /Users/hyunkyle/.brew/opt/readline/include/readline/rlstdc.h \
   /Users/hyunkyle/.brew/opt/readline/include/readline/rltypedefs.h \

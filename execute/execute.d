@@ -113,38 +113,9 @@ execute/execute.o: execute/execute.c execute/execute.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/sys/_select.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/sys/_types/_uuid_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/gethostuuid.h \
-  execute/../parser/parser/parser.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/fcntl.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/sys/fcntl.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/sys/_types/_o_sync.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/sys/_types/_o_dsync.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/sys/_types/_s_ifmt.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/sys/_types/_filesec_t.h \
-  execute/../parser/parser/../lexer/lexer.h \
-  execute/../parser/parser/../lexer/../../libft/libft.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/stdio.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/_stdio.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/sys/_types/_va_list.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/sys/stdio.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/secure/_stdio.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/secure/_common.h \
-  execute/../parser/parser/../../stack/stack.h \
-  execute/../parser/parser/../../stack/../parser/lexer/lexer.h \
-  execute/../parser/parser/../../libft/libft.h \
-  execute/../parser/parser/../../execute/execute.h \
-  /Users/hyunkyle/.brew/opt/readline/include/readline/readline.h \
-  /Users/hyunkyle/.brew/opt/readline/include/readline/rlstdc.h \
-  /Users/hyunkyle/.brew/opt/readline/include/readline/rltypedefs.h \
-  /Users/hyunkyle/.brew/opt/readline/include/readline/keymaps.h \
-  /Users/hyunkyle/.brew/opt/readline/include/readline/chardefs.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/ctype.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/_ctype.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/runetype.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/sys/_types/_wint_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/string.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/strings.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/secure/_strings.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/secure/_string.h \
-  /Users/hyunkyle/.brew/opt/readline/include/readline/tilde.h \
-  /Users/hyunkyle/.brew/opt/readline/include/readline/history.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/time.h
+  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/sys/_types/_filesec_t.h

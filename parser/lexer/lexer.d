@@ -132,7 +132,6 @@ parser/lexer/lexer.o: parser/lexer/lexer.c parser/lexer/lexer.h \
   parser/lexer/../parser/../../libft/libft.h \
   parser/lexer/../parser/../../execute/execute.h \
   parser/lexer/../parser/../../execute/../libft/libft.h \
-  parser/lexer/../parser/../../execute/../parser/parser/parser.h \
   /Users/hyunkyle/.brew/opt/readline/include/readline/readline.h \
   /Users/hyunkyle/.brew/opt/readline/include/readline/rlstdc.h \
   /Users/hyunkyle/.brew/opt/readline/include/readline/rltypedefs.h \

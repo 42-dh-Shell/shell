@@ -6,14 +6,14 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:07:27 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/14 14:46:42 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:12:17 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hash.h"
 #include "../libft/libft.h"
 
-t_hash_list	*hash_get(t_hash *hash_table, char *key)
+char	*get_hash(t_hash *hash_table, char *key)
 {
 	unsigned int	hash_val;
 	t_hash_list		*tg_list;
@@ -24,7 +24,7 @@ t_hash_list	*hash_get(t_hash *hash_table, char *key)
 	while (tg_list)
 	{
 		if (ft_strcmp(key, tg_list->key) == 0)
-			return (tg_list);
+			return (tg_list->value);
 		tg_list = tg_list->next;
 	}
 	return (0);

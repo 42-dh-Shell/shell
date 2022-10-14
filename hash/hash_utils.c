@@ -6,14 +6,14 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:40:48 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/14 14:29:46 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:11:34 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hash.h"
 #include "../libft/libft.h"
 
-t_hash	*get_hash_table(int size, double load_factor)
+t_hash	*make_hash_table(int size, double load_factor)
 {
 	t_hash		*new_hash;
 	t_hash_list	**hash_list_head;

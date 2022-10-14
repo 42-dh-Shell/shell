@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:42:37 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/14 14:48:46 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/14 14:57:11 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,36 +130,6 @@ void	print_stack(t_stack *stack)
 		head = head->next;
 	}
 }
-
-void	read_heredoc(t_ast_node *ast, int write_flag)
-{
-	char		*line;
-	char		*file_name;
-	static int	file_num = 0;
-
-	if (ast != 0 && ast->node_type == NODE_DLESS && ast->redir_token != 0)
-	{
-		while (1)
-		{
-			line = readline(">");
-			if (ft_strcmp(line, ast->redir_token->str) == 0)
-			{
-				free(line);
-				break ;
-			}
-			if (write_flag)
-				file_name = write_line_in_file(line, file_num);
-			free(line);
-		}
-		ast->redir_token->str = file_name;
-	}
-	file_num += 1;
-	if (ast != 0 && ast->left != 0)
-		read_heredoc(ast->left, write_flag);
-	if (ast != 0 && ast->right != 0)
-		read_heredoc(ast->right, write_flag);
-}
-
 
 t_ast	*pushdown_automata(t_stack *stack, t_token *tokens, \
 			int state, int y)
