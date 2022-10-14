@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:33:58 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/04 09:49:42 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/14 10:11:32 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,5 @@ typedef struct s_stack
 void	ft_push(t_stack *st, t_node *target);
 t_node	*ft_pop(t_stack *st);
 t_node	*ft_peek(t_stack *st);
+void	release_stack(t_stack *stack);
 #endif

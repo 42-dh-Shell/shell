@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:19 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/13 17:58:10 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/14 14:49:17 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include"../lexer/lexer.h"
 # include "../../stack/stack.h"
 # include "../../libft/libft.h"
+# include "../../execute/execute.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -141,4 +142,5 @@ void			add_pipe_node_in_subshell(t_ast *ast, t_ast_node *new_node);
 void			add_last_subshell_node(t_ast *ast, t_ast_node *new_node);
 void			reset_sub_idx(t_ast *ast);
 void			release_ast(t_ast *ast);
+void			read_heredoc(t_ast_node *ast, int write_flag);
 #endif

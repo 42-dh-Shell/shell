@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:52:13 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/13 19:56:35 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/14 13:31:30 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,6 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(const char *s, int fd);
 void	ft_color_printf(const char *str);
 void	ft_color_printft2(const char *str);
+char	*ft_itoa(int n);
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 #endif

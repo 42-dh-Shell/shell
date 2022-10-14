@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:42:37 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/13 20:35:41 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/14 14:48:46 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,26 +131,35 @@ void	print_stack(t_stack *stack)
 	}
 }
 
-void	read_heredoc_ast(t_ast_node *ast)
+void	read_heredoc(t_ast_node *ast, int write_flag)
 {
-	char	*line;
+	char		*line;
+	char		*file_name;
+	static int	file_num = 0;
 
-	if (ast == 0)
-		return ;
-	if (ast->node_type == NODE_DLESS && ast->redir_token != 0)
+	if (ast != 0 && ast->node_type == NODE_DLESS && ast->redir_token != 0)
 	{
 		while (1)
 		{
 			line = readline(">");
 			if (ft_strcmp(line, ast->redir_token->str) == 0)
+			{
+				free(line);
 				break ;
+			}
+			if (write_flag)
+				file_name = write_line_in_file(line, file_num);
+			free(line);
 		}
+		ast->redir_token->str = file_name;
 	}
-	if (ast->left != 0)
-		read_heredoc_ast(ast->left);
-	if (ast->right != 0)
-		read_heredoc_ast(ast->right);
+	file_num += 1;
+	if (ast != 0 && ast->left != 0)
+		read_heredoc(ast->left, write_flag);
+	if (ast != 0 && ast->right != 0)
+		read_heredoc(ast->right, write_flag);
 }
+
 
 t_ast	*pushdown_automata(t_stack *stack, t_token *tokens, \
 			int state, int y)
@@ -174,7 +183,7 @@ t_ast	*pushdown_automata(t_stack *stack, t_token *tokens, \
 		if (action_handler(action, stack, &tokens, ast) == 0)
 		{
 			ft_color_printft2(prev->str);
-			read_heredoc_ast(ast->head);
+			read_heredoc(ast->head, 0);
 			release_ast(ast);
 			return (0);
 		}

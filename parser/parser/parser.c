@@ -6,14 +6,11 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/13 20:34:57 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/14 14:41:38 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-#include "../lexer/lexer.h"
-#include "../../stack/stack.h"
-#include "../../libft/libft.h"
 
 void	print_ast(t_ast_node *ast)
 {
@@ -78,12 +75,15 @@ void	start_parse(t_token	*tokens)
 	t_ast	*ast;
 
 	stack = get_stack();
-	ast = 0;
 	ast = pushdown_automata(stack, tokens, 0, 0);
-	system("leaks mini");
-	release_token_lst(tokens);
+	release_stack(stack);
 	if (!ast)
+	{
+		fail_make_token_release(tokens);
 		return ;
+	}
+	release_token_lst(tokens);
 	print_ast(ast->head);
+	read_heredoc(ast->head, 1);
 	//execute_command(ast->head);
 }

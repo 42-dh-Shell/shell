@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:07:34 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/11 10:29:14 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/14 14:29:53 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ typedef struct s_hash
 	t_hash_list	**hash_array;
 }	t_hash;
 
-t_hash			*get_hash(int table_size, double load_factor);
+t_hash			*get_hash_table(int size, double load_factor);
 t_hash_list		*get_hash_data(char *key, char *value);
-void			hash_data_add_back(t_hash_list *data, t_hash_list **list);
+void			hash_data_add_back(t_hash_list *data, t_hash_list *list);
 double			hash_load_factor(t_hash *hash);
 void			hash_add(t_hash *hash_table, char *key, char *value);
 void			hash_remove(t_hash *hash_table, char *key);

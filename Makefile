@@ -6,7 +6,7 @@
 #    By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 15:07:35 by hyunkyle          #+#    #+#              #
-#    Updated: 2022/10/13 20:22:08 by hyunkyle         ###   ########.fr        #
+#    Updated: 2022/10/14 14:21:43 by hyunkyle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,9 @@ SRCS				= main.c \
 					./hash/hash.c \
 					./hash/hash_utils.c \
 					./hash/ft_find_next_prime.c \
-					./hash/hash_data_utils.c
-
+					./hash/hash_data_utils.c \
+					./execute/execute.c \
+					./execute/execute_utils.c \
 					  
 OBJS = $(SRCS:.c=.o)
 DEPS = ${OBJS:.o=.d}

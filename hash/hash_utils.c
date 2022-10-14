@@ -6,14 +6,14 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:40:48 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/11 10:23:49 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/14 14:29:46 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hash.h"
 #include "../libft/libft.h"
 
-t_hash	*get_hash(int size, double load_factor)
+t_hash	*get_hash_table(int size, double load_factor)
 {
 	t_hash		*new_hash;
 	t_hash_list	**hash_list_head;
@@ -44,19 +44,11 @@ t_hash_list	*get_hash_data(char *key, char *value)
 	return (data);
 }
 
-void	hash_data_add_back(t_hash_list *data, t_hash_list **list)
+void	hash_data_add_back(t_hash_list *data, t_hash_list *list)
 {
-	t_hash_list	*tmp;
-
-	if (!*list)
-	{
-		*list = data;
-		return ;
-	}
-	tmp = *list;
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->next = data;
+	while (list->next)
+		list = list->next;
+	list->next = data;
 }
 
 double	hash_load_factor(t_hash *hash)

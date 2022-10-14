@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:16:30 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/11 19:45:12 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/14 10:56:23 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	add_head_command(t_token *token, t_ast *ast)
 	new_node->str = token->str;
 	new_node->wildcard_flag = token->wildcard_flag;
 	new_node->node_type = NODE_COMMAND;
+	new_node->expand_info = token->expand_info;
 	ast->head = new_node;
 	ast->last_added = new_node;
 	ast->command_node = new_node;

@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:07:27 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/11 10:38:51 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/14 14:46:42 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 t_hash_list	*hash_get(t_hash *hash_table, char *key)
 {
-	int			hash_val;
-	t_hash_list	*tg_list;
+	unsigned int	hash_val;
+	t_hash_list		*tg_list;
 
 	hash_val = hash(key);
 	hash_val %= hash_table->table_size;
@@ -33,13 +33,16 @@ t_hash_list	*hash_get(t_hash *hash_table, char *key)
 void	resize_start(t_hash_list *tar_array, t_hash_list **new_list, \
 										t_hash *hash_table)
 {
-	int			hash_val;
+	unsigned long	hash_val;
 
 	while (tar_array)
 	{
 		hash_val = hash(tar_array->key);
 		hash_val %= hash_table->table_size;
-		hash_data_add_back(tar_array, &new_list[hash_val]);
+		if (new_list[hash_val] == 0)
+			new_list[hash_val] = tar_array;
+		else
+			hash_data_add_back(tar_array, new_list[hash_val]);
 		tar_array = tar_array->next;
 	}
 }
@@ -65,9 +68,9 @@ void	resize(t_hash *hash_table)
 
 void	hash_add(t_hash *hash_table, char *key, char *value)
 {
-	int			hash_val;
-	t_hash_list	*new_data;
-	t_hash_list	**hash_array;
+	unsigned long	hash_val;
+	t_hash_list		*new_data;
+	t_hash_list		**hash_array;
 
 	if (hash_table->load_factor < hash_load_factor(hash_table))
 		resize(hash_table);
@@ -75,16 +78,19 @@ void	hash_add(t_hash *hash_table, char *key, char *value)
 	hash_val %= hash_table->table_size;
 	new_data = get_hash_data(key, value);
 	hash_array = hash_table->hash_array;
-	hash_data_add_back(new_data, &hash_array[hash_val]);
+	if (hash_array[hash_val] == 0)
+		hash_array[hash_val] = new_data;
+	else
+		hash_data_add_back(new_data, hash_array[hash_val]);
 	hash_table->num_elems += 1;
 }
 
 void	hash_remove(t_hash *hash_table, char *key)
 {
-	int			hash_val;
-	t_hash_list	*target_node;
-	t_hash_list	*prev;
-	t_hash_list	*next;
+	unsigned long	hash_val;
+	t_hash_list		*target_node;
+	t_hash_list		*prev;
+	t_hash_list		*next;
 
 	hash_val = hash(key);
 	hash_val %= hash_table->table_size;
