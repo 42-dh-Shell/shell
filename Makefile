@@ -6,7 +6,7 @@
 #    By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 15:07:35 by hyunkyle          #+#    #+#              #
-#    Updated: 2022/10/14 14:21:43 by hyunkyle         ###   ########.fr        #
+#    Updated: 2022/10/14 16:42:21 by hyunkyle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ SRCS				= main.c \
 OBJS = $(SRCS:.c=.o)
 DEPS = ${OBJS:.o=.d}
 
-FLAGS = -lncurses 
+FLAGS = -lncurses
 LINKING_FLAGS = -lreadline -L${HOME}/.brew/opt/readline/lib
 COMFILE_FLAGS = -Wall -Wextra -Werror -g -I${HOME}/.brew/opt/readline/include -MD
 CC = cc

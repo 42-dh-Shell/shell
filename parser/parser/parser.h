@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:19 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/14 14:49:17 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:58:19 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include"../lexer/lexer.h"
 # include "../../stack/stack.h"
 # include "../../libft/libft.h"
-# include "../../execute/execute.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>

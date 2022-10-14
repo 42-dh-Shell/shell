@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:07:27 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/14 15:12:17 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:39:42 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 char	*get_hash(t_hash *hash_table, char *key)
 {
-	unsigned int	hash_val;
+	unsigned long	hash_val;
 	t_hash_list		*tg_list;
 
 	hash_val = hash(key);
@@ -34,15 +34,18 @@ void	resize_start(t_hash_list *tar_array, t_hash_list **new_list, \
 										t_hash *hash_table)
 {
 	unsigned long	hash_val;
+	t_hash_list		*new_data;
 
 	while (tar_array)
 	{
 		hash_val = hash(tar_array->key);
 		hash_val %= hash_table->table_size;
+		new_data = tar_array;
+		new_data->next = 0;
 		if (new_list[hash_val] == 0)
-			new_list[hash_val] = tar_array;
+			new_list[hash_val] = new_data;
 		else
-			hash_data_add_back(tar_array, new_list[hash_val]);
+			hash_data_add_back(new_data, new_list[hash_val]);
 		tar_array = tar_array->next;
 	}
 }
