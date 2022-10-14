@@ -6,12 +6,12 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 15:46:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/13 16:29:38 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/14 11:02:31 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./signal/signal.h"
-#include "./parser/parser/parser.h"
+#include "../signal/signal.h"
+#include "../parser/parser/parser.h"
 
 void	start_read(void)
 {
@@ -40,7 +40,10 @@ void	start_read(void)
 	}
 }
 
-int	main(void)
+int	main(int argc, char **argv, char **envp)
 {
+	if (argc != 1 && argv != NULL)
+		ft_exit("minishell : not support non-interactive mode.\n", 1);
+	envp = NULL;
 	start_read();
 }

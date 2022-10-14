@@ -6,11 +6,11 @@
 #    By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/27 21:29:03 by daegulee          #+#    #+#              #
-#    Updated: 2022/10/13 20:18:56 by daegulee         ###   ########.fr        #
+#    Updated: 2022/10/14 11:01:47 by daegulee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS				= main.c \
+SRCS				= ./body/main.c \
 					./signal/signal.c \
 					./parser/lexer/auto_exps_util.c \
 					./parser/lexer/do_0~3.c \
