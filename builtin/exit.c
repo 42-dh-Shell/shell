@@ -6,11 +6,14 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 22:58:58 by idaegyu           #+#    #+#             */
-/*   Updated: 2022/10/17 13:08:41 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/18 00:17:47 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
+#include "../body/minishell.h"
+
+extern t_shell *g_shell;
 
 int	str_numeric(char *str)
 {

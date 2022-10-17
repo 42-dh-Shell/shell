@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 15:46:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/17 12:56:58 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/18 00:30:56 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,9 @@ void	init_shell(char **envp)
 	char	*value;
 
 	g_shell = ft_malloc(sizeof(t_shell));
-	size = -1;
+	size = 0;
 	i = -1;
-	while (envp[++size])
+	while (envp[size])
 		size++;
 	g_shell->h_table = make_hash_table(size, 0.75);
 	while (++i < size)
@@ -116,17 +116,19 @@ void	init_shell(char **envp)
 		value = get_value(envp[i]);
 		hash_add(g_shell->h_table, key, value);
 		if (ft_strcmp(key, "OLDPWD") == 0)
-		{
-			hash_remove(g_shell->h_table, key);
 			hash_add(g_shell->h_table, ft_strdup("OLDPWD"), ft_strdup(""));
-		}
 	}
 }
 
 int	main(int argc, char **argv, char **envp)
 {	
-	if (argc != 1 && argv != NULL)
-		ft_exit("minishell : not support non-interactive mode.\n", 1);
+	argc = 0;
+	// if (argc != 1 && argv != NULL)
+	// 	ft_exit("minishell : not support non-interactive mode.\n", 1);
 	init_shell(envp);
-	start_shell();
+	// argv = NULL;
+	// mini_cd(argv);
+	argv = NULL;
+	mini_export(NULL);
+	// start_shell();
 }

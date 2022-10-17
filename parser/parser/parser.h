@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:19 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/17 12:45:55 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/17 13:05:03 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,4 +145,5 @@ void			add_last_subshell_node(t_ast *ast, t_ast_node *new_node);
 void			reset_sub_idx(t_ast *ast);
 void			release_ast(t_ast *ast);
 void			read_heredoc(t_ast_node *ast, int write_flag);
+
 #endif

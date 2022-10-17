@@ -3,16 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idaegyu <idaegyu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 23:16:10 by idaegyu           #+#    #+#             */
-/*   Updated: 2022/10/16 23:35:59 by idaegyu          ###   ########.fr       */
+/*   Updated: 2022/10/18 00:16:04 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
+#include "../body/minishell.h"
 
-int	mini_env(char **argv)
+extern t_shell *g_shell;
+
+int	mini_env(void)
 {
 	t_hash_list	*cur;
 	int			i;

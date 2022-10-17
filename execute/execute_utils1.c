@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hash_data_utils.c                                  :+:      :+:    :+:   */
+/*   execute_utils1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 10:27:58 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/11 10:29:00 by hyunkyle         ###   ########.fr       */
+/*   Created: 2022/10/17 17:19:38 by hyunkyle          #+#    #+#             */
+/*   Updated: 2022/10/17 19:35:04 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hash.h"
+#include "execute.h"
 
-void	release_hash_node(t_hash_list *target_node)
+char	**reallocate_result(int size, char **strs)
 {
-	free(target_node->key);
-	free(target_node->value);
-	free(target_node);
+	char	**result;
+
+	result = ft_calloc(sizeof(char *), size);
+	if (!result)
+		ft_exit("malloc error\n", 1);
+	if (strs == NULL)
+		return (result);
 }

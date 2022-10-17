@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:48:04 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/17 13:07:14 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/17 23:37:44 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "../parser/lexer/lexer.h"
 # include "../libft/libft.h"
 # include "../signal/signal.h"
+# include "../builtin/builtin.h"
 
 typedef struct s_shell
 {
