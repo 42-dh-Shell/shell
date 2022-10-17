@@ -6,11 +6,12 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/17 13:00:18 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/17 13:41:41 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+#include "../../execute/execute.h"
 
 void	print_ast(t_ast_node *ast)
 {
@@ -147,6 +148,5 @@ void	start_parse(t_token	*tokens)
 	}
 	release_token_lst(tokens);
 	read_heredoc(ast->head, 1);
-	print_ast(ast->head);
-	//execute_command(ast->head, 0, NORMAL);
+	//execute_command(ast->head, 0, C_NORMAL);
 }

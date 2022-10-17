@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 15:46:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/14 15:50:51 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/17 13:55:16 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,11 @@ void	start_shell(void)
 
 int	main(void)
 {	
-	start_shell();
+	t_hash *hash_map;
+
+	hash_map = make_hash_table(10, 0.75);
+	hash_add(hash_map, ft_strdup("key"), ft_strdup("value1"));
+	hash_add(hash_map, ft_strdup("key"), ft_strdup("value2"));
+	printf("value = %s\n", get_hash(hash_map, "key"));
+	//start_shell();
 }

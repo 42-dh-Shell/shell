@@ -144,4 +144,7 @@ parser/parser/parser.o: parser/parser/parser.c parser/parser/parser.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/secure/_string.h \
   /Users/hyunkyle/.brew/opt/readline/include/readline/tilde.h \
   /Users/hyunkyle/.brew/opt/readline/include/readline/history.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/time.h
+  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/time.h \
+  parser/parser/../../execute/execute.h \
+  parser/parser/../../execute/../libft/libft.h \
+  parser/parser/../../execute/../parser/parser/parser.h

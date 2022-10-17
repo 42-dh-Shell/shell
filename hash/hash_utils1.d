@@ -1,4 +1,4 @@
-hash/hash_data_utils.o: hash/hash_data_utils.c hash/hash.h \
+hash/hash_utils1.o: hash/hash_utils1.c hash/hash.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/stdlib.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/Availability.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/AvailabilityInternal.h \

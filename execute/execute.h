@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:07:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/17 12:43:51 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/17 13:05:11 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ typedef enum e_command_io
 
 int		has_event(t_ast_node *head);
 void	execute_command(t_ast_node *head, int fd_pipe[], \
-	t_command_io io);
+			t_command_io io);
 #endif
