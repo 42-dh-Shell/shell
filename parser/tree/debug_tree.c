@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 12:22:25 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/11 20:18:47 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/18 05:55:41 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,8 @@ void	print_tree(t_ast *ast)
 {
 	t_ast_node	*root;
 
+	if (ast == NULL)
+		return ;
 	root = ast->root;
 	do_print(root);
 }

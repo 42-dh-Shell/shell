@@ -6,7 +6,7 @@
 #    By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/27 21:29:03 by daegulee          #+#    #+#              #
-#    Updated: 2022/10/14 11:01:47 by daegulee         ###   ########.fr        #
+#    Updated: 2022/10/18 05:15:11 by daegulee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS				= ./body/main.c \
 					./parser/lexer/lexer.c \
 					./parser/lexer/list_util.c \
 					./parser/lexer/debug_print.c \
+					./parser/lexer/free_util.c \
 					./parser/stack/stack.c \
 					./parser/parser/parser.c \
 					./parser/parser/lalr_table.c \
@@ -34,8 +35,9 @@ SRCS				= ./body/main.c \
 					./parser/tree/act_r33,32,31,30,29.c \
 					./parser/tree/debug_tree.c 
 OBJS = $(SRCS:.c=.o)
+#-fsanitize=address
+FLAGS = -Wall -Wextra -Werror -g 
 
-FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 LINKING_FLAGS = -lreadline $(LD_CLUSTER)
 LD_CLUSTER=-L${HOME}/.brew/opt/readline/lib
 LD_M1=-L/opt/homebrew/opt/readline/lib

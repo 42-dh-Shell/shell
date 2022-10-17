@@ -70,3 +70,5 @@ void	act_r17(t_support *sup)
 	sup->wait->cmd_name = ft_malloc(sizeof(t_cmd_name));
 	sup->wait->cmd_name->c_name = token_dup(sup->stack->top->bottom->token);
 }
+
+// <a cat && <b <d <a cat >d >>a | <a <d cat >d >>a && ( cat && ls )

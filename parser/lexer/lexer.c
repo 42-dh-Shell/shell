@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idaegyu <idaegyu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:31:51 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/09 19:43:48 by idaegyu          ###   ########.fr       */
+/*   Updated: 2022/10/18 05:47:59 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ t_token	*last_token(void)
 {
 	t_token	*token;
 
-	token = malloc(sizeof(t_token));
-	if (token == NULL)
-		ft_exit("malloc error.\n", 1);
-	ft_memset(token, 0, sizeof(t_token));
+	token = ft_malloc(sizeof(t_token));
 	token->token_type = T_BOT;
 	return (token);
 }
@@ -34,36 +31,32 @@ t_token_list	*lexer(char *str)
 {
 	t_token_list	*t_list;
 	t_token			*new;
-	int				i;
+	int				is_sp;
 
-	i = 0;
-	t_list = malloc(sizeof(t_token_list));
-	if (t_list == NULL)
-		ft_exit("malloc error.\n", 1);
-	ft_memset(t_list, 0, sizeof(t_token_list));
+	is_sp = 0;
+	t_list = ft_malloc(sizeof(t_token_list));
 	while (*str)
 	{
-		i++;
-		new = automata(&str);
-		if (new != NULL)
-			t_list_addback(t_list, new);
+		new = automata(&str, &is_sp);
+		if (new == NULL)
+		{
+			if (is_sp)
+				break ;
+			free_t_lst(&t_list);
+			return (NULL);
+		}
+		t_list_addback(t_list, new);
 	}
 	if (t_list->head != NULL)
 		t_list_addback(t_list, last_token());
 	if (t_list->head == NULL)
-	{
-		free(t_list);
-		return (NULL);
-	}
-	print_token(t_list);
+		free_t_lst(&t_list);
+	// print_token(t_list);
 	return (t_list);
 }
 
 void	init_auto(t_auto_data **data, char *str)
 {
-	int	i;
-
-	i = -1;
 	*data = malloc(sizeof(t_auto_data));
 	if (data == NULL)
 		ft_exit("malloc error.\n", 1);
@@ -76,7 +69,7 @@ void	init_auto(t_auto_data **data, char *str)
 		ft_exit("malloc error.\n", 1);
 }
 
-t_token	*automata(char **str)
+t_token	*automata(char **str, int *is_sp)
 {
 	t_auto_data	*data;
 	t_token		*token;
@@ -86,9 +79,17 @@ t_token	*automata(char **str)
 	while ((data->next_state != L_S17 && data->next_state != L_S13))
 		g_action[data->next_state](data);
 	g_action[data->next_state](data);
-	data->buffer[data->buffer_idx + 1] = 0;
+	if (data->next_state == L_S13)
+	{
+		free_auto(data);
+		return (NULL);
+	}
+	data->buffer[data->buffer_idx] = 0;
 	if (data->type != L_S0)
 		token = init_token(data);
+	if (data->type == L_S0)
+		*is_sp = 1;
 	*str = (data->str);
+	free_auto(data);
 	return (token);
 }

@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:32:02 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/11 15:36:51 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/18 05:45:09 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ char			get_char_status(int c);
 t_token			*last_token(void);
 t_token_list	*lexer(char *str);
 void			init_auto(t_auto_data **data, char *str);
-t_token			*automata(char **str);
 
 // list_util.c
 void			t_list_addback(t_token_list *t_list, t_token *new);
@@ -137,7 +136,7 @@ void			do_s16(t_auto_data *data);
 void			do_s17(t_auto_data *data);
 t_token_list	*lexer(char *str);
 void			init_auto(t_auto_data **data, char *str);
-t_token			*automata(char **str);
+t_token			*automata(char **str, int *is_sp);
 
 //
 int				ft_strcmp(char *s1, char *s2);
@@ -145,5 +144,7 @@ int				ft_strcmp(char *s1, char *s2);
 void			print_type(t_token *token, int i);
 void			print_data(t_token *token, int i);
 void			print_token(t_token_list *t_list);
+void			free_auto(t_auto_data *data);
+void			free_t_lst(t_token_list **t_lst);
 
 #endif

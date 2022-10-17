@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 20:28:38 by daegulee          #+#    #+#             */
-/*   Updated: 2022/09/28 20:46:51 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/18 06:06:18 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ void	do_s12(t_auto_data *data)
 void	do_s13(t_auto_data *data)
 {
 	if (data->prev_state == L_S1)
-		ft_exit("syntax error.\n", 1);
+		printf("minishell : syntax error.\n");
 	else if (data->prev_state == L_S2 || \
 	data->prev_state == L_S3)
 	{
-		ft_exit("Unclosed Quote!.\n", 2);
+		printf("minishell : Unclosed Quote!.\n");
 	}
 	else
-		ft_exit("Syntax error.\n", 2);
+		printf("minishell : Unsupported Token &.\n");
 }

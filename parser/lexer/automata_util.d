@@ -1,6 +1,5 @@
-parser/lexer/lexer.o: \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/share/asan_blacklist.txt \
-  parser/lexer/lexer.c parser/lexer/lexer.h \
+parser/lexer/automata_util.o: parser/lexer/automata_util.c \
+  parser/lexer/lexer.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/stdlib.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/Availability.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/AvailabilityInternal.h \
@@ -71,6 +70,8 @@ parser/lexer/lexer.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/_ctermid.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/sys/_types/_off_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/sys/_types/_ssize_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/secure/_stdio.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/secure/_common.h \
   parser/lexer/char_table.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/unistd.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/sys/unistd.h \
@@ -105,6 +106,8 @@ parser/lexer/lexer.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/sys/_types/_rsize_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/sys/_types/_errno_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/strings.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/secure/_strings.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/secure/_string.h \
   /Users/daegulee/.brew/opt/readline/include/readline/tilde.h \
   /Users/daegulee/.brew/opt/readline/include/readline/history.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/time.h \
