@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/17 12:58:11 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/17 13:00:18 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,23 +87,20 @@ void	read_start(t_ast_node *ast, int write_flag, int fd)
 {
 	char	*line;
 
-	if (ast != 0)
+	while (1)
 	{
-		while (1)
+		line = readline(">");
+		if (ft_strcmp(line, ast->redir_token->str) == 0)
 		{
-			line = readline(">");
-			if (ft_strcmp(line, ast->redir_token->str) == 0)
-			{
-				free(line);
-				break ;
-			}
-			if (write_flag)
-			{
-				write(fd, line, ft_strlen(line));
-				write (fd, "\n", 1);
-			}
 			free(line);
+			break ;
 		}
+		if (write_flag)
+		{
+			write(fd, line, ft_strlen(line));
+			write (fd, "\n", 1);
+		}
+		free(line);
 	}
 }
 
