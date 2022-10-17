@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:26:28 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/18 01:42:47 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/18 02:15:37 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,18 @@
 
 # define NO_EXEC_CHDIR 2
 
-int		mini_cd(char **argv);
-int		argv_len(char **argv);
-void	set_env_in_ht(int ch_dir);
-int		mini_env(void);
-void	argv_sort(char **argv);
-int		mini_export(char **argv);
-int		mini_echo(char **argv);
-int		mini_unset(char **argv);
-int		mini_pwd(char **argv);
+typedef int	(*t_built_f)(char **argv);
 
+int			mini_cd(char **argv);
+int			argv_len(char **argv);
+void		set_env_in_ht(int ch_dir);
+int			mini_env(char **argv);
+void		argv_sort(char **argv);
+int			mini_export(char **argv);
+int			mini_echo(char **argv);
+int			mini_unset(char **argv);
+int			mini_pwd(char **argv);
+int			is_builtin(char *argv_0);
+int			do_builtin(char **argv);
+int			mini_exit(char **argv);
 #endif

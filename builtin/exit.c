@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 22:58:58 by idaegyu           #+#    #+#             */
-/*   Updated: 2022/10/18 00:17:47 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/18 02:14:52 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	str_numeric(char *str)
 	return (1);
 }
 
-void	mini_exit(char **argv)
+int	mini_exit(char **argv)
 {
 	int	argc;
 	int	status;
