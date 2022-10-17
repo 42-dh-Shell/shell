@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 15:46:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/18 00:57:54 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/18 01:28:05 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,23 +122,35 @@ void	init_shell(char **envp)
 
 int	main(int argc, char **argv, char **envp)
 {	
+	argv = NULL;
+	envp = NULL;
 	char	*export[] = {
-		"export", "132=123", "_1234=123", "a1234", "a12345=123", 0
+		// "export", "132=123", "_1234=123", "a1234", "a12345=123", 0
+		"echo", "-n", "132=123", "_1234=123", "a1234", "a12345=123", 0
 	};
 	argc = 0;
-	// if (argc != 1 && argv != NULL)
-	// 	ft_exit("minishell : not support non-interactive mode.\n", 1);
-	init_shell(envp);
-	// argv = NULL;
-	// mini_cd(argv);
-	argv = NULL;
-	mini_export(NULL);
-		printf("-------------------------------\n");
-
-	mini_export(export);
-		printf("--------123-----------------------\n");
-
-	mini_export(NULL);
-	printf("-------------------------------\n");
+	mini_echo(export);
 	// start_shell();
 }
+
+
+
+	// char	*export[] = {
+	// 	"export", "132=123", "_1234=123", "a1234", "a12345=123", 0
+	// };
+	// argc = 0;
+	// // if (argc != 1 && argv != NULL)
+	// // 	ft_exit("minishell : not support non-interactive mode.\n", 1);
+	// init_shell(envp);
+	// // argv = NULL;
+	// // mini_cd(argv);
+	// argv = NULL;
+	// mini_export(NULL);
+	// 	printf("-------------------------------\n");
+
+	// mini_export(export);
+	// 	printf("--------123-----------------------\n");
+
+	// mini_export(NULL);
+	// printf("-------------------------------\n");
+	// // start_shell();
