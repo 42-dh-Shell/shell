@@ -1,17 +1,17 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefile copy                                      :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+         #
+#    By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 15:07:35 by hyunkyle          #+#    #+#              #
-#    Updated: 2022/10/17 13:44:49 by hyunkyle         ###   ########.fr        #
+#    Updated: 2022/10/17 22:59:11 by daegulee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-SRCS				= main.c \
+SRCS				= ./body/main.c \
 					./signal/signal.c \
 					./parser/lexer/lexer_list_utils.c \
 					./parser/lexer/lexer_list_utils1.c \
@@ -34,10 +34,8 @@ SRCS				= main.c \
 					./parser/parser/ast_utils3.c \
 					./hash/hash.c \
 					./hash/hash_utils.c \
-					./hash/hash_utils1.c \
 					./hash/ft_find_next_prime.c \
-					# ./execute/execute.c \
-					# ./execute/execute_utils.c \
+					./hash/hash_data_utils.c \
 					  
 OBJS = $(SRCS:.c=.o)
 DEPS = ${OBJS:.o=.d}
