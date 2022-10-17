@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:07:27 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/17 19:42:44 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/17 19:50:47 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,10 @@ void	hash_add(t_hash *hash_table, char *key, char *value)
 		hash_table->size_elem += 1;
 	}
 	else
-		hash_data_add_back(new_data, hash_array[hash_val], \
-			hash_table);
+	{
+		if (hash_data_add_back(new_data, hash_array[hash_val]))
+			hash_table->size_elem += 1;
+	}
 }
 
 void	hash_remove(t_hash *hash_table, char *key)

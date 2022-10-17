@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:40:48 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/17 19:41:21 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/17 19:50:16 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,7 @@ int	same_key_handler(t_hash_list *data, t_hash_list *list)
 	return (0);
 }
 
-void	hash_data_add_back(t_hash_list *data, t_hash_list *list, \
-	t_hash *hash_table)
+int	hash_data_add_back(t_hash_list *data, t_hash_list *list)
 {
 	t_hash_list	*prev;
 
@@ -69,17 +68,17 @@ void	hash_data_add_back(t_hash_list *data, t_hash_list *list, \
 	while (list->next)
 	{
 		if (same_key_handler(data, list))
-			return ;
+			return (0);
 		prev = list;
 		list = list->next;
 	}
 	if (prev == NULL)
 	{
 		if (same_key_handler(data, list))
-			return ;
+			return (0);
 	}
 	list->next = data;
-	hash_table->size_elem += 1;
+	return (1);
 }
 
 double	hash_load_factor(t_hash *hash)
