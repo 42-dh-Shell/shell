@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:07:27 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/17 13:59:34 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:39:42 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,15 +98,15 @@ void	hash_remove(t_hash *hash_table, char *key)
 	hash_val = hash(key);
 	hash_val %= hash_table->table_size;
 	target_node = (hash_table->hash_array)[hash_val];
-	prev = NULL;
-	while (target_node && ft_strcmp(target_node->key, key) != 0)
+	prev = 0;
+	while (target_node)
 	{
+		if (ft_strcmp(target_node->key, key) == 0)
+			break ;
 		prev = target_node;
 		target_node = target_node->next;
 	}
-	if (!target_node)
-		return ;
-	if (prev == NULL)
+	if (prev == 0)
 		(hash_table->hash_array)[hash_val] = target_node->next;
 	else
 	{

@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute.h                                          :+:      :+:    :+:   */
+/*   ft_malloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 13:07:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/14 15:59:07 by hyunkyle         ###   ########.fr       */
+/*   Created: 2022/10/11 02:03:18 by daegulee          #+#    #+#             */
+/*   Updated: 2022/10/11 02:04:34 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXECUTE_H
-# define EXECUTE_H
-# include "../libft/libft.h"
-# include "../parser/parser/parser.h"
-# include <fcntl.h>
-# define TMP_FILENAME "tmp"
-# define TMP_DIR "/var/folders/zz/zyxvpxvq6csfxvn_n000csj80036c_/T/"
+#include "libft.h"
 
-#endif
+void	*ft_malloc(size_t size_of)
+{
+	void	*p;
+
+	p = malloc(size_of);
+	if (p == NULL)
+		ft_exit("malloc error.\n", 1);
+	ft_memset(p, 0, size_of);
+	return (p);
+}

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+         #
+#    By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/06 10:50:54 by hyunkyle          #+#    #+#              #
-#    Updated: 2022/10/14 14:20:28 by hyunkyle         ###   ########.fr        #
+#    Updated: 2022/10/17 12:56:07 by daegulee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,8 @@ SRCS =				ft_exit.c \
 					ft_substr.c \
 					ft_tolower.c \
 					ft_toupper.c \
-					ft_striteri.c
+					ft_striteri.c \
+					ft_malloc.c 
 					  
 OBJS = $(SRCS:.c=.o)
 

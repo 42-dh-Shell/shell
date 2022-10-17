@@ -120,11 +120,11 @@ main.o: main.c signal/signal.h signal/../libft/libft.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/sys/stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/secure/_stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/secure/_common.h \
-  /Users/hyunkyle/.brew/opt/readline/include/readline/readline.h \
-  /Users/hyunkyle/.brew/opt/readline/include/readline/rlstdc.h \
-  /Users/hyunkyle/.brew/opt/readline/include/readline/rltypedefs.h \
-  /Users/hyunkyle/.brew/opt/readline/include/readline/keymaps.h \
-  /Users/hyunkyle/.brew/opt/readline/include/readline/chardefs.h \
+  /Users/daegulee/.brew/opt/readline/include/readline/readline.h \
+  /Users/daegulee/.brew/opt/readline/include/readline/rlstdc.h \
+  /Users/daegulee/.brew/opt/readline/include/readline/rltypedefs.h \
+  /Users/daegulee/.brew/opt/readline/include/readline/keymaps.h \
+  /Users/daegulee/.brew/opt/readline/include/readline/chardefs.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/_ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/runetype.h \
@@ -133,7 +133,7 @@ main.o: main.c signal/signal.h signal/../libft/libft.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/strings.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/secure/_strings.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/secure/_string.h \
-  /Users/hyunkyle/.brew/opt/readline/include/readline/tilde.h \
-  /Users/hyunkyle/.brew/opt/readline/include/readline/history.h \
+  /Users/daegulee/.brew/opt/readline/include/readline/tilde.h \
+  /Users/daegulee/.brew/opt/readline/include/readline/history.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/time.h \
   parser/lexer/lexer.h parser/lexer/../../libft/libft.h hash/hash.h
