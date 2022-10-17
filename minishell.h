@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:48:04 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/09/28 12:22:34 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/17 17:07:59 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,11 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-void	start_parse(char *line);
+typedef struct s_shell
+{
+	t_hash		*h_table;
+	int			exit_status;
+	int			sh_lv;
+}	t_shell;
+
 #endif

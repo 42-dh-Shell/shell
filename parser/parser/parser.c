@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/17 13:41:41 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:35:04 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,5 +148,5 @@ void	start_parse(t_token	*tokens)
 	}
 	release_token_lst(tokens);
 	read_heredoc(ast->head, 1);
-	//execute_command(ast->head, 0, C_NORMAL);
+	execute_command(ast->head, 0, C_NORMAL);
 }

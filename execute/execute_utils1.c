@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_utils1.c                                     :+:      :+:    :+:   */
+/*   execute_utils1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 17:28:45 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/13 17:29:04 by hyunkyle         ###   ########.fr       */
+/*   Created: 2022/10/17 17:19:38 by hyunkyle          #+#    #+#             */
+/*   Updated: 2022/10/17 19:35:04 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "execute.h"
 
-void	read_heredoc_token(t_token *head)
+char	**reallocate_result(int size, char **strs)
 {
-	char	*line;
+	char	**result;
 
-	while (head)
-	{
-		if (head->token_type == DLESS)
-		{
-			while (1)
-			{
-				line = readline(">");
-				if (ft_strcmp(line, ast->redir_token->str) == 0)
-					break ;
-			}
-		}
-		head = head->next;
-	}
+	result = ft_calloc(sizeof(char *), size);
+	if (!result)
+		ft_exit("malloc error\n", 1);
+	if (strs == NULL)
+		return (result);
 }

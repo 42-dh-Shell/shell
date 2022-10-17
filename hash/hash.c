@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:07:27 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/17 13:59:34 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/17 19:42:44 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,25 +50,6 @@ void	resize_start(t_hash_list *tar_array, t_hash_list **new_list, \
 	}
 }
 
-void	resize(t_hash *hash_table)
-{
-	int			new_size;
-	t_hash_list	**new_list;
-	int			i;
-	int			old_size;
-
-	new_size = ft_find_next_prime(hash_table->table_size * 2);
-	new_list = ft_calloc (sizeof (t_hash_list *), new_size);
-	if (!new_list)
-		ft_exit("malloc error\n", 0);
-	i = -1;
-	old_size = hash_table->table_size;
-	hash_table->table_size = new_size;
-	while (++i < old_size)
-		resize_start(hash_table->hash_array[i], new_list, hash_table);
-	hash_table->hash_array = new_list;
-}
-
 void	hash_add(t_hash *hash_table, char *key, char *value)
 {
 	unsigned long	hash_val;
@@ -82,10 +63,13 @@ void	hash_add(t_hash *hash_table, char *key, char *value)
 	new_data = get_hash_data(key, value);
 	hash_array = hash_table->hash_array;
 	if (hash_array[hash_val] == 0)
+	{
 		hash_array[hash_val] = new_data;
+		hash_table->size_elem += 1;
+	}
 	else
-		hash_data_add_back(new_data, hash_array[hash_val]);
-	hash_table->num_elems += 1;
+		hash_data_add_back(new_data, hash_array[hash_val], \
+			hash_table);
 }
 
 void	hash_remove(t_hash *hash_table, char *key)
@@ -113,6 +97,6 @@ void	hash_remove(t_hash *hash_table, char *key)
 		next = target_node->next;
 		prev->next = next;
 	}
-	hash_table->num_elems -= 1;
+	hash_table->size_elem -= 1;
 	release_hash_node(target_node);
 }
