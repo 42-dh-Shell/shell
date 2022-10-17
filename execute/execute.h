@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:07:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/14 15:59:07 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/17 12:43:51 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,15 @@
 # include "../libft/libft.h"
 # include "../parser/parser/parser.h"
 # include <fcntl.h>
-# define TMP_FILENAME "tmp"
-# define TMP_DIR "/var/folders/zz/zyxvpxvq6csfxvn_n000csj80036c_/T/"
 
+typedef enum e_command_io
+{
+	C_WRITE = 0,
+	C_READ,
+	C_NORMAL
+}	t_command_io;
+
+int		has_event(t_ast_node *head);
+void	execute_command(t_ast_node *head, int fd_pipe[], \
+	t_command_io io);
 #endif

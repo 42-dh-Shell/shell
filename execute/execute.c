@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:06:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/14 19:22:05 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/17 12:37:43 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,25 @@
 void	execute_and_or_handler(t_ast_node *head)
 {
 	execute_command(head->left);
-	if (head->node_type == NODE_AND)
-		// if exit status == 0 ->execute_command(head->right);
-	else
+	//if (head->node_type == NODE_AND)
+		// if exit_status == 0
+			//execute_command(head->right);
+	//else
+		// if exit_status != 0
+			//execute_command(head->right);
 }
 
-void	execute_command(t_ast_node *head)
+void	execute_pipe_handler(t_ast_node *head)
+{
+	int	fd[2];
+
+	if (pipe(fd) < 0)
+		ft_exit("pipe_error\n", 1);
+	execute_command(head->left, fd, )
+}
+
+void	execute_command(t_ast_node *head, int fd_pipe[], \
+	t_command_io io)
 {
 	if (!head)
 		return ;
@@ -30,7 +43,7 @@ void	execute_command(t_ast_node *head)
 		execute_pipe_handler(head);
 	else if (head->node_type == NODE_SUBSHELL)
 		execute_subsehll_handler(head);
-	else if (is_no_event(head))
+	else if (!has_event(head))
 		execute_command_handler(head);
 	if (head->left != 0)
 		execute_command(head->left);

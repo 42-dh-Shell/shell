@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/14 16:29:46 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/17 12:58:11 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	read_start(t_ast_node *ast, int write_flag, int fd)
 {
 	char	*line;
 
-	if (ast != 0 && ast->node_type == NODE_DLESS && ast->redir_token != 0)
+	if (ast != 0)
 	{
 		while (1)
 		{
@@ -115,7 +115,7 @@ void	read_heredoc(t_ast_node *ast, int write_flag)
 
 	if (!ast)
 		return ;
-	if (write_flag)
+	if (write_flag && ast->node_type == NODE_DLESS && ast->redir_token != 0)
 	{
 		file_name = get_full_filename(file_num);
 		fd = open (file_name, O_WRONLY | O_CREAT, 0644);
@@ -126,7 +126,8 @@ void	read_heredoc(t_ast_node *ast, int write_flag)
 		close(fd);
 		file_num += 1;
 	}
-	else
+	else if (!write_flag && ast->node_type == NODE_DLESS && \
+		ast->redir_token != 0)
 		read_start(ast, write_flag, -1);
 	if (ast->left != 0)
 		read_heredoc(ast->left, write_flag);
@@ -149,5 +150,6 @@ void	start_parse(t_token	*tokens)
 	}
 	release_token_lst(tokens);
 	read_heredoc(ast->head, 1);
-	execute_command(ast->head);
+	print_ast(ast->head);
+	//execute_command(ast->head, 0, NORMAL);
 }

@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:19 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/14 15:58:19 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/17 12:44:02 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # include <stdlib.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+
+# define TMP_FILENAME "tmp"
+# define TMP_DIR "/var/folders/zz/zyxvpxvq6csfxvn_n000csj80036c_/T/"
 
 # define IDX_PIPE 0
 # define IDX_OR 1 
