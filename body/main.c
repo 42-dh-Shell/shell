@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 15:46:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/18 01:28:05 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/18 01:47:48 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,14 +122,19 @@ void	init_shell(char **envp)
 
 int	main(int argc, char **argv, char **envp)
 {	
-	argv = NULL;
-	envp = NULL;
+	init_shell(envp);
 	char	*export[] = {
-		// "export", "132=123", "_1234=123", "a1234", "a12345=123", 0
-		"echo", "-n", "132=123", "_1234=123", "a1234", "a12345=123", 0
+		"unset", "PWD", "USER", "c", 0
+	};
+	char	*cd[] = {
+		"cd", ".."
 	};
 	argc = 0;
-	mini_echo(export);
+	mini_unset(export);
+	mini_export(NULL);
+	mini_cd(cd);
+	mini_pwd(argv);
+	system("leaks mini");
 	// start_shell();
 }
 

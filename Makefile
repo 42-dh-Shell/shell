@@ -6,7 +6,7 @@
 #    By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 15:07:35 by hyunkyle          #+#    #+#              #
-#    Updated: 2022/10/18 01:23:24 by daegulee         ###   ########.fr        #
+#    Updated: 2022/10/18 01:43:35 by daegulee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,8 @@ SRCS				= ./body/main.c \
 					./builtin/export.c \
 					./builtin/env.c \
 					./builtin/echo.c \
+					./builtin/unset.c \
+					./builtin/pwd.c \
 					# ./execute/execute.c \
 					# ./execute/execute_utils.c \
 					  
