@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 23:36:51 by idaegyu           #+#    #+#             */
-/*   Updated: 2022/10/18 00:31:44 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/18 01:12:37 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ int	print_export(void)
 		cur = g_shell->h_table->hash_array[i];
 		while (cur)
 		{
-			argv[++j] = cur->key;
+			argv[++j] = ft_strdup(cur->key);
 			cur = cur->next;
 		}
 	}
-	argv[++j] = 0;
+	argv[++j] = NULL;
 	sort_print(argv);
 	return (1);
 }
@@ -64,35 +64,52 @@ int	is_id(char *str)
 	if (!(ft_isalpha(str[i]) || str[i] == '_'))
 		return (0);
 	i++;
-	while (str[i])
+	while (str[i] && str[i] != '=')
 	{
-		if (!(ft_isalnum(str[i]) || str[i] == '_'))
+		if (!ft_isalnum(str[i]))
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
+void	do_export(char *str, int *result)
+{
+	char	*key;
+	char	*value;
+
+	if (!is_id(str))
+	{
+		printf("minishell: export:  \'%s\': not a valid identifier\n", str);
+		*result = 1;
+		return ;
+	}
+	key = get_key(str);
+	value = get_value(str);
+	if (get_hash(g_shell->h_table, key) != NULL)
+	{
+		if (ft_strcmp(value, "") != 0)
+			hash_add(g_shell->h_table, key, value);
+		return ;
+	}
+	hash_add(g_shell->h_table, key, value);
+}
+
 int	mini_export(char **argv)
 {
 	int	argc;
+	int	result;
 	int	i;
 
 	argc = argv_len(argv);
-	i = 0;
+	result = 0;
 	if (argc <= 1)
 		return (print_export());
-	// else
-	// {
-	// 	while (argv[++i])
-	// 	{
-	// 		if (!is_id(argv[i]))
-	// 		{
-	// 			print_invaild(argv[i]);
-	// 			continue ;
-	// 		}
-	// 		do_hash_in(argv[i]);
-	// 	}
-	// }
-	return (0);
+	else
+	{
+		i = 0;
+		while (argv[++i])
+			do_export(argv[i], &result);
+	}
+	return (result);
 }

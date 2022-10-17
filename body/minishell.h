@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:48:04 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/17 23:37:44 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/18 00:45:38 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,7 @@ typedef struct s_shell
 }	t_shell;
 
 void	start_parse(char *line);
+char	*get_key(char *str);
+char	*get_value(char *str);
+
 #endif
