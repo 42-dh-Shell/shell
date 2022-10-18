@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:12:35 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/17 19:33:20 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/18 11:36:22 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,34 +22,6 @@ int	has_event(t_ast_node *head)
 		head = head->left;
 	}
 	return (0);
-}
-
-int	get_argv_size(char **argv)
-{
-	int	i;
-
-	i = 0;
-	while (argv[i] != NULL)
-		i++;
-	return (i);
-}
-
-char	**expand_str(t_ast_node *node)
-{
-	char			**result;
-	t_expand_info	*expand_info;
-	int				i;
-	int				realloc_flag;
-
-	expand_info = node->expand_info;
-	i = 0;
-	realloc_flag = 1;
-	result = NULL;
-	while (expand_info)
-	{
-		if (realloc_flag)
-			result = reallocate_result(i + 2, result);
-	}
 }
 
 int	is_valid_redir_filename(t_expand_info	*expand_info, char **argv)

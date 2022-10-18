@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/17 15:35:04 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/18 14:48:10 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,5 +148,17 @@ void	start_parse(t_token	*tokens)
 	}
 	release_token_lst(tokens);
 	read_heredoc(ast->head, 1);
-	execute_command(ast->head, 0, C_NORMAL);
+	// while (ast->head)
+	// {
+	// 	char **str = expand_str(ast->head->str, ast->head->expand_info);
+	// 	ast->head = ast->head->left;
+	// 	int i = 0;
+	// 	printf("========== result ==========\n");
+	// 	while (str[i])
+	// 	{
+	// 		printf ("%d = %s\n", i, str[i]);
+	// 		i++;
+	// 	}
+	// }
+	//execute_command(ast->head, 0, C_NORMAL);
 }

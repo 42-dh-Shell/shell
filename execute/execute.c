@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:06:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/17 19:26:39 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/18 11:37:23 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,6 @@ void	execute(t_ast_node *head)
 		argv = expand_str(head);
 		dup_fd(head->redir_token->str, head->node_type);
 		execute(head->left);
-	}
-	else
-	{
-		
 	}
 }
 

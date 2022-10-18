@@ -6,13 +6,14 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:07:34 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/17 19:49:56 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/18 11:50:53 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HASH_H
 # define HASH_H
 # include <stdlib.h>
+# include "../libft/libft.h"
 
 typedef struct s_hash_list
 {
@@ -40,4 +41,6 @@ unsigned long	hash(char *str);
 void			resize(t_hash *hash_table);
 int				ft_find_next_prime(int nb);
 void			release_hash_node(t_hash_list *target_node);
+void			resize_start(t_hash_list *tar_array, t_hash_list **new_list, \
+										t_hash *hash_table);
 #endif

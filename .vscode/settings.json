@@ -12,6 +12,8 @@
 		"__locale": "c",
 		"__threading_support": "c",
 		"wait.h": "c",
-		"sstream": "c"
+		"sstream": "c",
+		"__node_handle": "c",
+		"hash.h": "c"
 	}
 }

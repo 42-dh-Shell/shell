@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute_utils1.c                                   :+:      :+:    :+:   */
+/*   ft_malloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/17 17:19:38 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/17 19:35:04 by hyunkyle         ###   ########.fr       */
+/*   Created: 2022/10/18 11:38:38 by hyunkyle          #+#    #+#             */
+/*   Updated: 2022/10/18 11:41:36 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execute.h"
+#include "libft.h"
 
-char	**reallocate_result(int size, char **strs)
+void	*ft_malloc(size_t size)
 {
-	char	**result;
+	void	*result;
 
-	result = ft_calloc(sizeof(char *), size);
+	result = ft_calloc (size, 1);
 	if (!result)
 		ft_exit("malloc error\n", 1);
-	if (strs == NULL)
-		return (result);
+	return (result);
 }
