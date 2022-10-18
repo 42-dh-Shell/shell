@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 23:16:10 by idaegyu           #+#    #+#             */
-/*   Updated: 2022/10/18 02:16:02 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/18 15:48:10 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ int	mini_env(char **argv)
 		while (cur)
 		{
 			if (ft_strcmp(cur->value, "") == 0)
+			{
+				cur = cur->next;
 				continue ;
+			}
 			printf("%s=%s\n", cur->key, cur->value);
 			cur = cur->next;
 		}

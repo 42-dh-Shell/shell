@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 15:46:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/18 01:47:48 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/18 15:48:56 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,18 +123,50 @@ void	init_shell(char **envp)
 int	main(int argc, char **argv, char **envp)
 {	
 	init_shell(envp);
-	char	*export[] = {
-		"unset", "PWD", "USER", "c", 0
+
+	char	*echo[] = {
+		"echo", "123", "1234", "12345", 0
 	};
-	char	*cd[] = {
-		"cd", ".."
-	};
+	// char	*cd1[] = {
+	// 	"cd", "~"
+	// };
+	// 	char	*cd2[] = {
+	// 	"cd", "../de"
+	// };
+	// char	*unset[] = {
+	// 	"unset", "HOME", 0
+	// };
+	argv = NULL;
 	argc = 0;
-	mini_unset(export);
+	mini_env(echo);	
 	mini_export(NULL);
-	mini_cd(cd);
-	mini_pwd(argv);
-	system("leaks mini");
+	// mini_unset(unset);
+	// printf("%s\n", getcwd(NULL, 0));
+	// mini_cd(cd1);
+	// printf("%s\n", getcwd(NULL, 0));
+	// mini_cd(cd2);
+	// printf("%s\n", getcwd(NULL, 0));
+// /goinfre/daegulee/builtin
+// /Users/daegulee
+// minishell : cd : ../de No such file or directory
+// /Users/daegulee
+
+
+
+
+
+
+
+
+	// mini_export(NULL);
+	// printf("##########\n");
+	// mini_export(export);
+	// 	printf("##########\n");
+
+	// mini_export(NULL);
+	// mini_cd(cd);
+	// mini_pwd(argv);
+	// system("leaks mini");
 	// start_shell();
 }
 

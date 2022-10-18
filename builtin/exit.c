@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 22:58:58 by idaegyu           #+#    #+#             */
-/*   Updated: 2022/10/18 02:14:52 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/18 15:29:01 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ int	mini_exit(char **argv)
 		status = g_shell->exit_status;
 	else if (argc == 2)
 	{
-		if (!str_numeric(argv[0]))
+		if (!str_numeric(argv[1]))
 		{
 			status = 255;
-			printf("exit : %s : numeric argument required\n", argv[0]);
+			printf("exit : %s : numeric argument required\n", argv[1]);
 		}
 		else
-			status = ft_atoi(argv[0], NULL);
+			status = ft_atoi(argv[1], NULL);
 	}
 	else
 	{

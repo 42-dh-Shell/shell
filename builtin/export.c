@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 23:36:51 by idaegyu           #+#    #+#             */
-/*   Updated: 2022/10/18 01:17:36 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/18 04:17:25 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,5 @@ int	mini_export(char **argv)
 		while (argv[++i])
 			do_export(argv[i], &result);
 	}
-	system("leaks mini");
 	return (result);
 }
