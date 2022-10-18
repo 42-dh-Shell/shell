@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:36:54 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/14 10:54:36 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:12:04 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,5 @@ int				is_div_wd(char ch);
 void			fail_make_token_release(t_token *head);
 void			release_token_lst(t_token *head);
 void			release_ex_info(t_expand_info *head);
+void			validation_ex_info(t_token	*token);
 #endif

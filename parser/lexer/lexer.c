@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 12:14:06 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/18 15:48:34 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:17:27 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,12 +158,11 @@ void	lexer_parse(char *line)
 			return ;
 		}
 		if (token->expand_info != 0)
-			validation_ex_info(token->expand_info);
+			validation_ex_info(token);
 		token_lst_add(&head, token);
 		while (is_space(*line))
 			line++;
 	}
 	add_last_token(head);
-	print_token_data(head);
-	//start_parse(head);
+	start_parse(head);
 }

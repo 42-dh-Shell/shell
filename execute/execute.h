@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:07:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/18 14:21:49 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:56:52 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,5 @@ int		get_expand_argv_size(char *str, t_expand_info *expand_info);
 void	argv_expand(char **result, t_expand_info *expand_info, char *str);
 char	**argv_no_expand(char *str);
 char	**get_argv(char *str, t_expand_info *expand_info, char *node_str);
+char	*get_expand_value(t_expand_info *expand_info);
 #endif

@@ -6,7 +6,7 @@
 #    By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 15:07:35 by hyunkyle          #+#    #+#              #
-#    Updated: 2022/10/18 11:49:49 by hyunkyle         ###   ########.fr        #
+#    Updated: 2022/10/18 16:14:17 by hyunkyle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRCS				= main.c \
 					./parser/lexer/lexer_list_utils1.c \
 					./parser/lexer/lexer_token_utils.c \
 					./parser/lexer/lexer_token_utils1.c \
+					./parser/lexer/lexer_token_utils2.c \
 					./parser/lexer/lexer_utils.c \
 					./parser/lexer/lexer_while_utils.c \
 					./parser/lexer/lexer.c \

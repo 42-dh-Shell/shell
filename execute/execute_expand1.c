@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:19:38 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/18 14:34:04 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/18 19:37:15 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ void	get_expand_str(char *str, t_expand_info *expand_info, \
 
 	while (*node_str)
 	{
-		if (*node_str == '$')
+		if (*node_str == '$' && expand_info && expand_info->size != -1)
 		{
-			value = get_hash(g_shell->h_table, \
-			ft_substr(node_str, 1, expand_info->size - 1));
+			value = get_expand_value(expand_info);
 			node_str += expand_info->size;
 			if (value)
 			{
@@ -33,12 +32,13 @@ void	get_expand_str(char *str, t_expand_info *expand_info, \
 				i += ft_strlen(value);
 			}
 			expand_info = expand_info->next;
+			continue ;
 		}
-		else
-		{
-			str[i++] = *node_str;
-			node_str++;
-		}
+		if (*node_str == '$' && expand_info \
+				&& expand_info->size == -1 && expand_info->next != 0)
+			expand_info = expand_info->next;
+		str[i++] = *node_str;
+		node_str++;
 	}
 }
 
@@ -55,8 +55,8 @@ int	get_expand_argv_size(char *str, t_expand_info *expand_info)
 	{
 		ex_start = expand_info->start;
 		ex_end = expand_info->start + expand_info->size;
-		if (str[i] == ' ' && ex_start <= i && i <= ex_end && \
-			expand_info->split_arg == 1)
+		if (expand_info->size != -1 && str[i] == ' ' && ex_start <= i \
+			&& i < ex_end && expand_info->split_arg == 1)
 		{
 			cnt++;
 			while (is_space(str[i]))
@@ -64,7 +64,8 @@ int	get_expand_argv_size(char *str, t_expand_info *expand_info)
 		}
 		else
 			i++;
-		if (i > ex_end && expand_info->next != NULL)
+		if ((expand_info->size == -1 || i > ex_end) && \
+			expand_info->next != NULL)
 			expand_info = expand_info->next;
 	}
 	return (cnt);

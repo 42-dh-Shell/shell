@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:36:23 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/18 14:56:09 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/18 19:25:58 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,26 @@ int	get_argv_size(char **argv)
 	return (i);
 }
 
-int	expand_str_size(char *node_str, t_expand_info *expand_info)
+char	*get_expand_value(t_expand_info *expand_info)
 {
-	int		size;
 	char	*key;
 	char	*value;
 
-	size = 0;
+	key = ft_substr(expand_info->str, 1, expand_info->size - 1);
+	value = get_hash(g_shell->h_table, key);
+	free(key);
+	return (value);
+}
+
+int	expand_str_size(char *node_str, t_expand_info *expand_info, int size)
+{
+	char	*value;
+
 	while (*node_str)
 	{
-		if (*node_str == '$')
+		if (*node_str == '$' && expand_info && expand_info->size != -1)
 		{
-			key = ft_substr(node_str, 1, expand_info->size - 1);
-			value = get_hash(g_shell->h_table, key);
-			free(key);
+			value = get_expand_value(expand_info);
 			if (value)
 				size += ft_strlen(value);
 			node_str += expand_info->size;
@@ -43,6 +49,9 @@ int	expand_str_size(char *node_str, t_expand_info *expand_info)
 		}
 		else
 		{
+			if (*node_str == '$' && expand_info \
+				&& expand_info->size == -1 && expand_info->next != 0)
+				expand_info = expand_info->next;
 			size++;
 			node_str++;
 		}
@@ -56,7 +65,7 @@ char	**expand_str(char *node_str, t_expand_info *expand_info)
 
 	if (expand_info)
 		str = ft_calloc(sizeof(char), \
-			expand_str_size(node_str, expand_info) + 1);
+			expand_str_size(node_str, expand_info, 0) + 1);
 	else
 		str = ft_calloc(sizeof(char), ft_strlen(node_str) + 1);
 	if (!str)
