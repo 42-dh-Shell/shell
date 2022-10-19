@@ -7,14 +7,15 @@
 
 int	foo(void)
 {
-	char	*wild_str = "*a*.c";
+	char	*wild_str = "*";
 	char	**argv;
 	int		i;
 
 	i = -1;
 	argv = wild_expand(wild_str);
 	while (argv[++i])
-		printf("argv[%d] = %s\n", i, argv[i]);
+		printf(" %s ", argv[i]);
+	printf("\n");
 	i = -1;
 	while (argv[++i])
 		free(argv[i]);
@@ -25,6 +26,6 @@ int	foo(void)
 int	main()
 {
 	foo();
-	system("leaks a.out");
+	// system("leaks a.out");
 	return (0);
 }

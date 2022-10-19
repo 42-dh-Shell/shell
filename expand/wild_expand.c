@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 03:55:36 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/19 16:20:40 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/19 16:34:10 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ char	**wild_expand(char *wild_str)
 			argv[++i] = ft_strdup(file->d_name);
 	}
 	wild_expand_finish(argv, ++i, wild_str, cur_work_dir_n);
+	argv_sort(argv);
 	closedir(dirp);
 	return (argv);
 }
