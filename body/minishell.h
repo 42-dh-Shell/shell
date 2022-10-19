@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:48:04 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/19 15:17:37 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/19 16:09:26 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ typedef struct s_shell
 
 char	*get_key(char *str);
 char	*get_value(char *str);
+char	**get_envp(void);
 
 #endif
