@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:52:13 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/17 13:15:19 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/19 15:58:05 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 void	*ft_malloc(size_t size_of);
 int		ft_isalnum(int c);
+char	*ft_strjoin(char const *s1, char const *s2);
 
 #endif

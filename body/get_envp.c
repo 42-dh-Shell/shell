@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   get_envp.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/16 23:16:10 by idaegyu           #+#    #+#             */
-/*   Updated: 2022/10/19 15:54:42 by daegulee         ###   ########.fr       */
+/*   Created: 2022/10/19 15:54:01 by daegulee          #+#    #+#             */
+/*   Updated: 2022/10/19 16:05:14 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtin.h"
-#include "../body/minishell.h"
+#include "./minishell.h"
 
 extern t_shell *g_shell;
 
-int	mini_env(char **argv)
+void	envp_join(char **argv, int j, char *key, char *value)
+{
+	char	*tmp;
+
+	tmp = ft_strjoin(key, "=");
+	argv[j] = ft_strjoin(tmp, key);
+	free(tmp);
+}
+
+char	**get_envp(void)
 {
 	t_hash_list	*cur;
 	int			i;
+	char		**argv;
+	int			j;
 
-	argv = NULL;
+	j = -1;
+	argv = ft_malloc(sizeof(char *) * (g_shell->h_table->size_elem + 1));
 	i = -1;
 	while (++i < g_shell->h_table->table_size)
 	{
@@ -32,9 +43,11 @@ int	mini_env(char **argv)
 				cur = cur->next;
 				continue ;
 			}
-			printf("%s=%s\n", cur->key, cur->value);
+			envp_join(argv, ++j, cur->key, cur->value);
 			cur = cur->next;
 		}
 	}
-	return (0);
+	argv[++j] = NULL;
+	return (argv);
 }
+

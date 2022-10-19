@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 19:49:39 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/18 20:21:55 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/19 14:23:54 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_qnode	*new_qnode(char c)
 
 	qnode = ft_malloc(sizeof(t_qnode));
 	qnode->c = c;
+	return (qnode);
 }
 
 t_queue	*init_queue(void)
@@ -60,4 +61,16 @@ t_qnode	*pop_queue(t_queue *queue)
 	queue->front = queue->front->back;
 	(queue->len)--;
 	return (tmp);
+}
+
+t_queue	*init_str_queue(char *str)
+{
+	int		i;
+	t_queue	*queue;
+
+	i = -1;
+	queue = init_queue();
+	while (str[++i])
+		push_queue(queue, new_qnode(str[i]));
+	return (queue);
 }
