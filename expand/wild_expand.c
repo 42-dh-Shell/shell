@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 03:55:36 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/19 15:12:55 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/19 16:20:40 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "../body/minishell.h"
 
 extern	t_shell *g_shell;
-//cat a$abc"b"
 
 char	look_q_not_asterisk(t_queue *queue)
 {
@@ -78,11 +77,13 @@ int	wild_check_part(t_queue	*wild_queue, int *i, char *check)
 	return (1);
 }
 
-int	dir_entry_numb(DIR *dirp)
+int	dir_entry_numb(char	*cur_work_dir)
 {
+	DIR				*dirp;
 	struct dirent	*file;
 	int				i;
 
+	dirp = opendir(cur_work_dir);
 	i = 0;
 	while (1)
 	{
@@ -93,6 +94,7 @@ int	dir_entry_numb(DIR *dirp)
 			break ;
 		i++;
 	}
+	closedir(dirp);
 	return (i);
 }
 
@@ -106,8 +108,8 @@ char	**wild_expand(char *wild_str)
 
 	i = -1;
 	cur_work_dir_n = getcwd(NULL, 0);
+	argv = ft_malloc(sizeof(char *) * (dir_entry_numb(cur_work_dir_n) + 1));
 	dirp = opendir(cur_work_dir_n);
-	argv = ft_malloc(sizeof(char *) * (dir_entry_numb(dirp) + 1));
 	while (1)
 	{
 		file = readdir(dirp);

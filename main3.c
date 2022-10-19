@@ -15,12 +15,16 @@ int	foo(void)
 	argv = wild_expand(wild_str);
 	while (argv[++i])
 		printf("argv[%d] = %s\n", i, argv[i]);
+	i = -1;
+	while (argv[++i])
+		free(argv[i]);
+	free(argv);
 	return (1);
 }
 // gcc main3.c ./expand/wild_expand.c ./expand/free_queue.c ./expand/wild_expand2.c ./libft/libft.a ./expand/queue_util.c
 int	main()
 {
 	foo();
-	// system("leaks a.out");
+	system("leaks a.out");
 	return (0);
 }
