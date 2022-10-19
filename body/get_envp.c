@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 15:54:01 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/19 16:05:14 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/19 16:12:54 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	envp_join(char **argv, int j, char *key, char *value)
 	char	*tmp;
 
 	tmp = ft_strjoin(key, "=");
-	argv[j] = ft_strjoin(tmp, key);
+	argv[j] = ft_strjoin(tmp, value);
 	free(tmp);
 }
 
