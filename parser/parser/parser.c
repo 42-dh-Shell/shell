@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/19 17:26:59 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/19 19:47:56 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,9 +135,9 @@ void	read_heredoc(t_ast_node *ast, int write_flag)
 
 void	start_parse(t_token	*tokens)
 {
-	t_stack	*stack;
-	t_ast	*ast;
-	pid_t	pid;
+	t_stack		*stack;
+	t_ast		*ast;
+	t_pid_list	*pids;
 
 	stack = get_stack();
 	ast = pushdown_automata(stack, tokens, 0, 0);
@@ -149,8 +149,7 @@ void	start_parse(t_token	*tokens)
 	}
 	release_token_lst(tokens);
 	read_heredoc(ast->head, 1);
-	pid = execute_command(ast->head, 0, C_NORMAL);
-	wait(NULL);
-	wait(NULL);
-	waitpid(0, NULL, 0);
+	pids = NULL;
+	execute_command(ast->head, 0, C_NORMAL, &pids);
+	wait_all_pids(&pids);
 }

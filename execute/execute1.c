@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:25:43 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/19 17:07:49 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/19 19:50:55 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@ void	dup_fd(char *filename, enum	e_ast_types type)
 	if (type == NODE_DGREAT)
 		fd = open (filename, O_CREAT | O_APPEND | O_WRONLY, 0644);
 	else if (type == NODE_GREAT)
-		fd = open (filename, O_CREAT | O_WRONLY, 0644);
+		fd = open (filename, O_CREAT | O_TRUNC | O_WRONLY, 0644);
 	else
 		fd = open (filename, O_RDONLY);
 	if (fd < 0)
 	{
-		printf ("minishell: no such file or directory: %s\n", filename);
+		if (errno == 2)
+			printf ("minishell: no such file or directory: %s\n", filename);
 		exit (1);
 	}
 	if (type == NODE_DGREAT || type == NODE_GREAT)
@@ -40,7 +41,8 @@ void	execute_redir(t_ast_node *head)
 {
 	char	**argv;
 
-	if (head->left != 0 && (head->left->node_type != NODE_COMMAND))
+	if ((head->node_type == NODE_GREAT || head->node_type == NODE_DGREAT) \
+		&& next_redir_exist(head))
 		return ;
 	if (!is_valid_redir_filename(head->redir_token->expand_info))
 		return ;

@@ -32,3 +32,4 @@ io_file   ->  '>>' f_name
 io_here  -> '<<' end
 f_name -> 'word'
 end -> 'word'
+ö

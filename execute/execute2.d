@@ -1,4 +1,4 @@
-execute/execute_expand1.o: execute/execute_expand1.c execute/execute.h \
+execute/execute2.o: execute/execute2.c execute/execute.h \
   execute/../libft/libft.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/sys/types.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/sys/appleapiopts.h \
@@ -151,4 +151,6 @@ execute/execute_expand1.o: execute/execute_expand1.c execute/execute.h \
   execute/../minishell.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include/stdbool.h \
   execute/.././hash/hash.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/sys/stat.h
+  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/sys/stat.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/errno.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/sys/errno.h

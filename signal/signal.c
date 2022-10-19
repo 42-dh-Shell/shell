@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 17:04:37 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/10 12:52:07 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/19 19:30:26 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ void	set_signal_term(void)
 
 void	print_exit(void)
 {
-	printf("\033[1A\033[5Cexit\n");
+	printf("\033[1A\033[11Cexit\n");
 	exit(0);
 }

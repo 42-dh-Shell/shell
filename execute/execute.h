@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:07:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/19 17:10:48 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/19 19:15:55 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <unistd.h>
+# include <errno.h> 
 # define COMM_ERROR "minishell : command not found: "
 
 typedef enum e_command_io
@@ -33,15 +34,15 @@ typedef enum e_command_io
 typedef struct s_pids
 {
 	pid_t			pid;
-	int				status;
 	struct s_pids	*next;
-}	t_pid;
+}	t_pid_list;
 
 extern	t_shell	*g_shell;
 
 int		has_event(t_ast_node *head);
+void	add_last_pid(pid_t pid, t_pid_list **pids);
 pid_t	execute_command(t_ast_node *head, int fd_pipe[], \
-	t_command_io io);
+	t_command_io io, t_pid_list **pids);
 int		get_argv_size(char **argv);
 char	**expand_str(char *node_str, t_expand_info *expand_info);
 void	get_expand_str(char *str, t_expand_info *expand_info, \
@@ -63,4 +64,6 @@ int		is_valid_command(char *command);
 int		is_valid_redir_filename(t_expand_info *expand_info);
 void	execute(t_ast_node *head, int fd_pipe[], t_command_io io);
 char	**get_envp(void);
+void	wait_all_pids(t_pid_list **pids);
+int		is_last_pipe(t_ast_node *head);
 #endif
