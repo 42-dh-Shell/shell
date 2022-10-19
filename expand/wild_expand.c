@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 03:55:36 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/19 16:34:10 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/19 18:31:21 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ char	**wild_expand(char *wild_str)
 			ft_exit("readdir error\n", 1);
 		if (file == NULL)
 			break ;
-		if (is_wild(wild_str, file->d_name))
+		if ((file->d_name)[0] != '.' && is_wild(wild_str, file->d_name))
 			argv[++i] = ft_strdup(file->d_name);
 	}
 	wild_expand_finish(argv, ++i, wild_str, cur_work_dir_n);

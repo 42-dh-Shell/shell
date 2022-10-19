@@ -14,7 +14,7 @@ int	foo(void)
 	i = -1;
 	argv = wild_expand(wild_str);
 	while (argv[++i])
-		printf(" %s ", argv[i]);
+		printf("%s ", argv[i]);
 	printf("\n");
 	i = -1;
 	while (argv[++i])
@@ -22,7 +22,7 @@ int	foo(void)
 	free(argv);
 	return (1);
 }
-// gcc main3.c ./expand/wild_expand.c ./expand/free_queue.c ./expand/wild_expand2.c ./libft/libft.a ./expand/queue_util.c
+// gcc main3.c ./expand/wild_expand.c ./expand/free_queue.c ./expand/wild_expand2.c ./libft/libft.a ./expand/queue_util.c ./builtin/argv_sort.c
 int	main()
 {
 	foo();
