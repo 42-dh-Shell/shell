@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:12:35 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/18 11:36:22 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/19 13:53:35 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	has_event(t_ast_node *head)
 	return (0);
 }
 
-int	is_valid_redir_filename(t_expand_info	*expand_info, char **argv)
+int	is_valid_redir_filename(t_expand_info *expand_info)
 {
 	char	*key;
 	char	*value;
@@ -37,8 +37,8 @@ int	is_valid_redir_filename(t_expand_info	*expand_info, char **argv)
 		{
 			key = ft_substr(expand_info->str, expand_info->start + 1, \
 				expand_info->size);
-			value = hash_get(g_shell->h_table, key);
-			if (value != NULL && get_argv_size(ft_split(value, " ")) > 1)
+			value = get_hash(g_shell->h_table, key);
+			if (value != NULL && get_argv_size(ft_split(value, ' ')) > 1)
 			{
 				printf("minishell: %s: ambiguous redirect\n", key);
 				free(key);
@@ -51,26 +51,59 @@ int	is_valid_redir_filename(t_expand_info	*expand_info, char **argv)
 	return (1);
 }
 
-void	dup_fd(char *filename, e_ast_types type)
+void	release_argv(char **argv)
 {
-	int	fd;
-	int	status;
+	int	i;
 
-	if (type == NODE_DGREAT)
-		fd = open (filename, O_CREAT | O_APPEND | O_WRONLY, 0644);
-	else if (type == NODE_GREAT)
-		fd = open (filename, O_CREAT | O_WRONLY, 0644);
-	else if (type == NODE_LESS || type == NODE_DLESS)
-		fd = open (filename, O_RDONLY);
-	if (fd < 0)
+	i = 0;
+	while (argv[i])
 	{
-		printf ("minishell: no such file or directory: %s\n", filename);
-		exit (1);
+		free(argv[i]);
+		i++;
 	}
-	if (node_type == NODE_DGREAT || node_type == NODE_GREAT)
-		status = dup2(fd, STDOUT_FILENO);
-	else
-		status = dup2(fd, STDIN_FILENO);
-	if (status < 0)
-		ft_exit ("dup2 error\n", 1);
+}
+
+char	**add_back_argv(char **argv, char **new)
+{
+	int		i;
+	int		new_size;
+	int		argv_size;
+	char	**new_argv;
+
+	argv_size = 0;
+	new_size = 0;
+	while (argv[argv_size])
+		argv_size++;
+	while (new[new_size])
+		new_size++;
+	new_argv = ft_calloc(sizeof(char *), argv_size + new_size + 1);
+	if (!new_argv)
+		ft_exit("malloc error\n", 1);
+	i = -1;
+	while (++i < argv_size + new_size)
+	{
+		if (i < argv_size)
+			new_argv[i] = argv[i];
+		else
+			new_argv[i] = new[i - argv_size];
+	}
+	free(argv);
+	free(new);
+	return (new_argv);
+}
+
+char	**get_command_info(t_ast_node *head)
+{
+	char		**argv;
+	t_suffix	*suffix_list;
+
+	argv = expand_str(head->str, head->expand_info);
+	suffix_list = head->suffix_list;
+	while (suffix_list)
+	{
+		argv = add_back_argv(argv, \
+			expand_str(suffix_list->str, suffix_list->expand_info));
+		suffix_list = suffix_list->next;
+	}
+	return (argv);
 }
