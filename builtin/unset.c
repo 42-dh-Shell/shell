@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 01:29:59 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/18 01:38:49 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/20 14:29:28 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ int	mini_unset(char **argv)
 		if (get_hash(g_shell->h_table, argv[i]) != NULL)
 			hash_remove(g_shell->h_table, argv[i]);
 	}
-	return (1);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 23:36:51 by idaegyu           #+#    #+#             */
-/*   Updated: 2022/10/18 04:17:25 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/20 14:30:26 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	print_export(void)
 	}
 	argv[++j] = NULL;
 	sort_print(argv);
-	return (1);
+	return (0);
 }
 
 int	is_id(char *str)

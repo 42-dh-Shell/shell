@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 01:39:28 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/18 01:49:02 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/20 14:32:13 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	mini_pwd(char **argv)
 	str = getcwd(NULL, 0);
 	printf("%s\n", str);
 	if (str == NULL)
-		return (0);
+		return (1);
 	free(str);
-	return (1);
+	return (0);
 }

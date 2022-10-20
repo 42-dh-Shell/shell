@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:26:09 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/18 15:14:52 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/20 14:27:42 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,6 @@
 #include "../body/minishell.h"
 
 extern t_shell *g_shell;
-// pwd - oldpwd chdir
-// . cur
-// .. back 
-// ... -> error bash: cd: ...: No such file or directory
-
-// ~,no input home
 
 static char	*get_env_in_ht(char *key)
 {
