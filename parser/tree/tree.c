@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 17:38:41 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/20 16:20:33 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/20 22:52:46 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,3 +47,22 @@ void	build_subshell(t_support *sup)
 	sup->subshell = subshell;
 	sup->cur = (t_ast *)(subshell->subtree);
 }
+// (lldb) p ast
+// (t_ast *) $2 = 0x0000000100404250
+// (lldb) p ast->root
+// (t_ast_node *) $3 = 0x0000000000000000
+// (lldb) n
+// (lldb) p sup
+// (t_support *) $4 = 0x00000001003040b0
+// (lldb) p sup->stack
+// (t_stack *) $5 = 0x00000001004040e0
+// (lldb) p sup->t_list
+// (t_token_list *) $6 = 0x00007ffeefbff6c0
+// (lldb) p sup->ast
+// (t_ast *) $7 = 0x0000000100404250
+// (lldb) p sup->wait
+// (t_wait *) $8 = 0x00000001003040e0
+// (lldb) p sup->cur
+// (t_ast *) $9 = 0x0000000100404250
+// (lldb) p sup->subshell
+// (t_subshell *) $10 = 0x0000000000000000

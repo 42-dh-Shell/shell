@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 23:37:42 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/20 15:43:11 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/20 23:06:44 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,6 @@ t_snode		*stack_pop(t_stack *stack);
 void		stack_push(t_stack *stack, t_snode *new);
 t_snode		*new_snode(t_node_type type, void *data);
 void		free_snode(t_snode *snode);
+void		free_stack(t_stack *stack);
 
 #endif

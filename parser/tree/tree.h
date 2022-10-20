@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 12:42:38 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/11 13:00:17 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/20 22:49:07 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ typedef struct s_wait
 typedef struct s_ast
 {
 	t_ast_node	*root;
-	t_ast_node	*last_in;
 }	t_ast;
 //////////////////////////////////////////////
 

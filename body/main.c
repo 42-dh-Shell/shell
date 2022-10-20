@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 15:46:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/20 18:00:08 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/20 23:47:48 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	start_shell(void)
 {
 	int				ret;
 	char			*line;
+	t_ast			*ast;
 
 	set_signal_term();
 	while (1)
@@ -27,7 +28,7 @@ void	start_shell(void)
 		{
 			ret = ft_strcmp(line, "exit");
 			if (ret && ft_strcmp(line, "") != 0)
-				parser(line);
+				ast = parser(line);
 			add_history(line);
 			free(line);
 			if (!ret)

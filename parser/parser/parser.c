@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:53:58 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/20 16:53:10 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/20 23:47:37 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ t_ast	*parser(char *str)
 	if (t_list == NULL)
 		return (NULL);
 	stack = init_stack();
-	system("leaks mini");
 	ast = push_down(stack, *t_list);
 	print_tree(ast);
+	free_stack(stack);
+	free_t_lst(&t_list);
 	system("leaks mini");
 	return (ast);
 }

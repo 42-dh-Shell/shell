@@ -6,13 +6,11 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 23:36:57 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/07 11:13:55 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/20 23:48:20 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
-
-//basic  선입 선출 ..list..void pointer로 받게 .. pop .. push..new
 
 t_snode	*new_snode(t_node_type type, void *data)
 {
@@ -24,7 +22,7 @@ t_snode	*new_snode(t_node_type type, void *data)
 	ft_memset(new, 0, sizeof(t_snode));
 	new->node_type = type;
 	if (new->node_type == TOKEN)
-		new->token = (t_token *)data;
+		new->token = token_dup((t_token *)data);
 	else if (new->node_type == STATE)
 		new->state = *((int *)data);
 	else

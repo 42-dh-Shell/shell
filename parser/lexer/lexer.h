@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:32:02 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/18 05:45:09 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/20 23:26:45 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,5 +146,7 @@ void			print_data(t_token *token, int i);
 void			print_token(t_token_list *t_list);
 void			free_auto(t_auto_data *data);
 void			free_t_lst(t_token_list **t_lst);
+t_exps			*exps_dup(t_exps *origin);
+t_exps_list		*exps_list_dup(t_exps_list *exps_lst);
 
 #endif
