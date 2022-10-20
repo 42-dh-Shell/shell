@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/19 19:47:56 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/20 18:56:58 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,6 @@ void	start_parse(t_token	*tokens)
 	release_token_lst(tokens);
 	read_heredoc(ast->head, 1);
 	pids = NULL;
-	execute_command(ast->head, 0, C_NORMAL, &pids);
+	execute_command(ast->head, NULL, C_NORMAL, &pids);
 	wait_all_pids(&pids);
 }

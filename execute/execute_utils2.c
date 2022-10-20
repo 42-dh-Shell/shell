@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 19:00:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/19 19:52:19 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/20 16:49:56 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,4 @@ void	wait_all_pids(t_pid_list **pids)
 		lst = lst->next;
 	}
 	*pids = NULL;
-}
-
-int	next_redir_exist(t_ast_node *head)
-{
-	head = head->left;
-	while (head)
-	{
-		if (head->node_type == NODE_DGREAT || head->node_type == NODE_GREAT)
-			return (1);
-		head = head->left;
-	}
-	return (0);
 }

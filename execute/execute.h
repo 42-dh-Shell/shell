@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:07:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/19 19:15:55 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/20 16:57:21 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ typedef enum e_command_io
 {
 	C_WRITE = 0,
 	C_READ,
-	C_NORMAL
+	C_NORMAL,
+	C_RW
 }	t_command_io;
 
 typedef struct s_pids
@@ -41,7 +42,9 @@ extern	t_shell	*g_shell;
 
 int		has_event(t_ast_node *head);
 void	add_last_pid(pid_t pid, t_pid_list **pids);
-pid_t	execute_command(t_ast_node *head, int fd_pipe[], \
+void	execute_command(t_ast_node *head, int fd_pipe[], \
+	t_command_io io, t_pid_list **pids);
+void	execute_command_handler(t_ast_node *head, int fd_pipe[], \
 	t_command_io io, t_pid_list **pids);
 int		get_argv_size(char **argv);
 char	**expand_str(char *node_str, t_expand_info *expand_info);
@@ -62,8 +65,12 @@ char	*get_valid_fullpath(char **paths, char **argv);
 void	execute_fullpath_handler(char **argv);
 int		is_valid_command(char *command);
 int		is_valid_redir_filename(t_expand_info *expand_info);
-void	execute(t_ast_node *head, int fd_pipe[], t_command_io io);
+void	execute(t_ast_node *head);
 char	**get_envp(void);
 void	wait_all_pids(t_pid_list **pids);
 int		is_last_pipe(t_ast_node *head);
+void	dup_pipe(t_command_io io, int fd_pipe[]);
+void	execute_and_or_handler(t_ast_node *head, t_pid_list **pids);
+void	execute_subsehll_handler(t_ast_node *head, int fd_pipe[], \
+	t_command_io io, t_pid_list **pids);
 #endif

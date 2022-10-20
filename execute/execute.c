@@ -6,47 +6,69 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:06:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/19 19:15:27 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/20 19:11:18 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
+//        ls           |      hello        | 	 hello	  |    hello
+//			
+//
 
-void	execute_pipe_handler(t_ast_node *head, t_pid_list **pids)
+void	execute_middle_pipe(int read, int write, t_ast_node *head, \
+		t_pid_list **pids)
+{
+	int	fd[2];
+
+	fd[0] = read;
+	fd[1] = write;
+	execute_command(head->right, fd, C_RW, pids);
+}
+
+void	execute_pipe_handler(t_ast_node *head, t_pid_list **pids, \
+			int fd_pipe[], t_command_io io)
 {
 	int		fd[2];
 
 	if (pipe(fd) < 0)
 		ft_exit("pipe_error\n", 1);
-	execute_command(head->left, fd, C_WRITE, pids);
-	execute_command(head->right, fd, C_READ, pids);
-	close(fd[1]);
-	close(fd[0]);
+	if (head->left->node_type == NODE_PIPE)
+		execute_pipe_handler(head->left, pids, fd, io);
+	if (head->left->node_type != NODE_PIPE)
+	{	
+		execute_command(head->left, fd, C_WRITE, pids);
+		close(fd[1]);
+	}
+	if (fd_pipe)
+	{
+		execute_middle_pipe(fd[0], fd_pipe[1], head, pids);
+		close(fd[0]);
+		close(fd_pipe[1]);
+	}
+	else
+	{
+		execute_command(head->right, fd, C_READ, pids);
+		close(fd[0]);
+		close(fd[1]);
+	}
 	if (is_last_pipe(head))
 		wait_all_pids(pids);
 }
 
-void	close_pipe(int fd_pipe[], t_command_io io)
-{
-	if (io == C_WRITE)
-		close(fd_pipe[0]);
-	else if (io == C_READ)
-		close(fd_pipe[1]);
-}
-
-void	execute(t_ast_node *head, int fd_pipe[], t_command_io io)
+void	execute(t_ast_node *head)
 {
 	char	**argv;
 	char	*envp;
 	char	*key;
 
-	close_pipe(fd_pipe, io);
+	if (head->right != NULL)
+		execute(head->right);
 	if (head->node_type == NODE_DGREAT || head->node_type == NODE_LESS \
 	|| head->node_type == NODE_DLESS || head->node_type == NODE_GREAT)
 	{
 		execute_redir(head);
 		if (head->left != NULL)
-			execute(head->left, fd_pipe, io);
+			execute(head->left);
 	}
 	else
 	{
@@ -61,7 +83,7 @@ void	execute(t_ast_node *head, int fd_pipe[], t_command_io io)
 	}
 }
 
-pid_t	execute_command_handler(t_ast_node *head, int fd_pipe[], \
+void	execute_command_handler(t_ast_node *head, int fd_pipe[], \
 	t_command_io io, t_pid_list **pids)
 {
 	pid_t	pid;
@@ -71,38 +93,24 @@ pid_t	execute_command_handler(t_ast_node *head, int fd_pipe[], \
 		ft_exit("fork error\n", 1);
 	if (pid == 0)
 	{
-		if (io == C_WRITE)
-		{
-			if (dup2(fd_pipe[1], STDOUT_FILENO) < 0)
-				ft_exit("dup error\n", 1);
-			close(fd_pipe[1]);
-			close(fd_pipe[0]);
-		}
-		else if (io == C_READ)
-		{
-			if (dup2(fd_pipe[0], STDIN_FILENO) < 0)
-				ft_exit("dup error\n", 1);
-			close(fd_pipe[1]);
-			close(fd_pipe[0]);
-		}
-		execute(head, fd_pipe, io);
+		dup_pipe(io, fd_pipe);
+		execute(head);
 	}
-	add_last_pid(pid, pids);
-	return (pid);
+	else
+		add_last_pid(pid, pids);
 }
 
-pid_t	execute_command(t_ast_node *head, int fd_pipe[], \
+void	execute_command(t_ast_node *head, int fd_pipe[], \
 	t_command_io io, t_pid_list **pids)
 {
 	if (!head)
-		return (-1);
-	// if (head->node_type == NODE_AND || head->node_type == NODE_OR)
-	// 	execute_and_or_handler(head);
+		return ;
+	if (head->node_type == NODE_AND || head->node_type == NODE_OR)
+		execute_and_or_handler(head, pids);
 	if (head->node_type == NODE_PIPE)
-		execute_pipe_handler(head, pids);
-	// else if (head->node_type == NODE_SUBSHELL)
-	// 	execute_subsehll_handler(head);
+		execute_pipe_handler(head, pids, fd_pipe, io);
+	else if (head->node_type == NODE_SUBSHELL)
+		execute_subsehll_handler(head, fd_pipe, io, pids);
 	if (!has_event(head))
-		return (execute_command_handler(head, fd_pipe, io, pids));
-	return (-1);
+		execute_command_handler(head, fd_pipe, io, pids);
 }

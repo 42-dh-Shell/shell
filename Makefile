@@ -6,7 +6,7 @@
 #    By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 15:07:35 by hyunkyle          #+#    #+#              #
-#    Updated: 2022/10/19 19:20:24 by hyunkyle         ###   ########.fr        #
+#    Updated: 2022/10/20 15:10:02 by hyunkyle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRCS				= main.c \
 					./hash/ft_find_next_prime.c \
 					./execute/execute.c \
 					./execute/execute1.c \
+					./execute/execute2.c \
 					./execute/execute_expand1.c \
 					./execute/execute_expand2.c \
 					./execute/execute_utils.c \
