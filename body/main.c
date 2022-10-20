@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 15:46:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/18 15:48:56 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/20 18:02:48 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,8 @@ void	init_shell(char **envp)
 		key = get_key(envp[i]);
 		value = get_value(envp[i]);
 		hash_add(g_shell->h_table, key, value);
+		if (ft_strcmp(key, "TMPDIR") == 0)
+			g_shell->tmp = ft_strdup(value);
 		if (ft_strcmp(key, "OLDPWD") == 0)
 			hash_add(g_shell->h_table, ft_strdup("OLDPWD"), ft_strdup(""));
 	}
@@ -124,9 +126,9 @@ int	main(int argc, char **argv, char **envp)
 {	
 	init_shell(envp);
 
-	char	*echo[] = {
-		"echo", "123", "1234", "12345", 0
-	};
+	// char	*echo[] = {
+	// 	"echo", "123", "1234", "12345", 0
+	// };
 	// char	*cd1[] = {
 	// 	"cd", "~"
 	// };
@@ -138,8 +140,9 @@ int	main(int argc, char **argv, char **envp)
 	// };
 	argv = NULL;
 	argc = 0;
-	mini_env(echo);	
-	mini_export(NULL);
+	printf("%s\n", g_shell->tmp);
+	// mini_env(echo);	
+	// mini_export(NULL);
 	// mini_unset(unset);
 	// printf("%s\n", getcwd(NULL, 0));
 	// mini_cd(cd1);

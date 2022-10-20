@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:48:04 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/19 16:09:26 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/20 18:01:32 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_shell
 	t_hash		*h_table;
 	int			exit_status;
 	int			sh_lv;
+	char		*tmp;
 }	t_shell;
 
 char	*get_key(char *str);
