@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:45:06 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/20 23:27:37 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/21 00:51:16 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ void	exps_lst_addback(t_exps_list **exps_lst, t_exps *new)
 		return ;
 	}
 	cur = (*exps_lst)->head;
+	if (!cur)
+	{
+		(*exps_lst)->head = new;
+		return ;
+	}
 	while (cur->next)
 		cur = cur->next;
 	cur->next = new;
@@ -79,30 +84,4 @@ t_token	*token_dup(t_token *origin)
 	return (dup);
 }
 
-t_exps	*exps_dup(t_exps *origin)
-{
-	t_exps	*new;
-
-	new = ft_malloc(sizeof(t_exps));
-	new->end = origin->end;
-	new->is_quote = origin->is_quote;
-	new->str = ft_strdup(origin->str);
-	return (new);
-}
-
-t_exps_list	*exps_list_dup(t_exps_list *exps_lst)
-{
-	t_exps		*cur;
-	t_exps_list	*new_exps_lst;
-
-	if (exps_lst == NULL)
-		return (NULL);
-	new_exps_lst = ft_malloc(sizeof(t_exps_list));
-	cur = exps_lst->head;
-	while (cur)
-	{
-		exps_lst_addback(&new_exps_lst, exps_dup(cur));
-		cur = cur->next;
-	}
-	return (new_exps_lst);
-}
+// cat $123$1234 && (sub && (sub )) && cat "$1234$123456"$123
