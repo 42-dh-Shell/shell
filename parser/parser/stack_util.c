@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:30:22 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/11 15:41:25 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:43:00 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void	reduce_pop(t_stack *stack, int reduce_idx)
 	pop_nb = 2 * get_reduce_pop_nb(reduce_idx);
 	while (pop_nb)
 	{
-		stack_pop(stack);
+		free_snode(stack_pop(stack));
 		pop_nb--;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idaegyu <idaegyu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 17:04:37 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/09 18:25:21 by idaegyu          ###   ########.fr       */
+/*   Updated: 2022/10/20 15:12:01 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ void	set_signal_term(void)
 
 void	print_exit(void)
 {
-	printf("\033[1A\033[5Cexit\n");
+	printf("\033[1A\033[11Cexit\n");
 	exit(0);
 }

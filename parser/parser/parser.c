@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:53:58 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/18 06:25:18 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/20 16:53:10 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ t_ast	*parser(char *str)
 	if (t_list == NULL)
 		return (NULL);
 	stack = init_stack();
+	system("leaks mini");
 	ast = push_down(stack, *t_list);
 	print_tree(ast);
+	system("leaks mini");
 	return (ast);
 }
 
@@ -66,6 +68,12 @@ void	print_unexpect(t_token *token, t_stack *stack)
 		print_unexpect(stack->top->bottom->token, stack);
 }
 
+void	free_sup(t_support *sup)
+{
+	free(sup->wait);
+	free(sup);
+}
+
 t_ast	*push_down(t_stack *stack, t_token_list t_list)
 {
 	char			*str;
@@ -83,11 +91,12 @@ t_ast	*push_down(t_stack *stack, t_token_list t_list)
 		else
 			st_reduce(&str, sup);
 	}
+	free_sup(sup);
 	if (str_equal(str, "N"))
 	{
 		print_unexpect(t_list.head, stack);
+		// free_ast(ast);
 		return (NULL);
 	}
-	else
-		return (ast);
+	return (ast);
 }

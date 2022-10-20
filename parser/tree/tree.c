@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 17:38:41 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/11 12:22:09 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/20 16:20:33 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ void	init_ast(t_ast **ast)
 		ft_exit("malloc error.\n", 1);
 	ft_memset(*ast, 0, sizeof(t_ast));
 }
+
+// void	free_ast(t_ast **ast)
+// {
+	
+// }
 
 t_ast_node	*init_ast_node(t_ast_node_t node_type)
 {

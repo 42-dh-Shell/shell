@@ -1,39 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 15:35:06 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/18 01:26:13 by daegulee         ###   ########.fr       */
+/*   Created: 2022/10/16 23:16:10 by idaegyu           #+#    #+#             */
+/*   Updated: 2022/10/19 15:54:42 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./builtin.h"
+#include "builtin.h"
+#include "../body/minishell.h"
 
-int	mini_echo(char **argv)
+extern t_shell *g_shell;
+
+int	mini_env(char **argv)
 {
-	int	n_idx;
+	t_hash_list	*cur;
+	int			i;
 
-	n_idx = 1;
-	if (argv == NULL || argv_len(argv) <= 0)
-		return (printf("\n") - 1);
-	if (ft_strcmp(argv[1], "-n") == 0)
+	argv = NULL;
+	i = -1;
+	while (++i < g_shell->h_table->table_size)
 	{
-		while (ft_strcmp(argv[n_idx], "-n") == 0)
-			n_idx++;
-		while (argv[n_idx])
+		cur = g_shell->h_table->hash_array[i];
+		while (cur)
 		{
-			printf("%s", argv[n_idx]);
-			if (argv[n_idx] && argv[n_idx + 1])
-				printf(" ");
-			n_idx++;
+			if (ft_strcmp(cur->value, "") == 0)
+			{
+				cur = cur->next;
+				continue ;
+			}
+			printf("%s=%s\n", cur->key, cur->value);
+			cur = cur->next;
 		}
-		return (0);
 	}
-	while (argv[n_idx])
-		printf("%s ", argv[n_idx++]);
-	printf("\n");
 	return (0);
 }

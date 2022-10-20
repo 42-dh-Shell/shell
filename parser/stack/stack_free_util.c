@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug_stack.c                                      :+:      :+:    :+:   */
+/*   stack_free_util.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 00:03:13 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/18 05:58:43 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:47:10 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
-static const char	*g_type_table[18] = {
-	"init", "Word", "Double", "Single", "Expansion", \
-	">", ">>", "<", "<<", ")", "(", \
-	"&", "&&", "ERROR", "|", "||", "is_space", "FINISH"
-};
-
-void	print_stack(t_stack *stack)
+void	free_snode(t_snode *snode)
 {
-	t_node	*cur;
-
-	if (stack->top == NULL)
+	if (snode->token)
 	{
-		printf("No Node in stack.\n");
-		return ;
+		free(snode->token->token_data);
+		free(snode->token);
 	}
-	cur = stack->top;
-	while (cur)
-	{
-		printf("Token Type = %s\n", g_type_table[cur->token->token_type]);
-		printf("TOken data = %s\n", cur->token->token_data);
-		printf("##########################\n");
-		cur = cur->bottom;
-	}
+	free(snode);
 }

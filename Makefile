@@ -6,11 +6,21 @@
 #    By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/27 21:29:03 by daegulee          #+#    #+#              #
-#    Updated: 2022/10/18 05:15:11 by daegulee         ###   ########.fr        #
+#    Updated: 2022/10/20 16:36:47 by daegulee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS				= ./body/main.c \
+					./body/get_envp.c \
+					./builtin/argv_sort.c \
+					./builtin/cd.c \
+					./builtin/echo.c \
+					./builtin/env.c \
+					./builtin/exit.c \
+					./builtin/export.c \
+					./builtin/is_builtin.c \
+					./builtin/pwd.c \
+					./builtin/unset.c \
 					./signal/signal.c \
 					./parser/lexer/auto_exps_util.c \
 					./parser/lexer/do_0~3.c \
@@ -23,6 +33,7 @@ SRCS				= ./body/main.c \
 					./parser/lexer/debug_print.c \
 					./parser/lexer/free_util.c \
 					./parser/stack/stack.c \
+					./parser/stack/stack_free_util.c \
 					./parser/parser/parser.c \
 					./parser/parser/lalr_table.c \
 					./parser/parser/stack_util.c \
@@ -33,7 +44,16 @@ SRCS				= ./body/main.c \
 					./parser/tree/act_r21,20,19,18,17.c \
 					./parser/tree/act_r28,25,24,23,22.c \
 					./parser/tree/act_r33,32,31,30,29.c \
-					./parser/tree/debug_tree.c 
+					./parser/tree/debug_tree.c \
+					./hash/ft_find_next_prime.c \
+					./hash/hash_utils.c \
+					./hash/hash_utils1.c \
+					./hash/hash.c \
+					./expand/free_queue.c \
+					./expand/queue_util.c \
+					./expand/wild_expand.c \
+					./expand/wild_expand2.c \
+					
 OBJS = $(SRCS:.c=.o)
 #-fsanitize=address
 FLAGS = -Wall -Wextra -Werror -g 

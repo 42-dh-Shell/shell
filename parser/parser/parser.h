@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:54:31 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/11 10:35:49 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/20 16:19:10 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,5 @@ void	st_shift(char **str, t_support *sup);
 int		get_reduce_pop_nb(int reduce_idx);
 void	st_reduce(char **str, t_support *sup);
 
+void	free_sup(t_support *sup);
 #endif

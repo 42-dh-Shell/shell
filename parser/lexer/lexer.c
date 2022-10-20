@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:31:51 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/18 05:47:59 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:29:53 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ t_token_list	*lexer(char *str)
 		t_list_addback(t_list, last_token());
 	if (t_list->head == NULL)
 		free_t_lst(&t_list);
-	// print_token(t_list);
+	if (t_list != NULL)
+		print_token(t_list);
 	return (t_list);
 }
 

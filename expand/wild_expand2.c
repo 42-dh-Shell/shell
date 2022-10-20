@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hash_data_utils.c                                  :+:      :+:    :+:   */
+/*   wild_expand2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 10:27:58 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/11 10:29:00 by hyunkyle         ###   ########.fr       */
+/*   Created: 2022/10/19 15:09:31 by daegulee          #+#    #+#             */
+/*   Updated: 2022/10/19 15:09:58 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hash.h"
+#include "./expand.h"
 
-void	release_hash_node(t_hash_list *target_node)
+void	wild_expand_finish(char **argv, int i, char *wild_str, char *cur_wdir)
 {
-	free(target_node->key);
-	free(target_node->value);
-	free(target_node);
+	if (i)
+		argv[i] = NULL;
+	else
+	{
+		argv[0] = ft_strdup(wild_str);
+		argv[1] = NULL;
+	}
+	free(cur_wdir);
 }

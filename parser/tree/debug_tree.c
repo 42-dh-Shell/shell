@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 12:22:25 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/18 05:55:41 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/20 16:35:28 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,14 +95,17 @@ void	print_subshell(t_ast_node *cur)
 
 	cur1 = ((t_ast *)(cur->subshell->subtree))->root;
 	printf("subshell ~~~~~~\n");
-	cur2 = cur->subshell->sub_rd_lst->head;
-	i = 0;
-	while (cur2 && ++i)
+	if (cur->subshell->sub_rd_lst)
 	{
-		printf("subshell redir %d", i);
-		printf("%s ", g_redir_type[cur2->rd_t]);
-		printf("%s ", cur2->f_name->token_data);
-		cur2 = cur2->next;
+		cur2 = cur->subshell->sub_rd_lst->head;
+		i = 0;
+		while (cur2 && ++i)
+		{
+			printf("subshell redir %d", i);
+			printf("%s ", g_redir_type[cur2->rd_t]);
+			printf("%s ", cur2->f_name->token_data);
+			cur2 = cur2->next;
+		}
 	}
 	do_print(cur1);
 	printf("subshell ~~~~~ end\n");

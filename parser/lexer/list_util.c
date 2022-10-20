@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:45:06 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/11 15:37:01 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:41:47 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_token	*token_dup(t_token *origin)
 
 	dup = ft_malloc(sizeof(t_token));
 	dup->token_type = origin->token_type;
-	dup->token_data = origin->token_data;
+	dup->token_data = ft_strdup(origin->token_data);
 	dup->flag_wild = origin->flag_wild;
 	dup->exps_list = origin->exps_list;
 	dup->next = NULL;

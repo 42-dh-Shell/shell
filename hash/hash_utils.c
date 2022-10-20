@@ -6,14 +6,14 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:40:48 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/11 10:23:49 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/17 19:50:16 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hash.h"
 #include "../libft/libft.h"
 
-t_hash	*get_hash(int size, double load_factor)
+t_hash	*make_hash_table(int size, double load_factor)
 {
 	t_hash		*new_hash;
 	t_hash_list	**hash_list_head;
@@ -44,19 +44,41 @@ t_hash_list	*get_hash_data(char *key, char *value)
 	return (data);
 }
 
-void	hash_data_add_back(t_hash_list *data, t_hash_list **list)
+int	same_key_handler(t_hash_list *data, t_hash_list *list)
 {
-	t_hash_list	*tmp;
+	char	*tmp;
 
-	if (!*list)
+	if (ft_strcmp(list->key, data->key) == 0)
 	{
-		*list = data;
-		return ;
+		tmp = list->value;
+		list->value = data->value;
+		free(tmp);
+		free(data->key);
+		free(data);
+		return (1);
 	}
-	tmp = *list;
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->next = data;
+	return (0);
+}
+
+int	hash_data_add_back(t_hash_list *data, t_hash_list *list)
+{
+	t_hash_list	*prev;
+
+	prev = NULL;
+	while (list->next)
+	{
+		if (same_key_handler(data, list))
+			return (0);
+		prev = list;
+		list = list->next;
+	}
+	if (prev == NULL)
+	{
+		if (same_key_handler(data, list))
+			return (0);
+	}
+	list->next = data;
+	return (1);
 }
 
 double	hash_load_factor(t_hash *hash)
@@ -75,19 +97,4 @@ double	hash_load_factor(t_hash *hash)
 		i++;
 	}
 	return (cnt / (double) hash->table_size);
-}
-
-unsigned long	hash(char *str)
-{
-	unsigned long	hash_val;
-	int				c;
-
-	hash_val = 5381;
-	while (*str)
-	{
-		c = (int) *str;
-		hash_val = ((hash_val * 33) + hash_val) + c;
-		str++;
-	}
-	return (hash_val);
 }
