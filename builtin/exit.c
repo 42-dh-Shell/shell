@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 22:58:58 by idaegyu           #+#    #+#             */
-/*   Updated: 2022/10/18 15:29:01 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/21 14:45:31 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	mini_exit(char **argv)
 
 	argc = argv_len(argv);
 	if (g_shell->sh_lv == 0)
-		printf("exit\n");
+		error_printf("exit\n");
 	if (argc <= 1)
 		status = g_shell->exit_status;
 	else if (argc == 2)
@@ -43,14 +43,15 @@ int	mini_exit(char **argv)
 		if (!str_numeric(argv[1]))
 		{
 			status = 255;
-			printf("exit : %s : numeric argument required\n", argv[1]);
+			error_printf("minishell : exit : %s : numeric argument required\n", \
+			argv[1]);
 		}
 		else
 			status = ft_atoi(argv[1], NULL);
 	}
 	else
 	{
-		printf("exit : too many argument\n");
+		error_printf("minishell : exit : too many argument\n");
 		return (1);
 	}
 	exit(status & 0xFF);

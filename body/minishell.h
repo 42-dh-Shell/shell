@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:48:04 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/20 19:15:47 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/21 14:46:32 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "../libft/libft.h"
 # include "../signal/signal.h"
 # include "../builtin/builtin.h"
+# include "../error_printf/error_printf.h"
 
 typedef struct s_shell
 {

@@ -6,11 +6,11 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 20:25:24 by daegulee          #+#    #+#             */
-/*   Updated: 2022/07/16 17:08:32 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/21 14:52:00 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "error_printf.h"
 
 int	digit_length2(int n)
 {
@@ -78,14 +78,4 @@ int	llnumb_hexlen(unsigned long nb)
 		nb /= 16;
 	}
 	return (len);
-}
-
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
 }

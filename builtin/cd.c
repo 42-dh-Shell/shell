@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:26:09 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/20 14:27:42 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/21 14:44:17 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static char	*get_env_in_ht(char *key)
 	if (path != NULL && ft_strcmp(path, "") == 0)
 		path = NULL;
 	if (path == NULL)
-		printf("mishell : cd: %s not set\n", key);
+		error_printf("mishell : cd: %s not set\n", key);
 	return (path);
 }
 
@@ -78,7 +78,7 @@ int	mini_cd(char **argv)
 		return (1);
 	if (ch_dir < 0)
 	{
-		printf("minishell : cd : %s %s\n", argv[1], strerror(errno));
+		error_printf("minishell : cd : %s %s\n", argv[1], strerror(errno));
 		return (1);
 	}
 	return (0);

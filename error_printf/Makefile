@@ -7,7 +7,6 @@ AR = ar rcs
 
 SRCS = apply_all.c \
 eval_all.c \
-ft_atoi.c \
 ft_isflag.c \
 ft_printf.c \
 handle_sign.c \

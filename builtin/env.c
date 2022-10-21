@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 23:16:10 by idaegyu           #+#    #+#             */
-/*   Updated: 2022/10/19 15:54:42 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/21 14:44:49 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	mini_env(char **argv)
 				cur = cur->next;
 				continue ;
 			}
-			printf("%s=%s\n", cur->key, cur->value);
+			error_printf("%s=%s\n", cur->key, cur->value);
 			cur = cur->next;
 		}
 	}

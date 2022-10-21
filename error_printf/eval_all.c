@@ -6,11 +6,11 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 19:40:56 by daegulee          #+#    #+#             */
-/*   Updated: 2022/07/16 17:07:22 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/21 14:51:29 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "error_printf.h"
 
 static void	eval_flag(t_pack *pack, const char *str)
 {
@@ -35,7 +35,7 @@ static void	eval_flag(t_pack *pack, const char *str)
 
 static	void	eval_width(t_pack *pack, const char *str)
 {
-	pack -> width = ft_atoi(&str[pack -> str_idx]);
+	pack -> width = ft_atoi(&str[pack -> str_idx], NULL);
 	pack -> str_idx += digit_length(pack -> width);
 }
 
@@ -46,7 +46,7 @@ static void	eval_prec(t_pack *pack, const char *str)
 		pack -> str_idx += 1;
 		if ('0' <= str[pack->str_idx] && str[pack->str_idx] <= '9')
 		{
-			pack -> prec = ft_atoi(&str[pack -> str_idx]);
+			pack -> prec = ft_atoi(&str[pack -> str_idx], NULL);
 			if (pack -> prec == 0)
 				pack -> is_zero = 1;
 			pack -> str_idx += digit_length2(pack -> prec);

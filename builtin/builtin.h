@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:26:28 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/18 02:15:37 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/21 14:48:38 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../hash/hash.h"
 # include <stdio.h>
 # include <string.h>
+# include "../error_printf/error_printf.h"
 
 # define NO_EXEC_CHDIR 2
 

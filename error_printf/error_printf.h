@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   error_printf.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 16:57:50 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/20 19:14:14 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/21 14:47:57 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef ERROR_PRINTF_H
+# define ERROR_PRINTF_H
 
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include "../libft/libft.h"
 
 typedef struct s_pack
 {
@@ -34,11 +35,9 @@ typedef struct s_pack
 
 int		apply_all(t_pack *pack, const char *str);
 int		eval_all(t_pack *pack, const char *str);
-int		ft_atoi(const char *nptr);
 int		ft_isflag(char c);
 int		error_printf(const char *str, ...);
 void	ft_putstr(char *s);
-int		ft_strlen(char *str);
 void	handle_sign(t_pack *pack, int nb);
 int		digit_length(int n);
 int		llnumb_hexlen(unsigned long nb);

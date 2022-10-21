@@ -6,7 +6,7 @@
 #    By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 15:07:35 by hyunkyle          #+#    #+#              #
-#    Updated: 2022/10/18 02:16:20 by daegulee         ###   ########.fr        #
+#    Updated: 2022/10/21 14:52:58 by daegulee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,8 @@ NAME = mini
 $(NAME)	: $(OBJS)
 	make -C ./libft
 	make -C ./get_next_line
-	$(CC) $(LINKING_FLAGS)  $(FLAGS) -o $(NAME) $(OBJS) ./libft/libft.a ./get_next_line/libgnl.a
+	make -C ./error_printf
+	$(CC) $(LINKING_FLAGS)  $(FLAGS) -o $(NAME) $(OBJS) ./libft/libft.a ./get_next_line/libgnl.a ./error_printf/errorprintf.a
 
 .c.o :
 	$(CC) -c $< -o $@ $(COMFILE_FLAGS)
@@ -71,17 +72,20 @@ all	: $(NAME)
 clean	:
 		make -C ./libft clean
 		make -C ./get_next_line clean
+		make -C ./error_printf clean
 		rm -f $(OBJS)
 		rm -f ${DEPS}
 
 fclean	:	clean
 		make -C ./libft fclean
 		make -C ./get_next_line fclean
+		make -C ./error_printf fclean
 		rm -f $(NAME)
 
 re	:
 	make -C ./get_next_line re
 	make -C ./libft re
+	make -C ./error_printf re
 	make fclean
 	make all
 

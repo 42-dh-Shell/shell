@@ -6,11 +6,11 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 20:07:42 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/20 19:14:03 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/21 14:49:49 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "error_printf.h"
 
 static void	free_all(t_pack *pack)
 {

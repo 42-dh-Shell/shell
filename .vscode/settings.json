@@ -12,6 +12,7 @@
 		"expand.h": "c",
 		"minishell.h": "c",
 		"unistd.h": "c",
-		"__config": "c"
+		"__config": "c",
+		"error_printf.h": "c"
 	}
 }

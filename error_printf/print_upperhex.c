@@ -6,11 +6,11 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 17:16:22 by daegulee          #+#    #+#             */
-/*   Updated: 2022/07/16 17:08:16 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/21 14:50:14 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "error_printf.h"
 
 static void	print_minus(t_pack *pack, unsigned	int nb, int p_f);
 static void	print_general(t_pack *pack, unsigned int nb, int p_f, int len);

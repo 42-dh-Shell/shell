@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 23:36:51 by idaegyu           #+#    #+#             */
-/*   Updated: 2022/10/20 14:30:26 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/21 14:45:53 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void	sort_print(char **argv)
 	argv_sort(argv);
 	while (argv[++i])
 	{
-		printf("declare -x %s", argv[i]);
+		error_printf("declare -x %s", argv[i]);
 		if (ft_strcmp(get_hash(g_shell->h_table, argv[i]), "") != 0)
-			printf("=\"%s\"", get_hash(g_shell->h_table, argv[i]));
-		printf("\n");
+			error_printf("=\"%s\"", get_hash(g_shell->h_table, argv[i]));
+		error_printf("\n");
 		free(argv[i]);
 	}
 	free(argv);
@@ -80,7 +80,7 @@ void	do_export(char *str, int *result)
 
 	if (!is_id(str))
 	{
-		printf("minishell: export:  \'%s\': not a valid identifier\n", str);
+		error_printf("minishell: export:  \'%s\': not a valid identifier\n", str);
 		*result = 1;
 		return ;
 	}
