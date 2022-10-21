@@ -20,6 +20,6 @@ void	update_w_down(t_pack *pack, char *arg)
 
 void	write_update(t_pack *pack, char *arg)
 {
-	write(1, arg, 1);
+	write(2, arg, 1);
 	(pack -> result_length)++;
 }

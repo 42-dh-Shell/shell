@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 20:07:42 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/21 14:49:49 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/21 15:28:44 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	error_printf(const char *str, ...)
 			cycle_update(pack, &i, &len);
 		}
 		else
-			len += write(1, &str[i++], 1);
+			len += write(2, &str[i++], 1);
 	}
 	free_all(pack);
 	return (len);
