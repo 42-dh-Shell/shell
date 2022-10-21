@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:07:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/20 16:57:21 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/21 20:27:56 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 # include "../libft/libft.h"
 # include "../parser/parser/parser.h"
 # include "../hash/hash.h"
+# include "../builtin/builtin.h"
 # include "../minishell.h"
+# include "../error_printf/error_printf.h"
 # include <fcntl.h>
 # include <sys/wait.h>
 # include <sys/types.h>
@@ -65,7 +67,7 @@ char	*get_valid_fullpath(char **paths, char **argv);
 void	execute_fullpath_handler(char **argv);
 int		is_valid_command(char *command);
 int		is_valid_redir_filename(t_expand_info *expand_info);
-void	execute(t_ast_node *head);
+void	execute(t_ast_node *head, char **argv);
 char	**get_envp(void);
 void	wait_all_pids(t_pid_list **pids);
 int		is_last_pipe(t_ast_node *head);
@@ -73,4 +75,9 @@ void	dup_pipe(t_command_io io, int fd_pipe[]);
 void	execute_and_or_handler(t_ast_node *head, t_pid_list **pids);
 void	execute_subsehll_handler(t_ast_node *head, int fd_pipe[], \
 	t_command_io io, t_pid_list **pids);
+int		builtin_handler(t_ast_node *head, t_command_io io, int echo_flag);
+char	*get_envp_path(void);
+void	execute_builtin(t_ast_node *head, char **argv, t_command_io io);
+void	print_no_file_error(char *filename);
+void	release_pid_list(t_pid_list	*pids);
 #endif

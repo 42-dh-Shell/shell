@@ -6,13 +6,13 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 16:03:40 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/06 17:49:47 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/21 17:12:46 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
-#include "../../get_next_line/get_next_line_bonus.h"
-#include "../../libft/libft.h"
+#include "./parser/parser/parser.h"
+#include "./get_next_line/get_next_line_bonus.h"
+#include "./libft/libft.h"
 
 char	***allocate_table(void)
 {
@@ -43,7 +43,9 @@ char	***make_table(void)
 			break ;
 		result[i] = ft_split(line, '\t');
 		i++;
+		free(line);
 	}
 	close(fd);
 	return (result);
 }
+

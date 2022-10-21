@@ -6,41 +6,16 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:42:37 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/14 14:57:11 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/21 19:47:27 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "../lexer/lexer.h"
 #include "../../stack/stack.h"
+#include "../../minishell.h"
 
-// Build Node  -shift ->word
-// Build Tree   -reduce ->tree
-//  l -> ls -> | -> grep    ---- inputlist 
-// 	
-
-////
-////
-/// 	simple_cmd   				stack
-//			|  
-//  (cat)-> wo  
-// cat  | ls  | grep 
-
-//	<a <<a cat <b < ls   | ~ 	
-//       
-//					|
-//			cmd
-//		redir			cat ------------ 	
-//	--------- 								
-			//															
-//			<<											<	
-//  			a									<<		a
-//  <			 								<		a
-//		a									<		b
-//										cmd		ls
-//									cat a b c d
-
-static const char	***g_lalr_table;
+extern	t_shell	*g_shell;
 
 void	do_shift(t_stack *stack, t_token *tokens, int status, t_ast *ast)
 {
@@ -93,7 +68,7 @@ int	do_reduce(t_stack *stack, int cnt, int reduce_grammer)
 	node = ft_peek(stack);
 	tg_node = get_stack_node(get_stack_data(0, NON_T, -1, reduce_grammer));
 	ft_push(stack, tg_node);
-	goto_action = g_lalr_table[node->data->state][reduce_grammer];
+	goto_action = g_shell->lr_table[node->data->state][reduce_grammer];
 	if (goto_action[0] == 'N')
 		return (0);
 	tg_node = get_stack_node(get_stack_data(0, STATUS, \
@@ -138,14 +113,12 @@ t_ast	*pushdown_automata(t_stack *stack, t_token *tokens, \
 	t_ast		*ast;
 	t_token		*prev;
 
-	if (g_lalr_table == 0)
-		g_lalr_table = (const char ***) make_table();
 	ast = allocate_ast();
 	while (1)
 	{
 		state = ft_peek(stack)->data->state;
 		y = get_y_idx(tokens);
-		action = g_lalr_table[state][y];
+		action = g_shell->lr_table[state][y];
 		if (tokens->token_type != LAST)
 			prev = tokens;
 		if (action[0] == 'A')
@@ -153,8 +126,8 @@ t_ast	*pushdown_automata(t_stack *stack, t_token *tokens, \
 		if (action_handler(action, stack, &tokens, ast) == 0)
 		{
 			ft_color_printft2(prev->str);
-			read_heredoc(ast->head, 0);
-			release_ast(ast);
+			read_heredoc(ast->head, 1);
+			release_all_ast(ast);
 			return (0);
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 20:23:39 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/11 19:45:05 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/21 19:46:10 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_ast_node	*get_redir_ast_node(t_token *token)
 	new_node = ft_calloc(sizeof(t_ast_node), 1);
 	if (!new_node)
 		ft_exit("malloc error", 0);
-	new_node->str = token->str;
+	new_node->str = ft_strdup(token->str);
 	if (token->token_type == DLESS)
 		new_node->node_type = NODE_DLESS;
 	else if (token->token_type == LESS)

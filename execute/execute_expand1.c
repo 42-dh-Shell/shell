@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:19:38 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/18 19:37:15 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/21 17:24:30 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,5 @@ char	**get_argv(char *str, t_expand_info *expand_info, char *node_str)
 		return (result);
 	}
 	argv_expand(result, expand_info, str);
-	free(str);
 	return (result);
 }

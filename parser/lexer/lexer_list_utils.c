@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 18:36:59 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/14 10:54:25 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/21 20:44:55 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,6 @@ void	release_ex_info(t_expand_info *head)
 		target = head;
 		head = head->next;
 		free(target->str);
-		free(target);
-	}
-}
-
-void	release_token_lst(t_token *head)
-{
-	t_token	*target;
-
-	while (head)
-	{
-		target = head;
-		head = head->next;
 		free(target);
 	}
 }

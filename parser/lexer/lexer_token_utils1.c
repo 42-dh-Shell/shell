@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 19:20:05 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/13 18:31:05 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/21 19:01:29 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,18 @@ t_token	*get_bracket_toekn(char **line)
 {
 	t_token	*result;
 
-	result = allocate_token(1);
+	result = ft_calloc(sizeof(t_token), 1);
+	if (!result)
+		ft_exit("malloc error\n", 1);
 	if (**line == ASCII_LBRAK)
 	{
 		(*line)++;
 		result->token_type = LBRAC;
-		result->str[0] = '(';
-		result->str[1] = 0;
 	}
 	else
 	{
 		(*line)++;
 		result->token_type = RBRAC;
-		result->str[0] = ')';
-		result->str[1] = 0;
 	}
 	return (result);
 }

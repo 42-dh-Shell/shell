@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:51:53 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/18 19:54:59 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/21 14:16:55 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	validation_ex_info(t_token	*token)
 	int				i;
 
 	expand_info = token->expand_info;
-	i = 0;
 	while (expand_info)
 	{
+		i = 0;
 		while (expand_info->str[++i])
 		{
 			if (is_valid_expand_char(expand_info->str[i], i))
@@ -41,6 +41,7 @@ void	validation_ex_info(t_token	*token)
 				free(expand_info->str);
 				expand_info->str = str;
 				expand_info->size = -1;
+				break ;
 			}
 		}
 		expand_info = expand_info->next;

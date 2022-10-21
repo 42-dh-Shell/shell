@@ -16,6 +16,11 @@
 		"__node_handle": "c",
 		"hash.h": "c",
 		"__functional_03": "c",
-		"functional": "c"
+		"functional": "c",
+		"atomic": "c",
+		"memory": "c",
+		"minishell.h": "c",
+		"execute.h": "c",
+		"ios": "c"
 	}
 }

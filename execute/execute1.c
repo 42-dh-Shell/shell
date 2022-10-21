@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:25:43 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/20 19:12:09 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/21 18:41:56 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,7 @@ void	dup_fd(char *filename, enum	e_ast_types type)
 	if (fd < 0)
 	{
 		if (errno == 2)
-		{
-			ft_putstr_fd("minishell: no such file or directory: ", 2);
-			ft_putstr_fd(filename, 2);
-			ft_putstr_fd("\n", 2);
-		}
+			print_no_file_error(filename);
 		exit(1);
 	}
 	if (type == NODE_DGREAT || type == NODE_GREAT)
@@ -39,6 +35,7 @@ void	dup_fd(char *filename, enum	e_ast_types type)
 		status = dup2(fd, STDIN_FILENO);
 	if (status < 0)
 		ft_exit("dup2 error\n", 1);
+	close(fd);
 }
 
 void	execute_redir(t_ast_node *head)
@@ -68,8 +65,9 @@ void	execute_make_fullpath(char **argv, char *envp)
 	}
 	else
 	{
-		printf(COMM_ERROR);
-		printf("%s\n", argv[0]);
+		ft_putstr_fd(COMM_ERROR, 2);
+		ft_putstr_fd(argv[0], 2);
+		ft_putstr_fd("\n", 2);
 		exit(127);
 	}
 }
@@ -78,8 +76,9 @@ void	execute_fullpath_handler(char **argv)
 {
 	if (!is_valid_command(argv[0]))
 	{
-		printf(COMM_ERROR);
-		printf("%s\n", argv[0]);
+		ft_putstr_fd(COMM_ERROR, 2);
+		ft_putstr_fd(argv[0], 2);
+		ft_putstr_fd("\n", 2);
 		exit(127);
 	}
 	execute_fullpath(argv);

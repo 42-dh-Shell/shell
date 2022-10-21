@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:16:30 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/14 10:56:23 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/21 19:45:45 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	add_head_redir(t_token *token, t_ast *ast)
 	new_node = ft_calloc(sizeof(t_ast_node), 1);
 	if (!new_node)
 		ft_exit("malloc error", 0);
-	new_node->str = token->str;
+	new_node->str = ft_strdup(token->str);
 	if (token->token_type == DLESS)
 		new_node->node_type = NODE_DLESS;
 	else if (token->token_type == LESS)
@@ -60,10 +60,10 @@ void	add_head_command(t_token *token, t_ast *ast)
 	new_node = ft_calloc(sizeof(t_ast_node), 1);
 	if (!new_node)
 		ft_exit("malloc error", 0);
-	new_node->str = token->str;
+	new_node->str = ft_strdup(token->str);
 	new_node->wildcard_flag = token->wildcard_flag;
 	new_node->node_type = NODE_COMMAND;
-	new_node->expand_info = token->expand_info;
+	new_node->expand_info = dup_expand_info(token->expand_info);
 	ast->head = new_node;
 	ast->last_added = new_node;
 	ast->command_node = new_node;
@@ -76,8 +76,8 @@ void	add_redir_token(t_token *token, t_ast *ast)
 	redir_token = ft_calloc(sizeof(t_redir_token), 1);
 	if (!redir_token)
 		ft_exit("malloc error", 0);
-	redir_token->str = token->str;
-	redir_token->expand_info = token->expand_info;
+	redir_token->str = ft_strdup(token->str);
+	redir_token->expand_info = dup_expand_info(token->expand_info);
 	ast->last_added->redir_token = redir_token;
 }
 
@@ -88,8 +88,8 @@ void	add_command_node_right(t_token *token, t_ast *ast)
 	new_node = ft_calloc(sizeof(t_ast_node), 1);
 	if (!new_node)
 		ft_exit("malloc error", 0);
-	new_node->str = token->str;
-	new_node->expand_info = token->expand_info;
+	new_node->str = ft_strdup(token->str);
+	new_node->expand_info = dup_expand_info(token->expand_info);
 	new_node->node_type = NODE_COMMAND;
 	new_node->wildcard_flag = token->wildcard_flag;
 	ast->last_added->right = new_node;

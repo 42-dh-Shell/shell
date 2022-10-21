@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/20 18:56:58 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/21 20:47:59 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,19 @@ void	print_ast_status(t_ast *ast)
 char	*get_full_filename(int file_num)
 {
 	char		*file_name;
+	char		*tmp_dir;
 
+	if (g_shell->tmp != NULL)
+		tmp_dir = g_shell->tmp;
+	else
+		tmp_dir = TMP_DIR;
 	file_name = ft_calloc (sizeof (char), ft_strlen(TMP_FILENAME) + \
-		ft_strlen(TMP_DIR) + ft_strlen(ft_itoa(file_num)) + 1);
-	ft_strlcat(file_name, TMP_DIR, ft_strlen(TMP_DIR) + 1);
+		ft_strlen(tmp_dir) + ft_strlen(ft_itoa(file_num)) + 1);
+	ft_strlcat(file_name, tmp_dir, ft_strlen(tmp_dir) + 1);
 	ft_strlcat(file_name, TMP_FILENAME, ft_strlen(TMP_FILENAME) + \
-			ft_strlen(TMP_DIR) + 1);
+			ft_strlen(tmp_dir) + 1);
 	ft_strlcat(file_name, ft_itoa(file_num), ft_strlen(TMP_FILENAME) + \
-		ft_strlen(TMP_DIR) + ft_strlen(ft_itoa(file_num)) + 1);
+		ft_strlen(tmp_dir) + ft_strlen(ft_itoa(file_num)) + 1);
 	return (file_name);
 }
 
@@ -143,13 +148,10 @@ void	start_parse(t_token	*tokens)
 	ast = pushdown_automata(stack, tokens, 0, 0);
 	release_stack(stack);
 	if (!ast)
-	{
-		fail_make_token_release(tokens);
 		return ;
-	}
-	release_token_lst(tokens);
 	read_heredoc(ast->head, 1);
 	pids = NULL;
 	execute_command(ast->head, NULL, C_NORMAL, &pids);
 	wait_all_pids(&pids);
+	release_all_ast(ast);
 }

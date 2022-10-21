@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 12:14:06 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/18 16:17:27 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/21 20:17:39 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,16 +126,12 @@ void	add_last_token(t_token *head)
 {
 	t_token	*last_token;
 
-	last_token = malloc (sizeof(t_token));
+	last_token = ft_calloc (sizeof(t_token), 1);
 	if (!last_token)
 		ft_exit("malloc error", 0);
 	while (head->next)
 		head = head->next;
 	last_token->token_type = LAST;
-	last_token->expand_info = NULL;
-	last_token->next = NULL;
-	last_token->wildcard_flag = 0;
-	last_token->str = NULL;
 	head->next = last_token;
 }
 
@@ -165,4 +161,13 @@ void	lexer_parse(char *line)
 	}
 	add_last_token(head);
 	start_parse(head);
+	fail_make_token_release(head);
 }
+//$0 = 0x0000000100404090
+//0x0000000100404090  -token
+//0x00000001004040b0 "ls"
+//p token->next
+// (s_token *) $4 = 0x00000001004040c0
+// p token->next->next
+// (s_token *) $5 = 0x0000000000000000
+// 1 (16 bytes) ROOT LEAK: 0x1004040e0 [16]

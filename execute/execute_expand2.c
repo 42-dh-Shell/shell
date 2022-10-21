@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:36:23 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/18 19:25:58 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/21 17:25:01 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,21 @@ int	expand_str_size(char *node_str, t_expand_info *expand_info, int size)
 
 char	**expand_str(char *node_str, t_expand_info *expand_info)
 {
-	char			*str;
+	char	*str;
+	char	**argv;
 
 	if (expand_info)
+	{
 		str = ft_calloc(sizeof(char), \
 			expand_str_size(node_str, expand_info, 0) + 1);
+	}
 	else
 		str = ft_calloc(sizeof(char), ft_strlen(node_str) + 1);
 	if (!str)
 		ft_exit("malloc error\n", 1);
 	if (expand_info)
 		get_expand_str(str, expand_info, node_str, 0);
-	return (get_argv(str, expand_info, node_str));
+	argv = get_argv(str, expand_info, node_str);
+	free(str);
+	return (argv);
 }

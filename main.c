@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 15:46:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/19 13:13:13 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/21 20:48:12 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_shell	*g_shell;
 
 void	start_shell(void)
 {
-	int				ret;
 	char			*line;
 
 	set_signal_term();
@@ -29,16 +28,11 @@ void	start_shell(void)
 		line = readline("minishell$ ");
 		if (line)
 		{
-			ret = ft_strcmp(line, "exit");
-			if (ret && ft_strcmp(line, "") != 0)
+			if (ft_strcmp(line, "") != 0)
 				lexer_parse(line);
+			system("leaks mini");
 			add_history(line);
 			free(line);
-			if (!ret)
-			{
-				printf("exit\n");
-				break ;
-			}
 		}
 		else
 			print_exit();
@@ -119,11 +113,10 @@ void	init_shell(char **envp)
 		key = get_key(envp[i]);
 		value = get_value(envp[i]);
 		hash_add(g_shell->h_table, key, value);
+		if (ft_strcmp(key, "TMPDIR") == 0)
+			g_shell->tmp = ft_strdup(value);
 		if (ft_strcmp(key, "OLDPWD") == 0)
-		{
-			hash_remove(g_shell->h_table, key);
 			hash_add(g_shell->h_table, ft_strdup("OLDPWD"), ft_strdup(""));
-		}
 	}
 }
 
@@ -132,5 +125,6 @@ int	main(int argc, char **argv, char **envp)
 	if (argc != 1 && argv != NULL)
 		ft_exit("minishell : not support non-interactive mode.\n", 1);
 	init_shell(envp);
+	g_shell->lr_table = make_table();
 	start_shell();
 }

@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:12:35 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/19 19:21:34 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/21 17:30:16 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ int	is_valid_redir_filename(t_expand_info *expand_info)
 			value = get_hash(g_shell->h_table, key);
 			if (value != NULL && get_argv_size(ft_split(value, ' ')) > 1)
 			{
-				printf("minishell: %s: ambiguous redirect\n", key);
+				ft_putstr_fd("minishell: ", 2);
+				ft_putstr_fd(key, 2);
+				ft_putstr_fd(": ambiguous redirect\n", 2);
 				free(key);
 				return (0);
 			}
@@ -104,9 +106,13 @@ char	**get_command_info(t_ast_node *head)
 {
 	char		**argv;
 	t_suffix	*suffix_list;
+	t_ast_node	*command_node;
 
-	argv = expand_str(head->str, head->expand_info);
-	suffix_list = head->suffix_list;
+	command_node = head;
+	while (command_node && command_node->node_type != NODE_COMMAND)
+		command_node = command_node->left;
+	argv = expand_str(command_node->str, command_node->expand_info);
+	suffix_list = command_node->suffix_list;
 	while (suffix_list)
 	{
 		argv = add_back_argv(argv, \

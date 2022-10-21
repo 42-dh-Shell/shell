@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 15:07:43 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/18 15:44:45 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/21 10:20:58 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	dquote_handler(int *i, t_token *token, char **line, int *str_idx)
 	*i += 1;
 	if (!closed_quote_dquote(*i, line, 34))
 	{
-		printf("unclosed dquote\n");
+		ft_putstr_fd("unclosed dquote\n", 2);
 		return (0);
 	}
 	while ((*line)[*i] != ASCII_DQUOTE)
@@ -67,7 +67,7 @@ int	quote_handler(int *i, t_token	*token, char **line, int *str_idx)
 	*i += 1;
 	if (!closed_quote_dquote(*i, line, ASCII_QUOTE))
 	{
-		printf("unclosed quote\n");
+		ft_putstr_fd("unclosed quote\n", 2);
 		return (0);
 	}
 	while ((*line)[*i] != ASCII_QUOTE)
