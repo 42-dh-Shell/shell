@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:07:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/21 20:27:56 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/22 17:27:56 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,9 @@ char	*get_envp_path(void);
 void	execute_builtin(t_ast_node *head, char **argv, t_command_io io);
 void	print_no_file_error(char *filename);
 void	release_pid_list(t_pid_list	*pids);
+void	close_pipe(int fd_pipe[2], int idx);
+void	store_io(void);
+char	*get_io_filename(int in_out_flag);
+void	close_pipe1(int fd_pipe[2], t_command_io io);
+
 #endif

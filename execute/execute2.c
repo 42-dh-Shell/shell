@@ -6,11 +6,40 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 18:43:55 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/21 16:37:04 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/22 18:37:59 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
+
+// void	close_pipe1(int fd_pipe[2], t_command_io io)
+// {
+// 	if (io == C_READ)
+// 		close_pipe(fd_pipe, 0);
+// 	else if (io == C_WRITE)
+// 		close_pipe(fd_pipe, 1);
+// 	else if (io == C_RW)
+// 	{
+// 		close_pipe(fd_pipe, 0);
+// 		close_pipe(fd_pipe, 1);
+// 	}
+// }
+
+void	close_pipe(int fd_pipe[2], int idx)
+{	
+	if (fd_pipe[idx] != -1)
+	{
+		close(fd_pipe[idx]);
+		fd_pipe[idx] = -1;
+	}
+}
+
+int	is_regular_fd(int fd)
+{
+	if (fd == STDIN_FILENO || fd == STDOUT_FILENO || fd == STDERR_FILENO)
+		return (0);
+	return (1);
+}
 
 void	dup_pipe(t_command_io io, int fd_pipe[])
 {
@@ -18,23 +47,24 @@ void	dup_pipe(t_command_io io, int fd_pipe[])
 	{
 		if (dup2(fd_pipe[0], STDIN_FILENO) < 0)
 			ft_exit("dup error\n", 1);
+		close_pipe(fd_pipe, 0);
 		if (dup2(fd_pipe[1], STDOUT_FILENO) < 0)
 			ft_exit("dup error\n", 1);
-		close(fd_pipe[0]);
-		close(fd_pipe[1]);
+		close_pipe(fd_pipe, 1);
 	}
 	else if (io == C_WRITE)
 	{
-		close(fd_pipe[0]);
+		close_pipe(fd_pipe, 0);
 		if (dup2(fd_pipe[1], STDOUT_FILENO) < 0)
 			ft_exit("dup error\n", 1);
-		close(fd_pipe[1]);
+		close_pipe(fd_pipe, 1);
 	}
 	else if (io == C_READ)
 	{
+		close_pipe(fd_pipe, 1);
 		if (dup2(fd_pipe[0], STDIN_FILENO) < 0)
 			ft_exit("dup error\n", 1);
-		close(fd_pipe[0]);
+		close_pipe(fd_pipe, 0);
 	}
 }
 

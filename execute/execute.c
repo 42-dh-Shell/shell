@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:06:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/22 16:32:28 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/22 18:53:43 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 //        ls           |      hello        | 	 hello	  |    hello
 //			
 //
+
 
 void	execute_middle_pipe(int read, int write, t_ast_node *head, \
 		t_pid_list **pids)
@@ -23,8 +24,8 @@ void	execute_middle_pipe(int read, int write, t_ast_node *head, \
 	fd[0] = read;
 	fd[1] = write;
 	execute_command(head->right, fd, C_RW, pids);
-	close(fd[0]);
-	close(fd[1]);
+	close_pipe(fd, 0);
+	close_pipe(fd, 1);
 }
 
 void	execute_pipe_handler(t_ast_node *head, t_pid_list **pids, \
@@ -39,18 +40,17 @@ void	execute_pipe_handler(t_ast_node *head, t_pid_list **pids, \
 	if (head->left->node_type != NODE_PIPE)
 	{
 		execute_command(head->left, fd, C_WRITE, pids);
-		close(fd[1]);
+		close_pipe(fd, 1);
 	}
 	if (fd_pipe)
 		execute_middle_pipe(fd[0], fd_pipe[1], head, pids);
-	else
+	else if (is_last_pipe(head))
 	{
 		execute_command(head->right, fd, C_READ, pids);
-		close(fd[0]);
-		close(fd[1]);
-	}
-	if (is_last_pipe(head))
+		close_pipe(fd, 0);
+		close_pipe(fd, 1);
 		wait_all_pids(pids);
+	}
 }
 
 void	execute(t_ast_node *head, char **argv)
