@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 23:36:51 by idaegyu           #+#    #+#             */
-/*   Updated: 2022/10/21 15:13:39 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/22 15:19:07 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void	sort_print(char **argv)
 	argv_sort(argv);
 	while (argv[++i])
 	{
-		error_printf("declare -x %s", argv[i]);
+		printf("declare -x %s", argv[i]);
 		if (ft_strcmp(get_hash(g_shell->h_table, argv[i]), "") != 0)
-			error_printf("=\"%s\"", get_hash(g_shell->h_table, argv[i]));
-		error_printf("\n");
+			printf("=\"%s\"", get_hash(g_shell->h_table, argv[i]));
+		printf("\n");
 		free(argv[i]);
 	}
 	free(argv);

@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 23:22:07 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/21 18:54:37 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/21 20:54:40 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,8 @@ void	release_argv(char **argv)
 	int	i;
 
 	i = 0;
-	printf("argv = %s\n", argv[i]);
 	while (argv[i])
 	{
-		printf("argv = %s\n", argv[i]);
 		free(argv[i]);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:06:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/21 20:20:09 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/22 16:32:28 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	execute_command_handler(t_ast_node *head, int fd_pipe[], \
 	if (is_builtin(argv[0]))
 	{
 		execute_builtin(head, argv, io);
+		release_argv(argv);
 		return ;
 	}
 	pid = fork();
@@ -97,7 +98,7 @@ void	execute_command_handler(t_ast_node *head, int fd_pipe[], \
 	else
 	{
 		add_last_pid(pid, pids);
-		free(argv);
+		release_argv(argv);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 01:39:28 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/21 15:13:44 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/22 15:19:59 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	mini_pwd(char **argv)
 	if (argc == 0)
 		return (1);
 	str = getcwd(NULL, 0);
-	error_printf("%s\n", str);
+	printf("%s\n", str);
 	if (str == NULL)
 		return (1);
 	free(str);

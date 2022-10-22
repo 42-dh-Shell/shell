@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:26:09 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/21 15:13:27 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/22 15:17:51 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int	change_dir(char **argv)
 	{
 		path = get_env_in_ht("OLDPWD");
 		if (path)
-			printf("%s\n", path);
+			error_printf("%s\n", path);
 	}
 	else
 		ch_dir = chdir(argv[1]);

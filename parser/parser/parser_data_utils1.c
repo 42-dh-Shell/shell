@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:50:10 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/21 20:45:15 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/22 16:22:24 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,27 +50,24 @@ void	release_all_redir_token(t_redir_token *token)
 
 void	release_all_ast_node(t_ast_node *head)
 {
-	t_ast_node	*target;
-
 	if (head == 0)
 		return ;
-	target = head;
-	if (head->left != 0)
+	if (head->left)
 		release_all_ast_node(head->left);
-	if (head->right != 0)
+	if (head->right)
 		release_all_ast_node(head->right);
-	if (target->node_type == NODE_SUBSHELL)
+	if (head->node_type == NODE_SUBSHELL)
 	{
-		free(target);
+		free(head);
 		return ;
 	}
-	release_all_suffix_list(target->suffix_list);
-	release_ex_info(target->expand_info);
-	if (ft_strcmp(target->str, "<<") == 0)
-		unlink(target->redir_token->str);
-	release_all_redir_token(target->redir_token);
-	free(target->str);
-	free(target);
+	release_all_suffix_list(head->suffix_list);
+	release_ex_info(head->expand_info);
+	if (ft_strcmp(head->str, "<<") == 0)
+		unlink(head->redir_token->str);
+	release_all_redir_token(head->redir_token);
+	free(head->str);
+	free(head);
 }
 
 void	release_all_ast(t_ast *ast)

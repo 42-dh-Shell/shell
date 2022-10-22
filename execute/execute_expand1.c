@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:19:38 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/21 17:24:30 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/21 20:52:33 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ char	**argv_no_expand(char *node_str)
 	result = ft_calloc(sizeof (char *), 2);
 	if (!result)
 		ft_exit("malloc error\n", 1);
-	result[0] = node_str;
+	result[0] = ft_strdup(node_str);
 	return (result);
 }
 

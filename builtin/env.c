@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 23:16:10 by idaegyu           #+#    #+#             */
-/*   Updated: 2022/10/21 15:13:35 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/22 15:16:35 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	mini_env(char **argv)
 				cur = cur->next;
 				continue ;
 			}
-			error_printf("%s=%s\n", cur->key, cur->value);
+			printf("%s=%s\n", cur->key, cur->value);
 			cur = cur->next;
 		}
 	}

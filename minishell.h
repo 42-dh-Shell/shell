@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:48:04 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/21 17:06:11 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/22 14:56:17 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct s_shell
 	int			sh_lv;
 	char		*tmp;
 	char		***lr_table;
+	char		*io_filename[2];
+	int			std_io[2];
 }	t_shell;
 
 char	*get_key(char *str);

@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/21 20:47:59 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/22 16:35:06 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,20 +138,45 @@ void	read_heredoc(t_ast_node *ast, int write_flag)
 		read_heredoc(ast->right, write_flag);
 }
 
+void	stdio_rollback(void)
+{
+	if (g_shell->io_filename[0])
+	{
+		unlink(g_shell->io_filename[0]);
+		free(g_shell->io_filename[0]);
+		g_shell->io_filename[0] = NULL;
+		if (dup2(g_shell->std_io[0], STDIN_FILENO) < 0)
+			ft_exit("dup error\n", 1);
+		close(g_shell->std_io[0]);
+		g_shell->std_io[0] = 0;
+	}
+	else if (g_shell->io_filename[1])
+	{
+		unlink(g_shell->io_filename[1]);
+		free(g_shell->io_filename[1]);
+		g_shell->io_filename[1] = NULL;
+		if (dup2(g_shell->std_io[1], STDOUT_FILENO) < 0)
+			ft_exit("dup error\n", 1);
+		close(g_shell->std_io[1]);
+		g_shell->std_io[1] = 0;
+	}
+}
+
 void	start_parse(t_token	*tokens)
 {
 	t_stack		*stack;
 	t_ast		*ast;
 	t_pid_list	*pids;
 
+	pids = NULL;
 	stack = get_stack();
 	ast = pushdown_automata(stack, tokens, 0, 0);
 	release_stack(stack);
 	if (!ast)
 		return ;
 	read_heredoc(ast->head, 1);
-	pids = NULL;
 	execute_command(ast->head, NULL, C_NORMAL, &pids);
+	stdio_rollback();
 	wait_all_pids(&pids);
 	release_all_ast(ast);
 }

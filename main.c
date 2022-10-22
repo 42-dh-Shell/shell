@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 15:46:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/21 20:48:12 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/22 16:37:04 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	start_shell(void)
 		{
 			if (ft_strcmp(line, "") != 0)
 				lexer_parse(line);
-			system("leaks mini");
 			add_history(line);
 			free(line);
 		}

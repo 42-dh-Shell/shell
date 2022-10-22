@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 10:23:12 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/21 19:44:02 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/22 14:00:40 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	add_command_node(t_token *token, t_ast *ast)
 	new_node = ft_calloc(sizeof(t_ast_node), 1);
 	if (!new_node)
 		ft_exit("malloc error", 0);
-	new_node->str = token->str;
+	new_node->str = ft_strdup(token->str);
 	new_node->wildcard_flag = token->wildcard_flag;
 	new_node->node_type = NODE_COMMAND;
 	new_node->parent = ast->last_added;

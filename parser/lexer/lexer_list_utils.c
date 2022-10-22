@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 18:36:59 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/21 20:44:55 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/22 15:31:27 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,9 @@ void	fail_make_token_release(t_token *head)
 	{
 		target = head;
 		head = head->next;
-		free(target->str);
+		if (target->token_type != LBRAC && target->token_type != RBRAC \
+			&& target->token_type != LAST)
+			free(target->str);
 		release_ex_info(target->expand_info);
 		free(target);
 	}
