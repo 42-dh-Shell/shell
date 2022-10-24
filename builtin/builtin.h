@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:26:28 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/21 18:51:34 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 17:54:45 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <string.h>
 # include "../error_printf/error_printf.h"
+# include "../parser/parser/parser.h"
 
 # define NO_EXEC_CHDIR 2
 
@@ -32,8 +33,9 @@ int			mini_export(char **argv);
 int			mini_echo(char **argv);
 int			mini_unset(char **argv);
 int			mini_pwd(char **argv);
-int			is_builtin(char *argv_0);
-int			do_builtin(char **argv);
+int			is_builtin(t_ast_node *head);
+int			do_builtin(t_ast_node *head);
 int			mini_exit(char **argv);
 void		release_argv(char **argv);
+int			mini_exit_status(char **argv);
 #endif

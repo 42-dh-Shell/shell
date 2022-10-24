@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/24 11:42:32 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 17:42:12 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	read_heredoc(t_ast_node *ast, int write_flag)
 
 	if (!ast)
 		return ;
-	if (write_flag && ast->node_type == NODE_DLESS && ast->redir_token != 0)
+	if (write_flag && ast->node_type == NODE_DLESS && ast->redir_token)
 	{
 		file_name = get_full_filename(file_num);
 		fd = open (file_name, O_WRONLY | O_CREAT, 0644);
@@ -130,7 +130,7 @@ void	read_heredoc(t_ast_node *ast, int write_flag)
 		file_num += 1;
 	}
 	else if (!write_flag && ast->node_type == NODE_DLESS && \
-		ast->redir_token != 0)
+		ast->redir_token)
 		read_start(ast, write_flag, -1);
 	if (ast->left != 0)
 		read_heredoc(ast->left, write_flag);

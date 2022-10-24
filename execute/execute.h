@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:07:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/24 11:42:01 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 15:37:35 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define EXECUTE_H
 # include "../libft/libft.h"
 # include "../parser/parser/parser.h"
+# include "../parser/lexer/lexer.h"
 # include "../hash/hash.h"
 # include "../builtin/builtin.h"
 # include "../minishell.h"
@@ -23,6 +24,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <unistd.h>
+# include <dirent.h>
 # include <errno.h> 
 # define COMM_ERROR "minishell : command not found: "
 
@@ -33,6 +35,19 @@ typedef enum e_command_io
 	C_NORMAL,
 	C_RW
 }	t_command_io;
+
+typedef struct s_qnode
+{	
+	char			c;
+	struct s_qnode	*back;
+}	t_qnode;
+
+typedef struct t_queue
+{
+	int		len;
+	t_qnode	*front;
+	t_qnode	*tail;
+}	t_queue;
 
 extern	t_shell	*g_shell;
 
@@ -61,7 +76,7 @@ char	*get_valid_fullpath(char **paths, char **argv);
 void	execute_fullpath_handler(char **argv);
 int		is_valid_command(char *command);
 int		is_valid_redir_filename(t_expand_info *expand_info);
-void	execute(t_ast_node *head, char **argv);
+void	execute(t_ast_node *head);
 char	**get_envp(void);
 void	wait_all_pids(void);
 int		is_last_pipe(t_ast_node *head);
@@ -71,12 +86,25 @@ void	execute_subsehll_handler(t_ast_node *head, int fd_pipe[], \
 	int next_pipe[], t_command_io io);
 int		builtin_handler(t_ast_node *head, t_command_io io, int echo_flag);
 char	*get_envp_path(void);
-void	execute_builtin(t_ast_node *head, char **argv, t_command_io io);
+void	execute_builtin(t_ast_node *head, t_command_io io);
 void	print_no_file_error(char *filename);
 void	release_pid_list(t_pid_list	*pids);
 void	close_pipe(int fd_pipe[2], int idx);
 void	store_io(void);
 char	*get_io_filename(int in_out_flag);
 void	close_pipe1(int fd_pipe[2], t_command_io io);
+//queue
+t_qnode	*new_qnode(char c);
+t_queue	*init_queue(void);
+void	push_queue(t_queue *queue, t_qnode *new);
+t_qnode	*pop_queue(t_queue *queue);
+t_queue	*init_str_queue(char *str);
+void	free_queue(t_queue *queue);
 
+//expand_wild
+char	look_q_not_asterisk(t_queue *queue);
+int		is_wild(char *wild_str, char *check);
+int		wild_check_part(t_queue	*wild_queue, int *i, char *check);
+void	wild_expand_finish(char **argv, int i, char *wild_str, char *cur_wdir);
+char	**wild_expand(char *wild_str);
 #endif

@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 17:04:37 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/19 19:30:26 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 13:16:06 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <signal.h>
 #include <termios.h>
 #include <stdlib.h>
+#include "../libft/libft.h"
 
 void	singnal_handler(int signum)
 {

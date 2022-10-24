@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 14:37:43 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/22 16:35:57 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 15:51:54 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	execute_buitin_redir(t_ast_node *head)
 	return (result);
 }
 
-void	execute_builtin(t_ast_node *head, char **argv, t_command_io io)
+void	execute_builtin(t_ast_node *head, t_command_io io)
 {
 	int		result;
 
@@ -115,11 +115,11 @@ void	execute_builtin(t_ast_node *head, char **argv, t_command_io io)
 		if (!result)
 			return ;
 		if (head->left != NULL)
-			execute_builtin(head->left, argv, io);
+			execute_builtin(head->left, io);
 	}
 	else
 	{
 		if (io == C_NORMAL)
-			g_shell->exit_status = do_builtin(argv);
+			g_shell->exit_status = do_builtin(head);
 	}
 }

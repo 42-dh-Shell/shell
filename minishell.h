@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:48:04 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/24 10:32:15 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 13:59:13 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <fcntl.h>
 # include "./hash/hash.h"
 # include "./get_next_line/get_next_line_bonus.h"
+# include "./parser/parser/parser.h"
 
 typedef struct s_pids
 {
@@ -35,6 +36,7 @@ typedef struct s_shell
 	char		*tmp;
 	char		***lr_table;
 	char		*io_filename[2];
+	t_ast_node	*redir_list;
 	int			std_io[2];
 	t_pid_list	*pids;
 }	t_shell;

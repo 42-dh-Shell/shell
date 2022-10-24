@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:12:35 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/22 19:02:05 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:43:53 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,53 +71,4 @@ void	add_last_pid(pid_t pid)
 	while (lst->next)
 		lst = lst->next;
 	lst->next = pid_node;
-}
-
-char	**add_back_argv(char **argv, char **new)
-{
-	int		i;
-	int		new_size;
-	int		argv_size;
-	char	**new_argv;
-
-	argv_size = 0;
-	new_size = 0;
-	while (argv[argv_size])
-		argv_size++;
-	while (new[new_size])
-		new_size++;
-	new_argv = ft_calloc(sizeof(char *), argv_size + new_size + 1);
-	if (!new_argv)
-		ft_exit("malloc error\n", 1);
-	i = -1;
-	while (++i < argv_size + new_size)
-	{
-		if (i < argv_size)
-			new_argv[i] = argv[i];
-		else
-			new_argv[i] = new[i - argv_size];
-	}
-	free(argv);
-	free(new);
-	return (new_argv);
-}
-
-char	**get_command_info(t_ast_node *head)
-{
-	char		**argv;
-	t_suffix	*suffix_list;
-	t_ast_node	*command_node;
-
-	command_node = head;
-	while (command_node && command_node->node_type != NODE_COMMAND)
-		command_node = command_node->left;
-	argv = expand_str(command_node->str, command_node->expand_info);
-	suffix_list = command_node->suffix_list;
-	while (suffix_list)
-	{
-		argv = add_back_argv(argv, \
-			expand_str(suffix_list->str, suffix_list->expand_info));
-		suffix_list = suffix_list->next;
-	}
-	return (argv);
 }

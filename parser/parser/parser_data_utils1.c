@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:50:10 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/22 16:22:24 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 17:41:42 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	release_all_ast_node(t_ast_node *head)
 	}
 	release_all_suffix_list(head->suffix_list);
 	release_ex_info(head->expand_info);
-	if (ft_strcmp(head->str, "<<") == 0)
+	if (ft_strcmp(head->str, "<<") == 0 && head->redir_token)
 		unlink(head->redir_token->str);
 	release_all_redir_token(head->redir_token);
 	free(head->str);

@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:25:43 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/24 11:34:36 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 17:06:44 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	execute_redir(t_ast_node *head)
 	char	**argv;
 
 	if (!is_valid_redir_filename(head->redir_token->expand_info))
-		return ;
+		exit(1);
 	argv = expand_str(head->redir_token->str, \
 		head->redir_token->expand_info);
 	dup_fd(argv[0], head->node_type);

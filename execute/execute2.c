@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 18:43:55 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/24 11:41:43 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:04:06 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,9 @@ void	execute_subsehll_handler(t_ast_node *head, int fd_pipe[], \
 	if (pid == 0)
 	{
 		g_shell->pids = NULL;
-		dup_pipe(io, fd_pipe, next_pipe);
 		if (head->right)
-			execute_redir(head->right);
-		execute_command(head->left, NULL, NULL, io);
+			g_shell->redir_list = head->right;
+		execute_command(head->left, fd_pipe, next_pipe, io);
 		wait_all_pids();
 		exit(g_shell->exit_status);
 	}

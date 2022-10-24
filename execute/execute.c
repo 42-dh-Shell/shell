@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:06:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/24 11:43:32 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 17:46:39 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,27 +40,34 @@ void	execute_pipe_handler(t_ast_node *head, int next_pipe[], t_command_io io)
 		execute_middle_pipe(fd, next_pipe, head);
 	else if (is_last_pipe(head))
 	{
+		close_pipe(fd, 1);
 		execute_command(head->right, fd, NULL, C_READ);
 		close_pipe(fd, 0);
-		close_pipe(fd, 1);
 		wait_all_pids();
 	}
 }
 
-void	execute(t_ast_node *head, char **argv)
+void	execute(t_ast_node *head)
 {
 	char	*envp_path;
+	char	**argv;
 
+	while (g_shell->redir_list)
+	{
+		execute_redir(g_shell->redir_list);
+		g_shell->redir_list = g_shell->redir_list->left;
+	}
 	if (head->node_type == NODE_DGREAT || head->node_type == NODE_LESS \
 	|| head->node_type == NODE_DLESS || head->node_type == NODE_GREAT)
 	{
 		execute_redir(head);
 		if (head->left != NULL)
-			execute(head->left, argv);
+			execute(head->left);
 	}
 	else
 	{
 		envp_path = get_envp_path();
+		argv = get_command_info(head);
 		if (envp_path == NULL || ft_strchr(argv[0], '/'))
 			execute_fullpath_handler(argv);
 		else
@@ -72,13 +79,10 @@ void	execute_command_handler(t_ast_node *head, int fd_pipe[], \
 	int next_pipe[], t_command_io io)
 {
 	pid_t	pid;
-	char	**argv;
 
-	argv = get_command_info(head);
-	if (is_builtin(argv[0]))
+	if (is_builtin(head))
 	{
-		execute_builtin(head, argv, io);
-		release_argv(argv);
+		execute_builtin(head, io);
 		return ;
 	}
 	pid = fork();
@@ -87,13 +91,10 @@ void	execute_command_handler(t_ast_node *head, int fd_pipe[], \
 	if (pid == 0)
 	{
 		dup_pipe(io, fd_pipe, next_pipe);
-		execute(head, argv);
+		execute(head);
 	}
 	else
-	{
 		add_last_pid(pid);
-		release_argv(argv);
-	}
 }
 
 void	execute_command(t_ast_node *head, int fd_pipe[], \

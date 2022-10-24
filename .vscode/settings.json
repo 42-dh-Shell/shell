@@ -21,6 +21,8 @@
 		"memory": "c",
 		"minishell.h": "c",
 		"execute.h": "c",
-		"ios": "c"
+		"ios": "c",
+		"builtin.h": "c",
+		"error_printf.h": "c"
 	}
 }

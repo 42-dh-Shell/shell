@@ -6,7 +6,7 @@
 #    By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 15:07:35 by hyunkyle          #+#    #+#              #
-#    Updated: 2022/10/21 19:51:06 by hyunkyle         ###   ########.fr        #
+#    Updated: 2022/10/24 15:26:20 by hyunkyle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,12 @@ SRCS				= main.c \
 					./execute/execute_utils.c \
 					./execute/execute_utils1.c \
 					./execute/execute_utils2.c \
+					./execute/execute_utils3.c \
 					./execute/execute_builtin.c \
+					./execute/free_queue.c \
+					./execute/queue_util.c \
+					./execute/wild_expand.c \
+					./execute/wild_expand2.c \
 					./builtin/argv_sort.c \
 					./builtin/cd.c \
 					./builtin/echo.c \

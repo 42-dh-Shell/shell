@@ -6,13 +6,13 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:19 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/21 19:48:10 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 13:58:35 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
-# include<fcntl.h>
+# include <fcntl.h>
 # include"../lexer/lexer.h"
 # include "../../stack/stack.h"
 # include "../../libft/libft.h"
