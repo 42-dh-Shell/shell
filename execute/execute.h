@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:07:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/24 15:37:35 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 20:21:53 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,10 @@ void	release_pid_list(t_pid_list	*pids);
 void	close_pipe(int fd_pipe[2], int idx);
 void	store_io(void);
 char	*get_io_filename(int in_out_flag);
-void	close_pipe1(int fd_pipe[2], t_command_io io);
+void	parent_free_all_pipe_lst(void);
+void	close_all_pipe(void);
+void	do_pipe_list(int fd[]);
+
 //queue
 t_qnode	*new_qnode(char c);
 t_queue	*init_queue(void);

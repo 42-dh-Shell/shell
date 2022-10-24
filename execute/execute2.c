@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 18:43:55 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/24 14:04:06 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 20:21:45 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	close_pipe(int fd_pipe[2], int idx)
 {	
 	if (fd_pipe[idx] != -1)
 	{
-		close(fd_pipe[idx]);
+		if (fd_pipe[idx] != 1 && fd_pipe[idx] != 0)
+			close(fd_pipe[idx]);
 		fd_pipe[idx] = -1;
 	}
 }

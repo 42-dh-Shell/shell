@@ -6,18 +6,17 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:06:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/24 17:46:39 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 20:22:46 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
-//        ls           |      hello        | 	 hello	  |    hello
+//        ls           |      cat      | 	 cat     
 //			
 //
 
 void	execute_middle_pipe(int fd_pipe[], int next_pipe[], t_ast_node *head)
 {
-	close_pipe(fd_pipe, 1);
 	execute_command(head->right, fd_pipe, next_pipe, C_RW);
 	close_pipe(fd_pipe, 0);
 	close_pipe(next_pipe, 1);
@@ -27,8 +26,7 @@ void	execute_pipe_handler(t_ast_node *head, int next_pipe[], t_command_io io)
 {
 	int	fd[2];
 
-	if (pipe(fd) < 0)
-		ft_exit("pipe_error\n", 1);
+	do_pipe_list(fd);
 	if (head->left->node_type == NODE_PIPE)
 		execute_pipe_handler(head->left, fd, io);
 	if (head->left->node_type != NODE_PIPE)
@@ -40,10 +38,10 @@ void	execute_pipe_handler(t_ast_node *head, int next_pipe[], t_command_io io)
 		execute_middle_pipe(fd, next_pipe, head);
 	else if (is_last_pipe(head))
 	{
-		close_pipe(fd, 1);
 		execute_command(head->right, fd, NULL, C_READ);
 		close_pipe(fd, 0);
 		wait_all_pids();
+		parent_free_all_pipe_lst();
 	}
 }
 
@@ -64,7 +62,7 @@ void	execute(t_ast_node *head)
 		if (head->left != NULL)
 			execute(head->left);
 	}
-	else
+	else if (head->node_type == NODE_COMMAND)
 	{
 		envp_path = get_envp_path();
 		argv = get_command_info(head);
@@ -91,6 +89,7 @@ void	execute_command_handler(t_ast_node *head, int fd_pipe[], \
 	if (pid == 0)
 	{
 		dup_pipe(io, fd_pipe, next_pipe);
+		close_all_pipe();
 		execute(head);
 	}
 	else
@@ -108,6 +107,6 @@ void	execute_command(t_ast_node *head, int fd_pipe[], \
 		execute_pipe_handler(head, next_pipe, io);
 	else if (head->node_type == NODE_SUBSHELL)
 		execute_subsehll_handler(head, fd_pipe, next_pipe, io);
-	if (!has_event(head))
+	else if (!has_event(head))
 		execute_command_handler(head, fd_pipe, next_pipe, io);
 }

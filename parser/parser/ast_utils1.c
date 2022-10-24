@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 10:23:12 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/22 14:00:40 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 20:25:28 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ t_ast_node	*get_pipe_or_and_ast_token(t_token *token)
 	new_node->str = ft_strdup(token->str);
 	return (new_node);
 }
+
+
 
 void	pipe_and_or_handler(t_token *token, t_ast *ast)
 {

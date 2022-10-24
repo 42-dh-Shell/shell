@@ -6,7 +6,7 @@
 #    By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 15:07:35 by hyunkyle          #+#    #+#              #
-#    Updated: 2022/10/24 15:26:20 by hyunkyle         ###   ########.fr        #
+#    Updated: 2022/10/24 19:43:00 by hyunkyle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SRCS				= main.c \
 					./execute/execute_utils2.c \
 					./execute/execute_utils3.c \
 					./execute/execute_builtin.c \
+					./execute/pipe_list.c \
 					./execute/free_queue.c \
 					./execute/queue_util.c \
 					./execute/wild_expand.c \
@@ -66,8 +67,8 @@ OBJS = $(SRCS:.c=.o)
 DEPS = ${OBJS:.o=.d}
 
 FLAGS = -lncurses
-LINKING_FLAGS = -lreadline -L${HOME}/.brew/opt/readline/lib
-COMFILE_FLAGS = -Wall -Wextra -Werror -g -I${HOME}/.brew/opt/readline/include -MD
+LINKING_FLAGS = -lreadline -L${HOME}/.brew/opt/readline/lib 
+COMFILE_FLAGS = -Wall -Wextra -Werror -g -I${HOME}/.brew/opt/readline/include -MD 
 CC = cc
 
 NAME = mini

@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:43:37 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/24 17:38:52 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 18:53:35 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ char	**get_command_info(t_ast_node *head)
 		tmp = expand_str(suffix_list->str, suffix_list->expand_info);
 		tmp = get_wildcard_info(suffix_list->wildcard_flag, tmp);
 		argv = add_back_argv(argv, tmp);
-		release_argv(tmp);
 		suffix_list = suffix_list->next;
 	}
 	return (argv);
