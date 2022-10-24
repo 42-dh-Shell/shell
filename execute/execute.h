@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:07:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/22 17:27:56 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 11:42:01 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,20 @@
 
 typedef enum e_command_io
 {
-	C_WRITE = 0,
-	C_READ,
+	C_READ = 0,
+	C_WRITE,
 	C_NORMAL,
 	C_RW
 }	t_command_io;
 
-typedef struct s_pids
-{
-	pid_t			pid;
-	struct s_pids	*next;
-}	t_pid_list;
-
 extern	t_shell	*g_shell;
 
 int		has_event(t_ast_node *head);
-void	add_last_pid(pid_t pid, t_pid_list **pids);
+void	add_last_pid(pid_t pid);
 void	execute_command(t_ast_node *head, int fd_pipe[], \
-	t_command_io io, t_pid_list **pids);
+	int next_pipe[], t_command_io io);
 void	execute_command_handler(t_ast_node *head, int fd_pipe[], \
-	t_command_io io, t_pid_list **pids);
+	int next_pipe[], t_command_io io);
 int		get_argv_size(char **argv);
 char	**expand_str(char *node_str, t_expand_info *expand_info);
 void	get_expand_str(char *str, t_expand_info *expand_info, \
@@ -57,7 +51,7 @@ void	argv_expand(char **result, t_expand_info *expand_info, char *str);
 char	**argv_no_expand(char *str);
 char	**get_argv(char *str, t_expand_info *expand_info, char *node_str);
 char	*get_expand_value(t_expand_info *expand_info);
-void	dup_fd(char *filename, enum	e_ast_types type);
+void	dup_pipe(t_command_io io, int fd_pipe[], int next_pipe[]);
 void	execute_redir(t_ast_node *head);
 char	**get_command_info(t_ast_node *head);
 void	execute_make_fullpath(char **argv, char *envp);
@@ -69,12 +63,12 @@ int		is_valid_command(char *command);
 int		is_valid_redir_filename(t_expand_info *expand_info);
 void	execute(t_ast_node *head, char **argv);
 char	**get_envp(void);
-void	wait_all_pids(t_pid_list **pids);
+void	wait_all_pids(void);
 int		is_last_pipe(t_ast_node *head);
-void	dup_pipe(t_command_io io, int fd_pipe[]);
-void	execute_and_or_handler(t_ast_node *head, t_pid_list **pids);
+void	dup_pipe(t_command_io io, int fd_pipe[], int next_pipe[]);
+void	execute_and_or_handler(t_ast_node *head);
 void	execute_subsehll_handler(t_ast_node *head, int fd_pipe[], \
-	t_command_io io, t_pid_list **pids);
+	int next_pipe[], t_command_io io);
 int		builtin_handler(t_ast_node *head, t_command_io io, int echo_flag);
 char	*get_envp_path(void);
 void	execute_builtin(t_ast_node *head, char **argv, t_command_io io);

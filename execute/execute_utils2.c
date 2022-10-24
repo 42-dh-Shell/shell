@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 19:00:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/21 20:47:49 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 11:29:32 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,20 @@ int	is_last_pipe(t_ast_node *head)
 	return (1);
 }
 
-void	wait_all_pids(t_pid_list **pids)
+void	wait_all_pids(void)
 {
 	t_pid_list	*lst;
 	int			status;
 
-	lst = *pids;
+	lst = g_shell->pids;
 	while (lst)
 	{
 		waitpid(lst->pid, &status, 0);
 		g_shell->exit_status = WEXITSTATUS(status);
 		lst = lst->next;
 	}
-	release_pid_list(*pids);
-	*pids = NULL;
+	release_pid_list(g_shell->pids);
+	g_shell->pids = NULL;
 }
 
 void	release_pid_list(t_pid_list	*pids)

@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:12:35 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/21 17:30:16 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/22 19:02:05 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	is_valid_redir_filename(t_expand_info *expand_info)
 	return (1);
 }
 
-void	add_last_pid(pid_t pid, t_pid_list **pids)
+void	add_last_pid(pid_t pid)
 {
 	t_pid_list	*pid_node;
 	t_pid_list	*lst;
@@ -62,12 +62,12 @@ void	add_last_pid(pid_t pid, t_pid_list **pids)
 	if (!pid_node)
 		ft_exit("malloc error\n", 1);
 	pid_node->pid = pid;
-	if (*pids == 0)
+	if (g_shell->pids == 0)
 	{
-		*pids = pid_node;
+		g_shell->pids = pid_node;
 		return ;
 	}
-	lst = *pids;
+	lst = g_shell->pids;
 	while (lst->next)
 		lst = lst->next;
 	lst->next = pid_node;

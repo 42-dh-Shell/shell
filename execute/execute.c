@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:06:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/22 18:53:43 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 11:43:32 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,41 +15,35 @@
 //			
 //
 
-
-void	execute_middle_pipe(int read, int write, t_ast_node *head, \
-		t_pid_list **pids)
+void	execute_middle_pipe(int fd_pipe[], int next_pipe[], t_ast_node *head)
 {
-	int	fd[2];
-
-	fd[0] = read;
-	fd[1] = write;
-	execute_command(head->right, fd, C_RW, pids);
-	close_pipe(fd, 0);
-	close_pipe(fd, 1);
+	close_pipe(fd_pipe, 1);
+	execute_command(head->right, fd_pipe, next_pipe, C_RW);
+	close_pipe(fd_pipe, 0);
+	close_pipe(next_pipe, 1);
 }
 
-void	execute_pipe_handler(t_ast_node *head, t_pid_list **pids, \
-			int fd_pipe[], t_command_io io)
+void	execute_pipe_handler(t_ast_node *head, int next_pipe[], t_command_io io)
 {
-	int		fd[2];
+	int	fd[2];
 
 	if (pipe(fd) < 0)
 		ft_exit("pipe_error\n", 1);
 	if (head->left->node_type == NODE_PIPE)
-		execute_pipe_handler(head->left, pids, fd, io);
+		execute_pipe_handler(head->left, fd, io);
 	if (head->left->node_type != NODE_PIPE)
 	{
-		execute_command(head->left, fd, C_WRITE, pids);
+		execute_command(head->left, fd, NULL, C_WRITE);
 		close_pipe(fd, 1);
 	}
-	if (fd_pipe)
-		execute_middle_pipe(fd[0], fd_pipe[1], head, pids);
+	if (next_pipe)
+		execute_middle_pipe(fd, next_pipe, head);
 	else if (is_last_pipe(head))
 	{
-		execute_command(head->right, fd, C_READ, pids);
+		execute_command(head->right, fd, NULL, C_READ);
 		close_pipe(fd, 0);
 		close_pipe(fd, 1);
-		wait_all_pids(pids);
+		wait_all_pids();
 	}
 }
 
@@ -75,7 +69,7 @@ void	execute(t_ast_node *head, char **argv)
 }
 
 void	execute_command_handler(t_ast_node *head, int fd_pipe[], \
-	t_command_io io, t_pid_list **pids)
+	int next_pipe[], t_command_io io)
 {
 	pid_t	pid;
 	char	**argv;
@@ -92,27 +86,27 @@ void	execute_command_handler(t_ast_node *head, int fd_pipe[], \
 		ft_exit("fork error\n", 1);
 	if (pid == 0)
 	{
-		dup_pipe(io, fd_pipe);
+		dup_pipe(io, fd_pipe, next_pipe);
 		execute(head, argv);
 	}
 	else
 	{
-		add_last_pid(pid, pids);
+		add_last_pid(pid);
 		release_argv(argv);
 	}
 }
 
 void	execute_command(t_ast_node *head, int fd_pipe[], \
-	t_command_io io, t_pid_list **pids)
+	int next_pipe[], t_command_io io)
 {	
 	if (!head)
 		return ;
 	if (head->node_type == NODE_AND || head->node_type == NODE_OR)
-		execute_and_or_handler(head, pids);
+		execute_and_or_handler(head);
 	if (head->node_type == NODE_PIPE)
-		execute_pipe_handler(head, pids, fd_pipe, io);
+		execute_pipe_handler(head, next_pipe, io);
 	else if (head->node_type == NODE_SUBSHELL)
-		execute_subsehll_handler(head, fd_pipe, io, pids);
+		execute_subsehll_handler(head, fd_pipe, next_pipe, io);
 	if (!has_event(head))
-		execute_command_handler(head, fd_pipe, io, pids);
+		execute_command_handler(head, fd_pipe, next_pipe, io);
 }

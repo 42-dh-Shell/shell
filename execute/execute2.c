@@ -6,24 +6,11 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 18:43:55 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/22 18:37:59 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 11:41:43 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
-
-// void	close_pipe1(int fd_pipe[2], t_command_io io)
-// {
-// 	if (io == C_READ)
-// 		close_pipe(fd_pipe, 0);
-// 	else if (io == C_WRITE)
-// 		close_pipe(fd_pipe, 1);
-// 	else if (io == C_RW)
-// 	{
-// 		close_pipe(fd_pipe, 0);
-// 		close_pipe(fd_pipe, 1);
-// 	}
-// }
 
 void	close_pipe(int fd_pipe[2], int idx)
 {	
@@ -34,23 +21,18 @@ void	close_pipe(int fd_pipe[2], int idx)
 	}
 }
 
-int	is_regular_fd(int fd)
-{
-	if (fd == STDIN_FILENO || fd == STDOUT_FILENO || fd == STDERR_FILENO)
-		return (0);
-	return (1);
-}
-
-void	dup_pipe(t_command_io io, int fd_pipe[])
+void	dup_pipe(t_command_io io, int fd_pipe[], int next_pipe[])
 {
 	if (io == C_RW)
 	{
+		close_pipe(fd_pipe, 1);
+		close_pipe(next_pipe, 0);
 		if (dup2(fd_pipe[0], STDIN_FILENO) < 0)
 			ft_exit("dup error\n", 1);
 		close_pipe(fd_pipe, 0);
-		if (dup2(fd_pipe[1], STDOUT_FILENO) < 0)
+		if (dup2(next_pipe[1], STDOUT_FILENO) < 0)
 			ft_exit("dup error\n", 1);
-		close_pipe(fd_pipe, 1);
+		close_pipe(next_pipe, 1);
 	}
 	else if (io == C_WRITE)
 	{
@@ -68,18 +50,18 @@ void	dup_pipe(t_command_io io, int fd_pipe[])
 	}
 }
 
-void	execute_and_or_handler(t_ast_node *head, t_pid_list **pids)
+void	execute_and_or_handler(t_ast_node *head)
 {
-	execute_command(head->left, NULL, C_NORMAL, pids);
-	wait_all_pids(pids);
+	execute_command(head->left, NULL, NULL, C_NORMAL);
+	wait_all_pids();
 	if (head->node_type == NODE_AND && g_shell->exit_status == 0)
-		execute_command(head->right, NULL, C_NORMAL, pids);
+		execute_command(head->right, NULL, NULL, C_NORMAL);
 	else if (head->node_type == NODE_OR && g_shell->exit_status != 0)
-		execute_command(head->right, NULL, C_NORMAL, pids);
+		execute_command(head->right, NULL, NULL, C_NORMAL);
 }
 
 void	execute_subsehll_handler(t_ast_node *head, int fd_pipe[], \
-	t_command_io io, t_pid_list **pids)
+	int next_pipe[], t_command_io io)
 {
 	pid_t	pid;
 	int		status;
@@ -89,11 +71,12 @@ void	execute_subsehll_handler(t_ast_node *head, int fd_pipe[], \
 		ft_exit("fork error\n", 1);
 	if (pid == 0)
 	{
-		*pids = NULL;
-		if (head->right != 0)
+		g_shell->pids = NULL;
+		dup_pipe(io, fd_pipe, next_pipe);
+		if (head->right)
 			execute_redir(head->right);
-		execute_command(head->left, fd_pipe, io, pids);
-		wait_all_pids(pids);
+		execute_command(head->left, NULL, NULL, io);
+		wait_all_pids();
 		exit(g_shell->exit_status);
 	}
 	else

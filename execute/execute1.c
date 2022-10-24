@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:25:43 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/21 18:41:56 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 11:34:36 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	dup_fd(char *filename, enum	e_ast_types type)
 	int	status;
 
 	if (type == NODE_DGREAT)
-		fd = open(filename, O_CREAT | O_APPEND | O_WRONLY, 0644);
+		fd = open(filename, O_CREAT | O_APPEND | O_WRONLY, 0666);
 	else if (type == NODE_GREAT)
-		fd = open(filename, O_CREAT | O_TRUNC | O_WRONLY, 0644);
+		fd = open(filename, O_CREAT | O_TRUNC | O_WRONLY, 0666);
 	else
-		fd = open(filename, O_RDONLY);
+		fd = open(filename, O_RDONLY, 0666);
 	if (fd < 0)
 	{
 		if (errno == 2)
