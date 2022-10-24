@@ -6,14 +6,11 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:06:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/24 20:22:46 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 21:18:57 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
-//        ls           |      cat      | 	 cat     
-//			
-//
 
 void	execute_middle_pipe(int fd_pipe[], int next_pipe[], t_ast_node *head)
 {

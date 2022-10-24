@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:16:30 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/21 19:45:45 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 21:20:04 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,6 @@ void	add_command_node_right(t_token *token, t_ast *ast)
 	new_node->wildcard_flag = token->wildcard_flag;
 	ast->last_added->right = new_node;
 	new_node->parent = ast->last_added;
-	ast->last_added = new_node;
 	ast->command_node = new_node;
+	ast->last_added = new_node;
 }

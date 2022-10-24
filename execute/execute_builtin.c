@@ -6,18 +6,11 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 14:37:43 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/24 15:51:54 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 21:18:19 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
-
-// void	store_stdio(void)
-// {
-// 	pipe(g_shell->std_tmp);
-// 	dup2(STDIN_FILENO, g_shell->std_tmp[0]);
-// 	dup2(STDOUT_FILENO, g_shell->std_tmp[1]);
-// }
 
 char	*get_io_filename(int in_out_flag)
 {

@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 10:23:12 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/24 20:25:28 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 21:11:11 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,7 @@ t_ast_node	*get_pipe_or_and_ast_token(t_token *token)
 	return (new_node);
 }
 
-
-
-void	pipe_and_or_handler(t_token *token, t_ast *ast)
+void	and_or_handler(t_token *token, t_ast *ast)
 {
 	t_ast_node	*new_node;
 	t_ast_node	*head;
@@ -90,7 +88,7 @@ void	pipe_and_or_handler(t_token *token, t_ast *ast)
 		}
 	}
 	else
-		add_pipe_node_in_subshell(ast, new_node);
+		add_and_or_node_in_subshell(ast, new_node);
 	ast->last_added = new_node;
 	ast->command_node = 0;
 }

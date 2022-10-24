@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 14:25:42 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/24 14:16:58 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 21:19:13 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	free_queue(t_queue *queue)
 	{
 		tmp = queue->front;
 		queue->front = queue->front->back;
-		free(tmp);	
+		free(tmp);
 	}
 	free(queue);
 }

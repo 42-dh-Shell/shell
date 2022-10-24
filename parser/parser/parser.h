@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:19 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/24 13:58:35 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 20:47:26 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,17 +133,21 @@ void			add_command_node_right(t_token *token, t_ast *ast);
 void			add_subshell_command(t_token *token, t_ast *ast);
 void			add_command_node(t_token *token, t_ast *ast);
 void			add_suffix_node(t_token *token, t_ast *ast);
-void			pipe_and_or_handler(t_token *token, t_ast *ast);
+void			and_or_handler(t_token *token, t_ast *ast);
 void			redir_handler(t_token *token, t_ast *ast);
 void			subshell_handler(t_token *token, t_ast *ast);
 int				is_node_pipe_and_or(t_ast_node	*node);
 void			print_ast(t_ast_node *ast);
 void			print_ast_status(t_ast *ast);
-void			add_pipe_node_in_subshell(t_ast *ast, t_ast_node *new_node);
+void			add_and_or_node_in_subshell(t_ast *ast, t_ast_node *new_node);
 void			add_last_subshell_node(t_ast *ast, t_ast_node *new_node);
 void			reset_sub_idx(t_ast *ast);
 void			release_all_ast(t_ast *ast);
 void			read_heredoc(t_ast_node *ast, int write_flag);
 void			release_all_subshell_node(t_subshell_node *sub_node);
+void			pipe_handler(t_token *token, t_ast *ast);
 t_expand_info	*dup_expand_info(t_expand_info *old);
+void			add_command_node_left(t_token *token, t_ast *ast);
+void			pipe_handler(t_token *token, t_ast *ast);
+t_ast_node		*get_pipe_or_and_ast_token(t_token *token);
 #endif

@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:28:53 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/21 20:27:47 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 21:20:43 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,3 @@ t_ast	*allocate_ast(void)
 	result->subshell_idx = -1;
 	return (result);
 }
-

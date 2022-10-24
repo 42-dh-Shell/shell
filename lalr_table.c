@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 16:03:40 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/21 17:12:46 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 21:21:11 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,3 @@ char	***make_table(void)
 	close(fd);
 	return (result);
 }
-

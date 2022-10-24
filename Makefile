@@ -6,7 +6,7 @@
 #    By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 15:07:35 by hyunkyle          #+#    #+#              #
-#    Updated: 2022/10/24 19:43:00 by hyunkyle         ###   ########.fr        #
+#    Updated: 2022/10/24 20:46:29 by hyunkyle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRCS				= main.c \
 					./parser/parser/ast_utils1.c \
 					./parser/parser/ast_utils2.c \
 					./parser/parser/ast_utils3.c \
+					./parser/parser/ast_utils4.c \
 					./hash/hash.c \
 					./hash/hash_utils.c \
 					./hash/hash_utils1.c \

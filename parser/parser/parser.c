@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/24 20:21:24 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 21:16:19 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,10 +172,9 @@ void	start_parse(t_token	*tokens)
 	release_stack(stack);
 	if (!ast)
 		return ;
-	//read_heredoc(ast->head, 1);
-	print_ast(ast->head);
-	//execute_command(ast->head, NULL, NULL, C_NORMAL);
-	//stdio_rollback();
-	//wait_all_pids();
+	read_heredoc(ast->head, 1);
+	execute_command(ast->head, NULL, NULL, C_NORMAL);
+	stdio_rollback();
+	wait_all_pids();
 	release_all_ast(ast);
 }

@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 19:25:13 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/11 19:27:29 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/24 20:31:44 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	add_last_subshell_node(t_ast *ast, t_ast_node *new_node)
 	ast->subshell_idx += 1;
 }
 
-void	add_pipe_node_in_subshell(t_ast *ast, t_ast_node *new_node)
+void	add_and_or_node_in_subshell(t_ast *ast, t_ast_node *new_node)
 {
 	t_subshell_node	*subshell_head;
 	int				i;
