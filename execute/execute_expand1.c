@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_expand1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:19:38 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/21 20:52:33 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/28 17:31:32 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,27 @@
 void	get_expand_str(char *str, t_expand_info *expand_info, \
 	char *node_str, int i)
 {
-	char	*value;
+	char		*value;
+	const int	len = ft_strlen(node_str);
+	int			j;
 
-	while (*node_str)
+	j = 0;
+	while (j < len && node_str[j])
 	{
-		if (*node_str == '$' && expand_info && expand_info->size != -1)
+		if (node_str[j] == '$' && expand_info && expand_info->size != -1)
 		{
 			value = get_expand_value(expand_info);
-			node_str += expand_info->size;
+			j += expand_info->size;
 			if (value)
-			{
-				expand_info->start = ft_strlen(str);
-				expand_info->size = ft_strlen(value);
-				ft_strlcat (str + ft_strlen(str), value, ft_strlen(str) + \
-					ft_strlen(value) + 1);
-				i += ft_strlen(value);
-			}
+				get_expd_str_help(str, expand_info, value, i);
 			expand_info = expand_info->next;
 			continue ;
 		}
-		if (*node_str == '$' && expand_info \
+		if (node_str[j] == '$' && expand_info \
 				&& expand_info->size == -1 && expand_info->next != 0)
 			expand_info = expand_info->next;
-		str[i++] = *node_str;
-		node_str++;
+		str[i++] = node_str[j];
+		j++;
 	}
 }
 
@@ -120,7 +117,7 @@ char	**get_argv(char *str, t_expand_info *expand_info, char *node_str)
 		get_expand_argv_size(str, expand_info) + 1);
 	if (*str == '\0')
 	{
-		result[0] = str;
+		result[0] = ft_strdup(str);
 		return (result);
 	}
 	argv_expand(result, expand_info, str);

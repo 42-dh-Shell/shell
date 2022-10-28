@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:07:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/28 15:00:30 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/28 17:29:20 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,4 +112,8 @@ int		is_wild(char *wild_str, char *check);
 int		wild_check_part(t_queue	*wild_queue, int *i, char *check);
 void	wild_expand_finish(char **argv, int i, char *wild_str, char *cur_wdir);
 char	**wild_expand(char *wild_str);
+
+//fix
+void	get_expd_str_help(char *str, t_expand_info *expand_info, \
+	char *value, int i);
 #endif

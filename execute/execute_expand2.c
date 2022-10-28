@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_expand2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:36:23 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/21 17:25:01 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/28 17:19:09 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,32 @@ char	*get_expand_value(t_expand_info *expand_info)
 	free(key);
 	return (value);
 }
+// must fix!
 
 int	expand_str_size(char *node_str, t_expand_info *expand_info, int size)
 {
-	char	*value;
+	char		*value;
+	int			i;
+	const int	len = ft_strlen(node_str);
 
-	while (*node_str)
+	i = 0;
+	while (i < len && node_str[i])
 	{
-		if (*node_str == '$' && expand_info && expand_info->size != -1)
+		if (node_str[i] == '$' && expand_info && expand_info->size != -1)
 		{
 			value = get_expand_value(expand_info);
 			if (value)
 				size += ft_strlen(value);
-			node_str += expand_info->size;
+			i += expand_info->size;
 			expand_info = expand_info->next;
 		}
 		else
 		{
-			if (*node_str == '$' && expand_info \
+			if (node_str[i] == '$' && expand_info \
 				&& expand_info->size == -1 && expand_info->next != 0)
 				expand_info = expand_info->next;
 			size++;
-			node_str++;
+			i++;
 		}
 	}
 	return (size);

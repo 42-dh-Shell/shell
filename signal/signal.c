@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 17:04:37 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/24 13:16:06 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/28 16:20:40 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 #include <stdlib.h>
 #include "../libft/libft.h"
 
-void	singnal_handler(int signum)
+char	**get_envp(void);
+
+void	signal_handler(int signum)
 {
 	if (signum == SIGINT)
 	{
@@ -41,7 +43,7 @@ static void	term_set(void)
 void	set_signal_term(void)
 {
 	term_set();
-	signal(SIGINT, singnal_handler);
+	signal(SIGINT, signal_handler);
 	signal(SIGQUIT, SIG_IGN);
 }
 
@@ -49,4 +51,16 @@ void	print_exit(void)
 {
 	printf("\033[1A\033[11Cexit\n");
 	exit(0);
+}
+
+void	signal_here_doc(int signum)
+{
+	char	*argv[2];
+
+	if (signum == SIGINT)
+	{
+		argv[0] = ft_strdup("./mini");
+		argv[1] = NULL;
+		execve("./mini", argv, get_envp());
+	}
 }

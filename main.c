@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 15:46:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/24 19:46:36 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/28 15:58:27 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	*get_key(char *str)
 			size++;
 		key = ft_malloc(sizeof(char) * (size + 1));
 		size = -1;
-		while (str[++size] != '=')
+		while (str[++size])
 			key[size] = str[size];
 		key[size] = 0;
 	}

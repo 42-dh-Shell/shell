@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+         #
+#    By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 15:07:35 by hyunkyle          #+#    #+#              #
-#    Updated: 2022/10/24 20:46:29 by hyunkyle         ###   ########.fr        #
+#    Updated: 2022/10/28 17:30:57 by daegulee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRCS				= main.c \
 					./execute/execute2.c \
 					./execute/execute_expand1.c \
 					./execute/execute_expand2.c \
+					./execute/execute_expand3.c \
 					./execute/execute_utils.c \
 					./execute/execute_utils1.c \
 					./execute/execute_utils2.c \
@@ -68,8 +69,8 @@ OBJS = $(SRCS:.c=.o)
 DEPS = ${OBJS:.o=.d}
 
 FLAGS = -lncurses
-LINKING_FLAGS = -lreadline -L${HOME}/.brew/opt/readline/lib 
-COMFILE_FLAGS = -Wall -Wextra -Werror -g -I${HOME}/.brew/opt/readline/include -MD 
+LINKING_FLAGS = -lreadline -L${HOME}/.brew/opt/readline/lib -fsanitize=address
+COMFILE_FLAGS = -Wall -Wextra -Werror -g -I${HOME}/.brew/opt/readline/include -MD -fsanitize=address
 CC = cc
 
 NAME = mini

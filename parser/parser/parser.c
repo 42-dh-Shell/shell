@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/28 10:54:23 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/28 16:19:43 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "../../execute/execute.h"
+#include "../../signal/signal.h"
 
 char	*get_full_filename(int file_num)
 {
@@ -39,6 +40,8 @@ void	read_start(t_ast_node *ast, int write_flag, int fd)
 	while (1)
 	{
 		line = readline(">");
+		if (!line)
+			return ;
 		if (ft_strcmp(line, ast->redir_token->str) == 0)
 		{
 			free(line);
@@ -115,7 +118,9 @@ void	start_parse(t_token	*tokens)
 	release_stack(stack);
 	if (!ast)
 		return ;
+	signal(SIGINT, signal_here_doc);
 	read_heredoc(ast->head, 1);
+	signal(SIGINT, signal_handler);
 	execute_command(ast->head, NULL, NULL, C_NORMAL);
 	stdio_rollback();
 	wait_all_pids();
