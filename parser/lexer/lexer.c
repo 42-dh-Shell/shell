@@ -6,61 +6,12 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 12:14:06 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/22 15:56:33 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/28 10:55:37 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 #include "../parser/parser.h"
-
-void	print_token_data(t_token *head)
-{
-	int i = 1;
-	int j;
-	t_expand_info	*info;
-
-	while (head)
-	{
-		printf("====== token %d =====\n", i++);
-		printf("str = %s\n", head->str);
-		if (head->token_type == WORD)
-			printf("token_type = %s\n", "WORD");
-		else if (head->token_type == PIPE)
-			printf("token_type = %s\n", "PIPE");
-		else if (head->token_type == AND)
-			printf("token_type = %s\n", "AND");
-		else if (head->token_type == OR)
-			printf("token_type = %s\n", "OR");
-		else if (head->token_type == LESS)
-			printf("token_type = %s\n", "LESS");
-		else if (head->token_type == GREAT)
-			printf("token_type = %s\n", "GREAT");
-		else if (head->token_type == DLESS)
-			printf("token_type = %s\n", "DLESS");
-		else if (head->token_type == DGREAT)
-			printf("token_type = %s\n", "DGREAT");
-		else if (head->token_type == LBRAC)
-			printf("token_type = %s\n", "LBRAC");
-		else if (head->token_type == RBRAC)
-			printf("token_type = %s\n", "RBRAC");
-		else if (head->token_type == LAST)
-			printf("token_type = %s\n", "LAST");
-		printf("wildcard_flag = %d\n", head->wildcard_flag);
-		j = 1;
-		info = head->expand_info;
-		while (info)
-		{
-			printf("\t====== expand_info %d =====\n", j++);
-			printf("\tinfo_str = %s\n", info->str);
-			printf("\texpand_size = %d\n", info->size);
-			printf("\tsplit_arg_flag = %d\n", info->split_arg);
-			printf("\tstart_index = %d\n", info->start);
-			info = info->next;
-		}
-		head = head->next;
-		printf("\n");
-	}
-}
 
 t_token	*word_token_control(char **line, int i, int str_idx)
 {
@@ -162,13 +113,4 @@ void	lexer_parse(char *line)
 	add_last_token(head);
 	start_parse(head);
 	fail_make_token_release(head);
-
 }
-//$0 = 0x0000000100404090
-//0x0000000100404090  -token
-//0x00000001004040b0 "ls"
-//p token->next
-// (s_token *) $4 = 0x00000001004040c0
-// p token->next->next
-// (s_token *) $5 = 0x0000000000000000
-// 1 (16 bytes) ROOT LEAK: 0x1004040e0 [16]

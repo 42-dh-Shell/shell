@@ -6,14 +6,14 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 23:36:51 by idaegyu           #+#    #+#             */
-/*   Updated: 2022/10/22 15:19:07 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/28 10:56:59 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 #include "../minishell.h"
 
-extern t_shell *g_shell;
+extern t_shell	*g_shell;
 
 void	sort_print(char **argv)
 {

@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:26:09 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/22 15:17:51 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/28 10:56:22 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <errno.h>
 #include "../minishell.h"
 
-extern t_shell *g_shell;
+extern t_shell	*g_shell;
 
 static char	*get_env_in_ht(char *key)
 {

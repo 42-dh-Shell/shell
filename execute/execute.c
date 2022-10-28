@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:06:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/24 21:18:57 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/28 10:41:45 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	execute(t_ast_node *head)
 	if (head->node_type == NODE_DGREAT || head->node_type == NODE_LESS \
 	|| head->node_type == NODE_DLESS || head->node_type == NODE_GREAT)
 	{
-		execute_redir(head);
+		dup_builtin_fd(head->redir_token->str, head->node_type);
 		if (head->left != NULL)
 			execute(head->left);
 	}

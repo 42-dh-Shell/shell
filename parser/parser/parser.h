@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:19 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/24 20:47:26 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/28 10:46:10 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,4 +150,7 @@ t_expand_info	*dup_expand_info(t_expand_info *old);
 void			add_command_node_left(t_token *token, t_ast *ast);
 void			pipe_handler(t_token *token, t_ast *ast);
 t_ast_node		*get_pipe_or_and_ast_token(t_token *token);
+int				dup_builtin_fd(char *filename, enum	e_ast_types type);
+void			execute_dup(enum e_ast_types type, int fd);
+void			stdio_rollback(void);
 #endif

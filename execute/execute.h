@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:07:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/24 20:21:53 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/28 10:57:21 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct t_queue
 	t_qnode	*tail;
 }	t_queue;
 
-extern	t_shell	*g_shell;
+extern t_shell	*g_shell;
 
 int		has_event(t_ast_node *head);
 void	add_last_pid(pid_t pid);

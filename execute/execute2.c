@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 18:43:55 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/24 20:21:45 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/28 10:52:25 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	execute_and_or_handler(t_ast_node *head)
 {
 	execute_command(head->left, NULL, NULL, C_NORMAL);
 	wait_all_pids();
+	stdio_rollback();
 	if (head->node_type == NODE_AND && g_shell->exit_status == 0)
 		execute_command(head->right, NULL, NULL, C_NORMAL);
 	else if (head->node_type == NODE_OR && g_shell->exit_status != 0)

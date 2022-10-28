@@ -6,14 +6,14 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 03:55:36 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/24 16:51:38 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/28 10:57:30 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./execute.h"
 #include "../minishell.h"
 
-extern	t_shell *g_shell;
+extern t_shell	*g_shell;
 
 char	look_q_not_asterisk(t_queue *queue)
 {

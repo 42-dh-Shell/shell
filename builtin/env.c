@@ -6,14 +6,14 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 23:16:10 by idaegyu           #+#    #+#             */
-/*   Updated: 2022/10/22 15:16:35 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/28 10:56:45 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 #include "../minishell.h"
 
-extern t_shell *g_shell;
+extern t_shell	*g_shell;
 
 int	mini_env(char **argv)
 {

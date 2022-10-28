@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:42:37 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/21 19:47:27 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/28 10:57:41 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "../../stack/stack.h"
 #include "../../minishell.h"
 
-extern	t_shell	*g_shell;
+extern t_shell	*g_shell;
 
 void	do_shift(t_stack *stack, t_token *tokens, int status, t_ast *ast)
 {

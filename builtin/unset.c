@@ -6,14 +6,14 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 01:29:59 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/21 15:13:49 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/28 10:57:12 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./builtin.h"
 #include "../minishell.h"
 
-extern t_shell *g_shell;
+extern t_shell	*g_shell;
 
 int	mini_unset(char **argv)
 {

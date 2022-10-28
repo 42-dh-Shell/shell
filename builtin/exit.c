@@ -6,14 +6,14 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 22:58:58 by idaegyu           #+#    #+#             */
-/*   Updated: 2022/10/21 15:13:37 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/28 10:56:50 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 #include "../minishell.h"
 
-extern t_shell *g_shell;
+extern t_shell	*g_shell;
 
 int	str_numeric(char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:51:53 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/24 17:36:41 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/28 10:57:54 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	is_valid_expand_char(char ch, int i)
 	return ((i == 1 && ch != '_' && !ft_isalpha(ch)) \
 	|| (i != 1 && !ft_isalpha(ch) && !ft_isdigit(ch) && ch != '_'));
 }
-
 
 void	no_expand(t_expand_info	*expand_info)
 {
