@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idaegyu <idaegyu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/28 16:19:43 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/10/29 21:28:19 by idaegyu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,9 +118,9 @@ void	start_parse(t_token	*tokens)
 	release_stack(stack);
 	if (!ast)
 		return ;
-	signal(SIGINT, signal_here_doc);
+	// signal(SIGINT, signal_here_doc);
 	read_heredoc(ast->head, 1);
-	signal(SIGINT, signal_handler);
+	// signal(SIGINT, signal_handler);
 	execute_command(ast->head, NULL, NULL, C_NORMAL);
 	stdio_rollback();
 	wait_all_pids();

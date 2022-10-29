@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+         #
+#    By: idaegyu <idaegyu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 15:07:35 by hyunkyle          #+#    #+#              #
-#    Updated: 2022/10/28 17:30:57 by daegulee         ###   ########.fr        #
+#    Updated: 2022/10/29 22:25:59 by idaegyu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,10 +69,13 @@ OBJS = $(SRCS:.c=.o)
 DEPS = ${OBJS:.o=.d}
 
 FLAGS = -lncurses
-LINKING_FLAGS = -lreadline -L${HOME}/.brew/opt/readline/lib -fsanitize=address
-COMFILE_FLAGS = -Wall -Wextra -Werror -g -I${HOME}/.brew/opt/readline/include -MD -fsanitize=address
+LINKING_FLAGS = -lreadline $(LD_HOME) -fsanitize=address
+COMFILE_FLAGS = -Wall -Wextra -Werror -g $(CPP_HOME) -MD -fsanitize=address
 CC = cc
-
+LD_CLUS=-L${HOME}/.brew/opt/readline/lib 
+CPP_CLUS=-I${HOME}/.brew/opt/readline/include
+LD_HOME="-L/opt/homebrew/opt/readline/lib"
+CPP_HOME="-I/opt/homebrew/opt/readline/include"
 NAME = mini
 
 $(NAME)	: $(OBJS)

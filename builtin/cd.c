@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idaegyu <idaegyu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:26:09 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/28 10:56:22 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/29 22:32:00 by idaegyu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ void	set_env_in_ht(int ch_dir)
 			hash_add(g_shell->h_table, ft_strdup("OLDPWD"), value);
 		}
 		value = getcwd(NULL, 0);
-		hash_add(g_shell->h_table, ft_strdup("PWD"), value);
+		if (value != NULL)
+			hash_add(g_shell->h_table, ft_strdup("PWD"), value);
+		else
+			hash_add(g_shell->h_table, ft_strdup("PWD"), ft_strdup(""));
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idaegyu <idaegyu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 15:35:06 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/22 15:15:44 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/10/29 21:47:48 by idaegyu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	mini_echo(char **argv)
 	int	n_idx;
 
 	n_idx = 1;
-	if (argv == NULL || argv_len(argv) <= 0)
+	if (argv == NULL || argv_len(argv) <= 1)
 		return (printf("\n") - 1);
 	if (ft_strcmp(argv[1], "-n") == 0)
 	{
