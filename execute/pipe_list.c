@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_list.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 19:40:02 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/24 19:47:32 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/11/01 22:13:38 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ t_pipe_node	*new_pipe_node(int fd[])
 	t_pipe_node	*new;
 
 	new = ft_malloc(sizeof(t_pipe_node));
-	new->fd = fd;
+	new->fd = ft_malloc(sizeof(int *) * 2);
+	(new->fd)[0] = fd[0];
+	(new->fd)[1] = fd[1];
 	return (new);
 }
 
@@ -59,6 +61,7 @@ void	close_all_pipe(void)
 		cur = cur->next;
 		close_pipe(tmp->fd, 0);
 		close_pipe(tmp->fd, 1);
+		free(tmp->fd);
 		free(tmp);
 	}
 	free(g_shell->pipe_lst);
@@ -77,6 +80,7 @@ void	parent_free_all_pipe_lst(void)
 	{
 		tmp = cur;
 		cur = cur->next;
+		free(tmp->fd);
 		free(tmp);
 	}
 	free(g_shell->pipe_lst);

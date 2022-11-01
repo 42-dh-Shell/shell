@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: idaegyu <idaegyu@student.42.fr>            +#+  +:+       +#+         #
+#    By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 15:07:35 by hyunkyle          #+#    #+#              #
-#    Updated: 2022/10/29 22:25:59 by idaegyu          ###   ########.fr        #
+#    Updated: 2022/11/01 22:16:56 by daegulee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,8 +69,8 @@ OBJS = $(SRCS:.c=.o)
 DEPS = ${OBJS:.o=.d}
 
 FLAGS = -lncurses
-LINKING_FLAGS = -lreadline $(LD_HOME) -fsanitize=address
-COMFILE_FLAGS = -Wall -Wextra -Werror -g $(CPP_HOME) -MD -fsanitize=address
+LINKING_FLAGS = -lreadline $(LD_CLUS) -fsanitize=address
+COMFILE_FLAGS = -Wall -Wextra -Werror -g $(CPP_CLUS) -MD -fsanitize=address
 CC = cc
 LD_CLUS=-L${HOME}/.brew/opt/readline/lib 
 CPP_CLUS=-I${HOME}/.brew/opt/readline/include

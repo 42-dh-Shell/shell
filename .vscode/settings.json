@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"signal.h": "c",
-		"save": "c"
+		"save": "c",
+		"execute.h": "c"
 	}
 }
