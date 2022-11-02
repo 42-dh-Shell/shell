@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_builtin.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idaegyu <idaegyu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 14:37:43 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/29 22:19:48 by idaegyu          ###   ########.fr       */
+/*   Updated: 2022/11/02 18:44:55 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	execute_builtin(t_ast_node *head, t_command_io io)
 	}
 	else
 	{
-		if (io == C_NORMAL)
+		// if (io == C_NORMAL)//fix2
 			g_shell->exit_status = do_builtin(head);
 	}
 }

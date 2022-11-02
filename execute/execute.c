@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:06:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/28 15:00:20 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/11/02 18:47:55 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	execute_command_handler(t_ast_node *head, int fd_pipe[], \
 {
 	pid_t	pid;
 
-	if (is_builtin(head))
+	if (is_builtin(head) && !fd_pipe)
 	{
 		execute_builtin(head, io);
 		return ;
@@ -85,9 +85,18 @@ void	execute_command_handler(t_ast_node *head, int fd_pipe[], \
 		ft_exit("fork error\n", 1);
 	if (pid == 0)
 	{
+		(g_shell->sh_lv)++;//fix4
 		dup_pipe(io, fd_pipe, next_pipe);
 		close_all_pipe();
-		execute(head);
+		//fix1
+		if (is_builtin(head))
+		{
+			execute_builtin(head, io);
+			exit(g_shell->exit_status);
+		}
+		else
+			execute(head);
+		//fix1
 	}
 	else
 		add_last_pid(pid);
