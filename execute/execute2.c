@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 18:43:55 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/11/02 18:47:51 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:56:51 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	execute_subsehll_handler(t_ast_node *head, int fd_pipe[], \
 		ft_exit("fork error\n", 1);
 	if (pid == 0)
 	{
-		(g_shell->sh_lv)++;//fix3
+		(g_shell->sh_lv)++;
 		g_shell->pids = NULL;
 		if (head->right)
 			g_shell->redir_list = head->right;

@@ -3,15 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_token_utils2.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:51:53 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/11/07 11:42:45 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:48:55 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 #include "../parser/parser.h"
+
+int	init_token_str(char **line, int *i, t_token *token, int *str_idx)
+{
+	(token->str)[*str_idx] = '$';
+	(*i)++;
+	(*str_idx)++;
+	if ((*line)[*i] == '?')
+	{
+		(token->str)[*str_idx] = '?';
+		(*i)++;
+		(*str_idx)++;
+		return (2);
+	}
+	return (1);
+}
 
 int	is_valid_expand_char(char ch, int i)
 {
@@ -47,11 +62,6 @@ void	validation_ex_info(t_token *token)
 	int				i;
 
 	expand_info = token->expand_info;
-	if (ft_strcmp(token->str, "$?") == 0)
-	{
-		status_expand_info(expand_info);
-		return ;
-	}
 	while (expand_info)
 	{
 		i = 0;

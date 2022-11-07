@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 15:07:43 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/21 10:20:58 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:49:40 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,10 @@ void	dquote_expand_handler(char **line, int *i, t_token *token, int *str_idx)
 	t_expand_info	*new_ex_info;
 	int				start_idx;
 
-	cnt = 1;
 	new_ex_info = allocate_expand_info();
 	new_ex_info->start = *str_idx;
 	start_idx = *i;
-	(token->str)[*str_idx] = '$';
-	(*i)++;
-	(*str_idx)++;
+	cnt = init_token_str(line, i, token, str_idx);
 	while (ft_isdigit((*line)[*i]) || ft_isalpha((*line)[*i]) || \
 				(*line)[*i] == '_')
 	{
@@ -86,14 +83,11 @@ int	expand_handler(int *i, t_token	*token, char **line, int *str_idx)
 	t_expand_info	*new_ex_info;
 	int				start_idx;
 
-	cnt = 1;
 	new_ex_info = allocate_expand_info();
 	new_ex_info->start = *str_idx;
 	new_ex_info->split_arg = 1;
 	start_idx = *i;
-	(token->str)[*str_idx] = '$';
-	(*i)++;
-	(*str_idx)++;
+	cnt = init_token_str(line, i, token, str_idx);
 	while (ft_isdigit((*line)[*i]) || ft_isalpha((*line)[*i]) || \
 				(*line)[*i] == '_')
 	{

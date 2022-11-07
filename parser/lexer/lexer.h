@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:36:54 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/22 13:57:49 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:49:21 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,6 @@ void			fail_make_token_release(t_token *head);
 void			release_ex_info(t_expand_info *head);
 void			validation_ex_info(t_token	*token);
 void			print_token_data(t_token *head);
+int				init_token_str(char **line, int *i, t_token *token, \
+	int *str_idx);
 #endif
