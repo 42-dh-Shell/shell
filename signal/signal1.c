@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 21:00:37 by daegulee          #+#    #+#             */
-/*   Updated: 2022/11/07 21:11:15 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/11/07 21:22:37 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ extern t_shell	*g_shell;
 void	sigint_exit(int signum)
 {
 	if (signum == SIGINT)
-		g_shell->exit_status = 130;
+		g_shell->signal_status = 130;
 }

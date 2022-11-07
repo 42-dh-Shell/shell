@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:48:04 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/24 19:39:34 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/11/07 21:22:33 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_shell
 {
 	t_hash		*h_table;
 	int			exit_status;
+	int			signal_status;
 	int			sh_lv;
 	char		*tmp;
 	char		***lr_table;

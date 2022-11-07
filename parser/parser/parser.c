@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/11/07 21:16:13 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/11/07 21:25:12 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,5 +127,10 @@ void	start_parse(t_token	*tokens)
 	execute_command(ast->head, NULL, NULL, C_NORMAL);
 	stdio_rollback();
 	wait_all_pids();
+	if (g_shell->signal_status)
+	{
+		g_shell->exit_status = g_shell->signal_status;
+		g_shell->signal_status = 0;
+	}
 	release_all_ast(ast);
 }
