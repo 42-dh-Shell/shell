@@ -1,0 +1,10 @@
+{
+	"files.associations": {
+		"signal.h": "c",
+		"save": "c",
+		"execute.h": "c",
+		"lexer.h": "c",
+		"minishell.h": "c",
+		"termios.h": "c"
+	}
+}
