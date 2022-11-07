@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:36:23 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/28 17:19:09 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/11/07 12:16:08 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,13 @@ char	*get_expand_value(t_expand_info *expand_info)
 	char	*value;
 
 	key = ft_substr(expand_info->str, 1, expand_info->size - 1);
-	value = get_hash(g_shell->h_table, key);
+	if (ft_strcmp(key, "?") == 0)
+		value = ft_strdup(ft_itoa(g_shell->exit_status));
+	else
+		value = get_hash(g_shell->h_table, key);
 	free(key);
 	return (value);
 }
-// must fix!
 
 int	expand_str_size(char *node_str, t_expand_info *expand_info, int size)
 {

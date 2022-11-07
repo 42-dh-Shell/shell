@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idaegyu <idaegyu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 01:54:51 by daegulee          #+#    #+#             */
-/*   Updated: 2022/10/29 22:10:35 by idaegyu          ###   ########.fr       */
+/*   Updated: 2022/11/07 12:13:11 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ int	get_builtin_idx(char **argv)
 		return (6);
 	if (ft_strcmp(argv[0], "unset") == 0)
 		return (7);
-	if (ft_strcmp(argv[0], "$?") == 0)
-		return (8);
 	else
 		return (0);
 }
@@ -77,7 +75,6 @@ int	do_builtin(t_ast_node *head)
 	char		**argv;
 
 	argv = get_command_info(head);
-	expand_exit_status(argv);
 	result = g_built[is_builtin(head)](argv);
 	release_argv(argv);
 	return (result);

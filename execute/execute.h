@@ -6,7 +6,7 @@
 /*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:07:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/11/01 22:16:35 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/11/07 12:28:21 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,5 @@ char	**wild_expand(char *wild_str);
 
 //fix
 void	get_expd_str_help(char *str, t_expand_info *expand_info, \
-	char *value, int i);
+char *value, int i);
 #endif

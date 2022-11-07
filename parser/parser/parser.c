@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idaegyu <idaegyu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/29 21:28:19 by idaegyu          ###   ########.fr       */
+/*   Updated: 2022/11/07 11:52:19 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,55 @@ void	stdio_rollback(void)
 	}
 }
 
+void	print_token_data(t_token *head)
+{
+	int i = 1;
+	int j;
+	t_expand_info	*info;
+
+	while (head)
+	{
+		printf("====== token %d =====\n", i++);
+		printf("str = %s\n", head->str);
+		if (head->token_type == WORD)
+			printf("token_type = %s\n", "WORD");
+		else if (head->token_type == PIPE)
+			printf("token_type = %s\n", "PIPE");
+		else if (head->token_type == AND)
+			printf("token_type = %s\n", "AND");
+		else if (head->token_type == OR)
+			printf("token_type = %s\n", "OR");
+		else if (head->token_type == LESS)
+			printf("token_type = %s\n", "LESS");
+		else if (head->token_type == GREAT)
+			printf("token_type = %s\n", "GREAT");
+		else if (head->token_type == DLESS)
+			printf("token_type = %s\n", "DLESS");
+		else if (head->token_type == DGREAT)
+			printf("token_type = %s\n", "DGREAT");
+		else if (head->token_type == LBRAC)
+			printf("token_type = %s\n", "LBRAC");
+		else if (head->token_type == RBRAC)
+			printf("token_type = %s\n", "RBRAC");
+		else if (head->token_type == LAST)
+			printf("token_type = %s\n", "LAST");
+		printf("wildcard_flag = %d\n", head->wildcard_flag);
+		j = 1;
+		info = head->expand_info;
+		while (info)
+		{
+			printf("\t====== expand_info %d =====\n", j++);
+			printf("\tinfo_str = %s\n", info->str);
+			printf("\texpand_size = %d\n", info->size);
+			printf("\tsplit_arg_flag = %d\n", info->split_arg);
+			printf("\tstart_index = %d\n", info->start);
+			info = info->next;
+		}
+		head = head->next;
+		printf("\n");
+	}
+}
+
 void	start_parse(t_token	*tokens)
 {
 	t_stack		*stack;
@@ -118,9 +167,9 @@ void	start_parse(t_token	*tokens)
 	release_stack(stack);
 	if (!ast)
 		return ;
-	// signal(SIGINT, signal_here_doc);
+	signal(SIGINT, signal_here_doc);
 	read_heredoc(ast->head, 1);
-	// signal(SIGINT, signal_handler);
+	signal(SIGINT, signal_handler);
 	execute_command(ast->head, NULL, NULL, C_NORMAL);
 	stdio_rollback();
 	wait_all_pids();

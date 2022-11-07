@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idaegyu <idaegyu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:25:43 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/29 22:16:24 by idaegyu          ###   ########.fr       */
+/*   Updated: 2022/11/07 12:05:03 by daegulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	execute_fullpath_handler(char **argv)
 
 void	execute_fullpath(char **argv)
 {
-	expand_exit_status(argv);
 	execve(argv[0], argv, get_envp());
 	ft_exit("execve error\n", 1);
 }
