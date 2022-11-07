@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:25:43 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/11/07 15:02:18 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:21:40 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	execute_child(char **argv, t_ast_node *head)
 {
+	if (ft_strcmp(argv[0], "") == 0)
+		exit(0);
 	if (is_builtin(argv))
 	{
 		execute_builtin(head, argv);

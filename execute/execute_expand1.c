@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:19:38 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/11/07 14:51:20 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:19:41 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	get_expand_str(char *str, t_expand_info *expand_info, \
 		{
 			value = get_expand_value(expand_info);
 			j += expand_info->size;
-			get_expd_str_help(str, expand_info, value, &i);
+			if (value)
+				get_expd_str_help(str, expand_info, value, &i);
 			expand_info = expand_info->next;
 			continue ;
 		}
