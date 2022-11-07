@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:07:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/11/07 12:28:21 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:02:30 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	*get_valid_fullpath(char **paths, char **argv);
 void	execute_fullpath_handler(char **argv);
 int		is_valid_command(char *command);
 int		is_valid_redir_filename(t_expand_info *expand_info);
-void	execute(t_ast_node *head);
+void	execute(t_ast_node *head, char	**argv);
 char	**get_envp(void);
 void	wait_all_pids(void);
 int		is_last_pipe(t_ast_node *head);
@@ -86,7 +86,7 @@ void	execute_subsehll_handler(t_ast_node *head, int fd_pipe[], \
 	int next_pipe[], t_command_io io);
 int		builtin_handler(t_ast_node *head, t_command_io io, int echo_flag);
 char	*get_envp_path(void);
-void	execute_builtin(t_ast_node *head, t_command_io io);
+void	execute_builtin(t_ast_node *head, char **argv);
 void	print_no_file_error(char *filename);
 void	release_pid_list(t_pid_list	*pids);
 void	close_pipe(int fd_pipe[2], int idx);
@@ -97,6 +97,8 @@ void	close_all_pipe(void);
 void	do_pipe_list(int fd[]);
 void	expand_exit_status(char **argv);
 void	dup_child(t_ast_node *head);
+char	**get_argv_data(t_ast_node *head);
+void	execute_child(char **argv, t_ast_node *head);
 
 //queue
 t_qnode	*new_qnode(char c);
@@ -115,5 +117,5 @@ char	**wild_expand(char *wild_str);
 
 //fix
 void	get_expd_str_help(char *str, t_expand_info *expand_info, \
-char *value, int i);
+	char *value, int *i);
 #endif

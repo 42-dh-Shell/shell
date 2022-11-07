@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   execute1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:25:43 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/11/07 12:05:03 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:02:18 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
+
+void	execute_child(char **argv, t_ast_node *head)
+{
+	if (is_builtin(argv))
+	{
+		execute_builtin(head, argv);
+		exit(g_shell->exit_status);
+	}
+	else
+		execute(head, argv);
+}
 
 void	execute_make_fullpath(char **argv, char *envp)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_builtin.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 14:37:43 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/11/02 18:44:55 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/11/07 14:59:45 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,7 @@ int	dup_builtin_fd(char *filename, enum	e_ast_types type)
 		fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{
-		if (errno == 2)
-			print_no_file_error(filename);
+		error_printf("minishell : %s\n", strerror(errno));
 		g_shell->exit_status = 1;
 		return (0);
 	}
@@ -98,7 +97,7 @@ int	execute_buitin_redir(t_ast_node *head)
 	return (result);
 }
 
-void	execute_builtin(t_ast_node *head, t_command_io io)
+void	execute_builtin(t_ast_node *head, char **argv)
 {
 	int		result;
 
@@ -109,11 +108,8 @@ void	execute_builtin(t_ast_node *head, t_command_io io)
 		if (!result)
 			return ;
 		if (head->left != NULL)
-			execute_builtin(head->left, io);
+			execute_builtin(head->left, argv);
 	}
 	else
-	{
-		// if (io == C_NORMAL)//fix2
-			g_shell->exit_status = do_builtin(head);
-	}
+			g_shell->exit_status = do_builtin(argv);
 }

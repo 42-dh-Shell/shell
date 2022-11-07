@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:06:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/11/07 12:08:58 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:03:04 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,9 @@ void	execute_pipe_handler(t_ast_node *head, int next_pipe[], t_command_io io)
 	}
 }
 
-void	execute(t_ast_node *head)
+void	execute(t_ast_node *head, char **argv)
 {
 	char	*envp_path;
-	char	**argv;
 
 	while (g_shell->redir_list)
 	{
@@ -57,12 +56,11 @@ void	execute(t_ast_node *head)
 	{
 		dup_child(head);
 		if (head->left != NULL)
-			execute(head->left);
+			execute(head->left, argv);
 	}
 	else if (head->node_type == NODE_COMMAND)
 	{
 		envp_path = get_envp_path();
-		argv = get_command_info(head);
 		if (envp_path == NULL || ft_strchr(argv[0], '/'))
 			execute_fullpath_handler(argv);
 		else
@@ -74,10 +72,12 @@ void	execute_command_handler(t_ast_node *head, int fd_pipe[], \
 	int next_pipe[], t_command_io io)
 {
 	pid_t	pid;
+	char	**argv;
 
-	if (is_builtin(head) && !fd_pipe)
+	argv = get_argv_data(head);
+	if (is_builtin(argv) && !fd_pipe)
 	{
-		execute_builtin(head, io);
+		execute_builtin(head, argv);
 		return ;
 	}
 	pid = fork();
@@ -88,16 +88,13 @@ void	execute_command_handler(t_ast_node *head, int fd_pipe[], \
 		(g_shell->sh_lv)++;
 		dup_pipe(io, fd_pipe, next_pipe);
 		close_all_pipe();
-		if (is_builtin(head))
-		{
-			execute_builtin(head, io);
-			exit(g_shell->exit_status);
-		}
-		else
-			execute(head);
+		execute_child(argv, head);
 	}
 	else
+	{
 		add_last_pid(pid);
+		release_argv(argv);
+	}
 }
 
 void	execute_command(t_ast_node *head, int fd_pipe[], \

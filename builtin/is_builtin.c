@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 01:54:51 by daegulee          #+#    #+#             */
-/*   Updated: 2022/11/07 12:13:11 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/11/07 14:43:09 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,6 @@ static const t_built_f	g_built[9] = {
 	NULL, mini_echo, mini_cd, mini_env, mini_exit, mini_export, mini_pwd, \
 	mini_unset, mini_exit_status
 };
-
-t_ast_node	*get_command_node(t_ast_node *head)
-{
-	while (head && head->node_type != NODE_COMMAND)
-		head = head->left;
-	if (!head)
-		return (NULL);
-	return (head);
-}
 
 int	mini_exit_status(char **argv)
 {
@@ -54,28 +45,19 @@ int	get_builtin_idx(char **argv)
 		return (0);
 }
 
-int	is_builtin(t_ast_node *head)
+int	is_builtin(char	**argv)
 {
-	char		**argv;
 	int			result;
-	t_ast_node	*command_node;
 
-	command_node = get_command_node(head);
-	if (!command_node)
-		return (0);
-	argv = get_command_info(command_node);
 	result = get_builtin_idx(argv);
-	release_argv(argv);
 	return (result);
 }
 
-int	do_builtin(t_ast_node *head)
+int	do_builtin(char	**argv)
 {
 	int			result;
-	char		**argv;
 
-	argv = get_command_info(head);
-	result = g_built[is_builtin(head)](argv);
+	result = g_built[is_builtin(argv)](argv);
 	release_argv(argv);
 	return (result);
 }
