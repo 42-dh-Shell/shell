@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:12:35 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/24 14:43:53 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/11/08 14:16:25 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,9 @@ int	is_valid_redir_filename(t_expand_info *expand_info)
 			value = get_hash(g_shell->h_table, key);
 			if (value != NULL && get_argv_size(ft_split(value, ' ')) > 1)
 			{
-				ft_putstr_fd("minishell: ", 2);
-				ft_putstr_fd(key, 2);
-				ft_putstr_fd(": ambiguous redirect\n", 2);
+				error_printf("minishell: %s : ambiguous redirect\n", key);
 				free(key);
+				g_shell->exit_status = 1;
 				return (0);
 			}
 			free(key);

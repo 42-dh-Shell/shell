@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:06:51 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/11/07 21:11:44 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/11/08 13:50:30 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,7 @@ void	execute_command_handler(t_ast_node *head, int fd_pipe[], \
 	argv = get_argv_data(head);
 	if (is_builtin(argv) && !fd_pipe)
 	{
-		execute_builtin(head, argv);
-		stdio_rollback();
+		execute_builtin_parent(head, argv);
 		return ;
 	}
 	pid = fork();
@@ -89,7 +88,6 @@ void	execute_command_handler(t_ast_node *head, int fd_pipe[], \
 	signal(SIGINT, sigint_exit);
 	if (pid == 0)
 	{
-		(g_shell->sh_lv)++;
 		dup_pipe(io, fd_pipe, next_pipe);
 		close_all_pipe();
 		execute_child(argv, head);

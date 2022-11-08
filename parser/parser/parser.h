@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:19 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/10/28 11:05:14 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/11/08 15:38:48 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ void			add_and_or_node_in_subshell(t_ast *ast, t_ast_node *new_node);
 void			add_last_subshell_node(t_ast *ast, t_ast_node *new_node);
 void			reset_sub_idx(t_ast *ast);
 void			release_all_ast(t_ast *ast);
-void			read_heredoc(t_ast_node *ast, int write_flag);
+void			start_read_heardoc(t_ast_node *ast, int write_flag);
 void			release_all_subshell_node(t_subshell_node *sub_node);
 void			pipe_handler(t_token *token, t_ast *ast);
 t_expand_info	*dup_expand_info(t_expand_info *old);
@@ -155,4 +155,5 @@ void			execute_dup(enum e_ast_types type, int fd);
 void			stdio_rollback(void);
 char			*get_full_filename(int file_num);
 int				get_file_num(void);
+void			read_start(char *end_flag, int write_flag, int fd);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:25:43 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/11/07 21:05:29 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/11/08 14:12:56 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	execute_child(char **argv, t_ast_node *head)
 {
+	(g_shell->sh_lv)++;
 	if (argv && ft_strcmp(argv[0], "") == 0)
 		exit(0);
 	if (is_builtin(argv))
@@ -53,8 +54,15 @@ void	execute_make_fullpath(char **argv, char *envp)
 
 void	dup_child(t_ast_node *head)
 {
-	if (!dup_builtin_fd(head->redir_token->str, head->node_type))
+	char	**argv;
+
+	if (!is_valid_redir_filename(head->redir_token->expand_info))
 		exit(1);
+	argv = expand_str(head->redir_token->str, \
+		head->redir_token->expand_info);
+	if (!dup_builtin_fd(argv[0], head->node_type))
+		exit(1);
+	release_argv(argv);
 }
 
 void	execute_fullpath_handler(char **argv)

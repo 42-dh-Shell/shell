@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:07:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/11/07 15:02:30 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/11/08 13:59:48 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,9 @@ void	expand_exit_status(char **argv);
 void	dup_child(t_ast_node *head);
 char	**get_argv_data(t_ast_node *head);
 void	execute_child(char **argv, t_ast_node *head);
+void	store_stdin(void);
+void	store_stdout(void);
+void	execute_builtin_parent(t_ast_node *head, char **argv);
 
 //queue
 t_qnode	*new_qnode(char c);

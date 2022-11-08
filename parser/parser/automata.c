@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   automata.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:42:37 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/11/07 20:51:00 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/11/08 15:35:03 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ t_ast	*pushdown_automata(t_stack *stack, t_token *tokens, \
 		if (action_handler(action, stack, &tokens, ast) == 0)
 		{
 			ft_color_printft2(prev->str);
-			read_heredoc(ast->head, 1);
+			start_read_heardoc(ast->head, 1);
 			release_all_ast(ast);
 			return (0);
 		}

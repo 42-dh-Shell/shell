@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/11/07 21:25:12 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/11/08 15:45:11 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*get_full_filename(int file_num)
 	return (file_name);
 }
 
-void	read_start(t_ast_node *ast, int write_flag, int fd)
+void	read_start(char *end_flag, int write_flag, int fd)
 {
 	char	*line;
 
@@ -42,7 +42,7 @@ void	read_start(t_ast_node *ast, int write_flag, int fd)
 		line = readline(">");
 		if (!line)
 			return ;
-		if (ft_strcmp(line, ast->redir_token->str) == 0)
+		if (ft_strcmp(line, end_flag) == 0)
 		{
 			free(line);
 			break ;
@@ -50,38 +50,12 @@ void	read_start(t_ast_node *ast, int write_flag, int fd)
 		if (write_flag)
 		{
 			write(fd, line, ft_strlen(line));
-			write (fd, "\n", 1);
+			write(fd, "\n", 1);
 		}
 		free(line);
 	}
-}
-
-void	read_heredoc(t_ast_node *ast, int write_flag)
-{
-	char		*file_name;
-	int			file_num;
-	int			fd;
-
-	if (!ast)
-		return ;
-	if (write_flag && ast->node_type == NODE_DLESS && ast->redir_token)
-	{
-		file_num = get_file_num();
-		file_name = get_full_filename(file_num);
-		fd = open (file_name, O_WRONLY | O_CREAT, 0644);
-		if (fd < 0)
-			ft_exit("file open failed\n", 1);
-		read_start(ast, write_flag, fd);
-		ast->redir_token->str = file_name;
-		close(fd);
-	}
-	else if (!write_flag && ast->node_type == NODE_DLESS && \
-		ast->redir_token)
-		read_start(ast, write_flag, -1);
-	if (ast->left != 0)
-		read_heredoc(ast->left, write_flag);
-	if (ast->right != 0)
-		read_heredoc(ast->right, write_flag);
+	free(end_flag);
+	close(fd);
 }
 
 void	stdio_rollback(void)
@@ -96,7 +70,7 @@ void	stdio_rollback(void)
 		close(g_shell->std_io[0]);
 		g_shell->std_io[0] = 0;
 	}
-	else if (g_shell->io_filename[1])
+	if (g_shell->io_filename[1])
 	{
 		unlink(g_shell->io_filename[1]);
 		free(g_shell->io_filename[1]);
@@ -121,9 +95,12 @@ void	start_parse(t_token	*tokens)
 		g_shell->exit_status = 258;
 		return ;
 	}
-	signal(SIGINT, signal_here_doc);
-	read_heredoc(ast->head, 1);
-	signal(SIGINT, signal_handler);
+	start_read_heardoc(ast->head, 1);
+	if (g_shell->signal_status == 130)
+	{
+		release_all_ast(ast);
+		return ;
+	}
 	execute_command(ast->head, NULL, NULL, C_NORMAL);
 	wait_all_pids();
 	if (g_shell->signal_status)

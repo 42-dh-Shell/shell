@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+         #
+#    By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 15:07:35 by hyunkyle          #+#    #+#              #
-#    Updated: 2022/11/07 21:02:07 by daegulee         ###   ########.fr        #
+#    Updated: 2022/11/08 13:59:26 by hyunkyle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRCS				= main.c \
 					./execute/execute.c \
 					./execute/execute1.c \
 					./execute/execute2.c \
+					./execute/execute3.c \
 					./execute/execute_expand1.c \
 					./execute/execute_expand2.c \
 					./execute/execute_expand3.c \

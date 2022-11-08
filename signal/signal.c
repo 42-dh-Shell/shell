@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 17:04:37 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/11/07 21:00:45 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/11/08 15:33:57 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	signal_handler(int signum)
 	}
 }
 
-static void	term_set(void)
+void	term_set(void)
 {
 	struct termios	setting;
 
@@ -42,13 +42,9 @@ static void	term_set(void)
 
 void	signal_here_doc(int signum)
 {
-	char	*argv[2];
-
 	if (signum == SIGINT)
 	{
-		argv[0] = ft_strdup("./mini");
-		argv[1] = NULL;
-		execve("./mini", argv, get_envp());
+		exit(130);
 	}
 }
 
