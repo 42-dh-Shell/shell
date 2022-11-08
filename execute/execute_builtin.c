@@ -101,6 +101,12 @@ void	execute_builtin(t_ast_node *head, char **argv)
 {
 	int		result;
 
+	while (g_shell->redir_list)
+	{
+		dup_child(g_shell->redir_list);
+		g_shell->redir_list = g_shell->redir_list->left;
+	}
+	g_shell->redir_list = NULL;
 	if (head->node_type == NODE_DGREAT || head->node_type == NODE_LESS \
 	|| head->node_type == NODE_DLESS || head->node_type == NODE_GREAT)
 	{

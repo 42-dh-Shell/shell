@@ -153,4 +153,6 @@ t_ast_node		*get_pipe_or_and_ast_token(t_token *token);
 int				dup_builtin_fd(char *filename, enum	e_ast_types type);
 void			execute_dup(enum e_ast_types type, int fd);
 void			stdio_rollback(void);
+char			*get_full_filename(int file_num);
+int				get_file_num(void);
 #endif

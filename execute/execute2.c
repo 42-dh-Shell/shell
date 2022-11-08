@@ -71,7 +71,6 @@ void	execute_and_or_handler(t_ast_node *head)
 {
 	execute_command(head->left, NULL, NULL, C_NORMAL);
 	wait_all_pids();
-	stdio_rollback();
 	if (head->node_type == NODE_AND && g_shell->exit_status == 0)
 		execute_command(head->right, NULL, NULL, C_NORMAL);
 	else if (head->node_type == NODE_OR && g_shell->exit_status != 0)

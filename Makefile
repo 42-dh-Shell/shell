@@ -25,6 +25,7 @@ SRCS				= main.c \
 					./parser/lexer/lexer.c \
 					./stack/stack.c \
 					./parser/parser/parser.c \
+					./parser/parser/parser1.c \
 					./parser/parser/automata.c \
 					./parser/parser/automata1.c \
 					./parser/parser/parser_data_utils.c \

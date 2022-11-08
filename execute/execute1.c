@@ -19,13 +19,11 @@ void	execute_child(char **argv, t_ast_node *head)
 	if (is_builtin(argv))
 	{
 		execute_builtin(head, argv);
-		stdio_rollback();
 		exit(g_shell->exit_status);
 	}
 	else
 	{
 		execute(head, argv);
-		stdio_rollback();
 		exit(0);
 	}
 }

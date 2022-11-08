@@ -49,9 +49,10 @@ void	execute(t_ast_node *head, char **argv)
 
 	while (g_shell->redir_list)
 	{
-		dup_child(head);
+		dup_child(g_shell->redir_list);
 		g_shell->redir_list = g_shell->redir_list->left;
 	}
+	g_shell->redir_list = NULL;
 	if (head->node_type == NODE_DGREAT || head->node_type == NODE_LESS \
 	|| head->node_type == NODE_DLESS || head->node_type == NODE_GREAT)
 	{
@@ -79,6 +80,7 @@ void	execute_command_handler(t_ast_node *head, int fd_pipe[], \
 	if (is_builtin(argv) && !fd_pipe)
 	{
 		execute_builtin(head, argv);
+		stdio_rollback();
 		return ;
 	}
 	pid = fork();

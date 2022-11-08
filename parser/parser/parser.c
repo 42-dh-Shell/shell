@@ -59,13 +59,14 @@ void	read_start(t_ast_node *ast, int write_flag, int fd)
 void	read_heredoc(t_ast_node *ast, int write_flag)
 {
 	char		*file_name;
-	static int	file_num = 0;
+	int			file_num;
 	int			fd;
 
 	if (!ast)
 		return ;
 	if (write_flag && ast->node_type == NODE_DLESS && ast->redir_token)
 	{
+		file_num = get_file_num();
 		file_name = get_full_filename(file_num);
 		fd = open (file_name, O_WRONLY | O_CREAT, 0644);
 		if (fd < 0)
@@ -73,7 +74,6 @@ void	read_heredoc(t_ast_node *ast, int write_flag)
 		read_start(ast, write_flag, fd);
 		ast->redir_token->str = file_name;
 		close(fd);
-		file_num += 1;
 	}
 	else if (!write_flag && ast->node_type == NODE_DLESS && \
 		ast->redir_token)
@@ -125,7 +125,6 @@ void	start_parse(t_token	*tokens)
 	read_heredoc(ast->head, 1);
 	signal(SIGINT, signal_handler);
 	execute_command(ast->head, NULL, NULL, C_NORMAL);
-	stdio_rollback();
 	wait_all_pids();
 	if (g_shell->signal_status)
 	{
