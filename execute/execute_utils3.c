@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daegulee <daegulee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:43:37 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/11/07 11:49:32 by daegulee         ###   ########.fr       */
+/*   Updated: 2022/11/08 17:30:48 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ char	**get_wildcard_info(int wildcard_flag, char**argv)
 				result = add_back_argv(result, wild_expand(argv[i]));
 		}
 	}
+	release_argv(argv);
 	return (result);
 }
 
