@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:36:54 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/11/07 15:49:21 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/11/08 17:15:34 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int				get_word_len(char **line);
 t_expand_info	*allocate_expand_info(void);
 t_token			*allocate_token(int word_len);
 void			expand_lst_add(t_token *head, t_expand_info *target);
-void			token_lst_add(t_token **head, t_token *target);
+int				token_lst_add(t_token **head, t_token *target);
 void			asign_handler(t_token *token, int i);
 int				closed_quote_dquote(int i, char **line, char quote_code);
 int				division_word(char **line, t_token *token, \
@@ -84,4 +84,6 @@ void			validation_ex_info(t_token	*token);
 void			print_token_data(t_token *head);
 int				init_token_str(char **line, int *i, t_token *token, \
 	int *str_idx);
+void			parsing(t_token *head);
+void			add_last_token(t_token *head);
 #endif

@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 17:04:37 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/11/08 15:33:57 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/11/08 16:12:31 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	signal_here_doc(int signum)
 {
 	if (signum == SIGINT)
 	{
+		printf("\n");
 		exit(130);
 	}
 }

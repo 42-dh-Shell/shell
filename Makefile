@@ -6,7 +6,7 @@
 #    By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/21 15:07:35 by hyunkyle          #+#    #+#              #
-#    Updated: 2022/11/08 13:59:26 by hyunkyle         ###   ########.fr        #
+#    Updated: 2022/11/08 17:14:10 by hyunkyle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS				= main.c \
 					./parser/lexer/lexer_utils.c \
 					./parser/lexer/lexer_while_utils.c \
 					./parser/lexer/lexer.c \
+					./parser/lexer/lexer1.c \
 					./stack/stack.c \
 					./parser/parser/parser.c \
 					./parser/parser/parser1.c \
@@ -72,8 +73,8 @@ OBJS = $(SRCS:.c=.o)
 DEPS = ${OBJS:.o=.d}
 
 FLAGS = -lncurses
-LINKING_FLAGS = -lreadline $(LD_CLUS) -fsanitize=address
-COMFILE_FLAGS = -Wall -Wextra -Werror -g $(CPP_CLUS) -MD -fsanitize=address
+LINKING_FLAGS = -lreadline $(LD_CLUS) #-fsanitize=address
+COMFILE_FLAGS = -Wall -Wextra -Werror -g $(CPP_CLUS) -MD #-fsanitize=address
 CC = cc
 LD_CLUS=-L${HOME}/.brew/opt/readline/lib 
 CPP_CLUS=-I${HOME}/.brew/opt/readline/include

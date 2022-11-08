@@ -6,7 +6,7 @@
 /*   By: hyunkyle <hyunkyle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:04:08 by hyunkyle          #+#    #+#             */
-/*   Updated: 2022/11/08 15:47:07 by hyunkyle         ###   ########.fr       */
+/*   Updated: 2022/11/08 17:23:04 by hyunkyle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	is_valid_filenum(int file_num)
 
 	file_name = get_full_filename(file_num);
 	result = stat(file_name, &file_info);
+	free(file_name);
 	if (result == -1)
 		return (1);
 	return (0);
@@ -52,8 +53,10 @@ int	add_filename_open(t_ast_node *ast)
 	return (fd);
 }
 
-void	read_heardoc(pid_t	pid)
+int	read_heardoc(pid_t	pid, char *end_flag, int fd, int write_flag)
 {
+	int	status;
+
 	if (pid < 0)
 		ft_exit("fork error\n", 1);
 	if (pid == 0)
@@ -64,10 +67,15 @@ void	read_heardoc(pid_t	pid)
 	}
 	else
 	{
+		signal(SIGINT, SIG_IGN);
 		waitpid(pid, &status, 0);
 		g_shell->exit_status = WEXITSTATUS(status);
 		if (g_shell->exit_status == 130)
-			g_shell->signal_status == 130;
+		{
+			g_shell->signal_status = 130;
+			return (0);
+		}
+		return (1);
 	}
 }
 
@@ -75,18 +83,24 @@ void	start_read_heardoc(t_ast_node *ast, int write_flag)
 {
 	pid_t	pid;
 	int		fd;
-	int		status;
 	char	*end_flag;
 
+	if (!ast)
+		return ;
 	if (ast->node_type == NODE_DLESS)
 	{
 		end_flag = ast->redir_token->str;
 		fd = add_filename_open(ast);
 		pid = fork();
-		read_heardoc(pid);
+		if (!read_heardoc(pid, end_flag, fd, write_flag))
+		{
+			free(end_flag);
+			return ;
+		}
+		free(end_flag);
 	}
 	if (ast->left != 0)
 		start_read_heardoc(ast->left, write_flag);
-	if (ast->right != 0)
+	if (ast->right != 0 && g_shell->signal_status != 130)
 		start_read_heardoc(ast->right, write_flag);
 }
